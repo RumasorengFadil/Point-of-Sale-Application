@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\CashBook;
+namespace App\Models\Accounting;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CashBook extends Model
+class CashAccount extends Model
 {
     use HasFactory;
 

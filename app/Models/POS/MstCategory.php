@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Models\Product;
+namespace App\Models\POS;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class MstCategory extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'category_name',
     ];
