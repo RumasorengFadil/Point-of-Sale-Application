@@ -13,6 +13,26 @@ return new class extends Migration
     {
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('transaction_id'); // Foreign key to mst_publisher table
+            
+            $table->foreign('transaction_id') // Defining mst_publisher the foreign key constraint
+            ->references('id')
+            ->on('transactions')
+            ->onDelete('restrict');
+            
+            $table->unsignedBigInteger('product_id'); // Foreign key to mst_publisher table
+            
+            $table->foreign('product_id') // Defining mst_publisher the foreign key constraint
+            ->references('id')
+            ->on('products')
+            ->onDelete('restrict');
+
+            $table->string('product_name');
+            $table->int('quantity');
+            $table->int('unit_price');
+            $table->int('sub_total');
+            
             $table->timestamps();
         });
     }
