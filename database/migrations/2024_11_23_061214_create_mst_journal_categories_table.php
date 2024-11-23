@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mst_types', function (Blueprint $table) {
+        Schema::create('mst_journal_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('type_name');
+            $table->string('category_name');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mst_types');
+        Schema::dropIfExists('mst_journal_categories');
     }
 };

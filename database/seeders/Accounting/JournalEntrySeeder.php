@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders\Product;
+namespace Database\Seeders\Accounting;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class Product extends Seeder
+class JournalEntrySeeder extends Seeder
 {
     /**
      * Run the database seeds.

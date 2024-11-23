@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories\CashBook;
+namespace Database\Factories\Accounting;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CashBook\CashBook>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Accounting\MstAccount>
  */
-class CashBookFactory extends Factory
+class MstAccountFactory extends Factory
 {
     /**
      * Define the model's default state.

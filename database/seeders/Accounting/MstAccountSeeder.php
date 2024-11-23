@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders\Product;
+namespace Database\Seeders\Accounting;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MstCategory extends Seeder
+class MstAccountSeeder extends Seeder
 {
     /**
      * Run the database seeds.

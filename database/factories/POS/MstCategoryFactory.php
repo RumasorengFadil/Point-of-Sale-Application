@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Factories\Product;
+namespace Database\Factories\POS;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product\MstCategory>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\POS\MstCategory>
  */
 class MstCategoryFactory extends Factory
 {

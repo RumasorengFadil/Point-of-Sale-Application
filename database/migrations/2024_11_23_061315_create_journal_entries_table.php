@@ -11,11 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cash_accounts', function (Blueprint $table) {
+        Schema::create('journal_entries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('category');
             $table->date('input_date');
+            
+            $table->unsignedBigInteger("category_id"); // Foreign key to mst_publisher table
+            
+            $table->foreign("category_id") // Defining mst_publisher the foreign key constraint
+            ->references("id")
+            ->on("mst_journal_categories")
+            ->onDelete("cascade");
+            
+            $table->unsignedBigInteger("account_id"); // Foreign key to mst_publisher table
+            
+            $table->foreign("account_id") // Defining mst_publisher the foreign key constraint
+            ->references("id")
+            ->on("mst_accounts")
+            ->onDelete("cascade");
             
             $table->unsignedBigInteger("type_id"); // Foreign key to mst_publisher table
             
@@ -25,9 +37,10 @@ return new class extends Migration
             ->onDelete("cascade");
             
             $table->integer('nominal');
+            $table->string('description');
             $table->integer('evidence');
             $table->integer('last_login');
-
+            
             $table->timestamps();
         });
     }
@@ -37,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cash_accounts');
+        Schema::dropIfExists('journal_entries');
     }
 };
