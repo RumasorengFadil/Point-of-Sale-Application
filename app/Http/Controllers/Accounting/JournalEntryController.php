@@ -27,10 +27,10 @@ class JournalEntryController extends Controller
     }   
     public function index()
     {
-        $journalEntry = $this->journalEntryRepository->index();
+        $journalEntries = $this->journalEntryRepository->index();
 
 
-        return inertia()->render('Accounting/JournalEntry', ['JournalEntry' => $journalEntry]);
+        return inertia()->render('Accounting/JournalEntry', ['JournalEntries' => $journalEntries]);
     }
     public function create()
     {

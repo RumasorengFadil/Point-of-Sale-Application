@@ -10,9 +10,9 @@ use Intervention\Image\ImageManager;
 
 class PhotoService
 {
-    const EVIDENCE_PHOTO_PATH = '/uploads/accounting/img/evidence/';
-    const ADMIN_PHOTO_PATH = '/uploads/img/admin/';
-    // const PRODUCT_PHOTO_PATH = '/uploads/img/products/';
+    const EVIDENCE_PHOTO_PATH = '/uploads/accounting/img/evidences/';
+    const PRODUCT_PHOTO_PATH = '/uploads/POS/img/products/';
+    // const ADMIN_PHOTO_PATH = '/uploads/img/admin/';
     // const BIBLIO_PHOTO_PATH = '/uploads/img/biblios/';
     // const DEFAULT_PHOTO_PATH = '/img/bibliography/biblio-default-picture.png';
 
@@ -49,7 +49,7 @@ class PhotoService
             throw new PhotoHandlingException("Failed to handle $type photo", 0, $e);
         }
     }
-    public function handleUpdatePhoto($photo, $photoPath, $type, $size)
+    public function handleUpdatePhoto($photo, $photoPath, $type, $size=800)
     {
         if (!$photo)
             return;
@@ -75,6 +75,6 @@ class PhotoService
 
     private function getPathByType($type)
     {
-        return $type === 'evidence' ? self::EVIDENCE_PHOTO_PATH : self::ADMIN_PHOTO_PATH;
+        return $type === 'evidence' ? self::EVIDENCE_PHOTO_PATH : self::PRODUCT_PHOTO_PATH;
     }
 }

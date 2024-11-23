@@ -19,12 +19,12 @@ return new class extends Migration
             $table->foreign("category_id") // Defining mst_publisher the foreign key constraint
             ->references("id")
             ->on("mst_categories")
-            ->onDelete("cascade");
+            ->onDelete("no action");
 
             $table->string('name');
             $table->integer('price');
-            $table->float('discount');
-            $table->int('stock');
+            $table->float('discount')->nullable();
+            $table->int('stock')->nullable();
             $table->string('image');
             
             $table->timestamps();

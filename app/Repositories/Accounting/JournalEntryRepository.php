@@ -10,7 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class JournalEntryRepository
 {
-    public function index($perPage = null)
+    public function index()
     {
         return JournalEntry::all();
     }
