@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Services;
+
+use App\Exceptions\PhotoHandlingException;
+use App\Models\Biblio;
+use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+
+class PhotoService
+{
+    const EVIDENCE_PHOTO_PATH = '/uploads/accounting/img/evidence/';
+    const ADMIN_PHOTO_PATH = '/uploads/img/admin/';
+    // const PRODUCT_PHOTO_PATH = '/uploads/img/products/';
+    // const BIBLIO_PHOTO_PATH = '/uploads/img/biblios/';
+    // const DEFAULT_PHOTO_PATH = '/img/bibliography/biblio-default-picture.png';
+
+    public function handlePhoto($image, $type, $size = 800)
+    {
+        try {
+            if (!$image)
+                return null;
+
+            // create new manager instance with desired driver
+            $manager = new ImageManager(new Driver());
+
+            // Membuat nama file unik
+            $filename = uniqid() . '_' . $image->getClientOriginalName();
+
+            //Memperoleh path
+            $path = $this->getPathByType($type);
+
+            // Baca gambar menggunakan Intervention Image
+            $img = $manager->read($image);
+
+            // Optimalisasi ukuran gambar (resize)
+            $img->resize($size, null);
+
+            // Kompresi gambar dengan mengatur kualitas
+            $img->toJpeg(75); // mengubah ke format JPG dan kualitas 75%
+
+            // Simpan gambar
+            Storage::disk('public')->put((string) $path . $filename, $img->encode());
+
+            // Kembalikan URL yang dapat diakses
+            return $filename;
+        } catch (\Exception $e) {
+            throw new PhotoHandlingException("Failed to handle $type photo", 0, $e);
+        }
+    }
+    public function handleUpdatePhoto($photo, $photoPath, $type)
+    {
+        if (!$photo)
+            return;
+
+        // Menghapus data foto sebelumnya
+        self::removePhoto($photoPath, $type);
+
+        // Handle gambar biblio
+        $filename = self::handlePhoto($photo, $type);
+
+        return $filename;
+    }
+
+    public function removePhoto($photoPath, $type)
+    {
+        $path = $this->getPathByType($type);
+
+        if (Storage::disk('public')->exists((string) $path . $photoPath)) {
+            Storage::disk('public')->delete((string) $path . $photoPath);
+        }
+        // dd($photoPath);
+    }
+
+    private function getPathByType($type)
+    {
+        return $type === 'product' ? self::PRODUCT_PHOTO_PATH : self::ADMIN_PHOTO_PATH;
+    }
+}
