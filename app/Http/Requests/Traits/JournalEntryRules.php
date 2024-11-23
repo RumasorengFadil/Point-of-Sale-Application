@@ -11,7 +11,7 @@ trait JournalEntryRules
         return [
             'inputDate' => 'required',
             'categoryId' => 'required|exists:mst_journal_categories,id',
-            'accountId' => 'required|exists:mst_accounts,id',
+            // 'accountId' => 'required|exists:mst_accounts,id',
             'typeId' => 'required|exists:mst_types,id',
             'nominal' => 'required|number',
             'description' => 'required|string',
@@ -32,7 +32,7 @@ trait JournalEntryRules
             'deskripsi.required' => 'Deskripsi belum diisi!.',
             'deskripsi.number' => 'Deskripsi harus berupa string!.',
 
-            'evidence.required' => 'Bukti transaksi harus diisi!',
+            // 'evidence.required' => 'Bukti transaksi harus diisi!',
             'evidence.image' => 'File harus berupa gambar!',
             'evidence.mimes' => 'Eksitensi yang didukung:jpg,jpeg, dan png',
             'evidence.max' => 'Gambar tidak boleh melebihi 4mb!',

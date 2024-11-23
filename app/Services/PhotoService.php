@@ -49,7 +49,7 @@ class PhotoService
             throw new PhotoHandlingException("Failed to handle $type photo", 0, $e);
         }
     }
-    public function handleUpdatePhoto($photo, $photoPath, $type)
+    public function handleUpdatePhoto($photo, $photoPath, $type, $size)
     {
         if (!$photo)
             return;
@@ -58,7 +58,7 @@ class PhotoService
         self::removePhoto($photoPath, $type);
 
         // Handle gambar biblio
-        $filename = self::handlePhoto($photo, $type);
+        $filename = self::handlePhoto($photo, $type, $size);
 
         return $filename;
     }
@@ -75,6 +75,6 @@ class PhotoService
 
     private function getPathByType($type)
     {
-        return $type === 'product' ? self::PRODUCT_PHOTO_PATH : self::ADMIN_PHOTO_PATH;
+        return $type === 'evidence' ? self::EVIDENCE_PHOTO_PATH : self::ADMIN_PHOTO_PATH;
     }
 }

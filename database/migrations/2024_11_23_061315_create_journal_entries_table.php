@@ -38,7 +38,7 @@ return new class extends Migration
             
             $table->integer('nominal');
             $table->string('description');
-            $table->integer('evidence');
+            $table->integer('evidence')->nullable();
             $table->integer('last_login');
             
             $table->timestamps();

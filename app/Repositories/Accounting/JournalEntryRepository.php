@@ -19,13 +19,13 @@ class JournalEntryRepository
         return JournalEntry::create($this->mapData($data));
     }
 
-    public function update(array $data, $product): bool
+    public function update(array $data, $journalEntry): bool
     {
-        return $product->update($this->mapData($data));
+        return $journalEntry->update($this->mapData($data));
     }
-    public function destroy($product): void
+    public function destroy($journalEntry): void
     {
-        $product->delete();
+        $journalEntry->delete();
     }
 
     private function mapData(array $data): array
