@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'cashier' => [
+            'driver' => 'session',
+            'provider' => 'cashiers', // Gunakan provider khusus
+        ],
     ],
 
     /*
@@ -65,6 +69,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'cashiers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Cashier::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
