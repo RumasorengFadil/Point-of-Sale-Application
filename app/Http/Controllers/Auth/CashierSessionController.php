@@ -20,7 +20,7 @@ class CashierSessionController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Login', [
+        return Inertia::render('Auth/CashierLogin', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
         ]);
