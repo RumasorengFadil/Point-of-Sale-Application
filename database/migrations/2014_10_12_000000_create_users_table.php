@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('real_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('image');
             $table->dateTime('last_login');
             $table->timestamp('email_verified_at')->nullable();

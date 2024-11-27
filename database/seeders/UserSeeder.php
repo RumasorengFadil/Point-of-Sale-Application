@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cashier;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CashierSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Cashier::factory()->count(1)->create();
+        User::factory()->count(1)->create();
     }
 }

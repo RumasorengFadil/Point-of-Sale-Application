@@ -17,7 +17,13 @@ class CashierFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'username' => 'kasir',
+            'real_name' => fake()->name(),
+            'email' => 'kasir@gmail.com',
+            'password' => 'kasir',
+            'phone_number' => fake()->phoneNumber(),
+            'image' => '',
+            'last_login' => now()->toDateString(),
         ];
     }
 }

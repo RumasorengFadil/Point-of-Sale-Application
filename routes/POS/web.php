@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\POS\ProductController;
+use App\Http\Controllers\POS\TransactionController;
 use App\Http\Controllers\ProfileController;
+use App\Repositories\POS\ProductRepository;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,23 +19,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/transaction', [TransactionController::class, 'index'])->middleware(['auth', 'verified'])->name('transaction.index');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/pos/dashboard', function () {
+    return Inertia::render('POS/Dashboard');
+})->middleware(['auth', 'verified'])->name('pos-dashboard.index');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
+Route::get('/pos/product', [ProductController::class, 'index'])->middleware(['auth', 'verified'])->name('product.index');
+Route::get('/pos/product/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('product.create');
+Route::post('/pos/product/store', [ProductController::class, 'store'])->middleware(['auth', 'verified'])->name('product.store');
+Route::get('/pos/product/edit/{id}', [ProductController::class, 'edit'])->middleware(['auth', 'verified'])->name('product.edit');
+Route::post('/pos/product/update/{id}', [ProductController::class, 'update'])->middleware(['auth', 'verified'])->name('product.update');
+Route::delete('/pos/product/destroy/{id}', [ProductController::class, 'destroy'])->middleware(['auth', 'verified'])->name('product.destroy');

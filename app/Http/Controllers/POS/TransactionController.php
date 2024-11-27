@@ -4,6 +4,8 @@ namespace App\Http\Controllers\POS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\POS\StoreTransactionRequest;
+use App\Models\POS\MstProductCategory;
+use App\Repositories\POS\MstProductCategoryRepository;
 use App\Repositories\POS\ProductRepository;
 use App\Services\PhotoService;
 use App\Services\TransactionService;
@@ -12,17 +14,20 @@ use Illuminate\Http\Request;
 class TransactionController extends Controller
 {
     protected $productRepository;
-    protected $mstCategoryRepository;
+    protected $mstProductCategoryRepository;
     protected $transactionService;
-    public function __construct(ProductRepository $productRepository, TransactionService $transactionService)
+    public function __construct(ProductRepository $productRepository, MstProductCategoryRepository $mstProductCategoryRepository, TransactionService $transactionService)
     {
         $this->productRepository = $productRepository;
         $this->transactionService = $transactionService;
+        $this->mstProductCategoryRepository = $mstProductCategoryRepository;
     }
     public function index()
     {
         $products = $this->productRepository->index();
-        return inertia()->render('POS/Transaction', ['products' => $products]);
+        $categories = $this->mstProductCategoryRepository->index();
+
+        return inertia()->render('POS/Transaction', ['products' => $products, 'categories' => $categories]);
     }
     public function create()
     {

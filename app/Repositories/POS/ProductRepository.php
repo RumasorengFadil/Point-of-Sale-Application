@@ -8,7 +8,7 @@ class ProductRepository
 {
     public function index($perPage = null)
     {
-        return Product::all();
+        return Product::with('category')->get();
     }
     public function store(array $data): Product
     {

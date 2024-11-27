@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\POS\StoreProductRequest;
 use App\Http\Requests\POS\UpdateProductRequest;
 use App\Models\POS\Product;
-use App\Repositories\POS\MstCategoryRepository;
+use App\Repositories\POS\MstProductCategoryRepository;
 use App\Repositories\POS\ProductRepository;
 use App\Services\PhotoService;
 use Illuminate\Http\Request;
@@ -14,13 +14,13 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     protected $productRepository;
-    protected $mstCategoryRepository;
+    protected $mstProductCategoryRepository;
     protected $photoService;
-    public function __construct(ProductRepository $productRepository, PhotoService $photoService, MstCategoryRepository $mstCategoryRepository)
+    public function __construct(ProductRepository $productRepository, PhotoService $photoService, MstProductCategoryRepository $mstProductCategoryRepository)
     {
         $this->productRepository = $productRepository;
         $this->photoService = $photoService;
-        $this->mstCategoryRepository = $mstCategoryRepository;
+        $this->mstProductCategoryRepository = $mstProductCategoryRepository;
     }
     public function index()
     {
@@ -29,9 +29,8 @@ class ProductController extends Controller
     }
     public function create()
     {
-        $categories = $this->mstCategoryRepository->index();
-
-        return inertia()->render('Product/CreateProduct', ['categories', $categories]);
+        $categories = $this->mstProductCategoryRepository->index();
+        return inertia()->render('POS/CreateProduct', ['categories' => $categories]);
     }
     public function store(StoreProductRequest $request)
     {
@@ -41,7 +40,7 @@ class ProductController extends Controller
             $validatedData = $request->validated();
 
             // Handle Photo Product
-            $validatedData['image'] = $this->photoService->handlePhoto($validatedData['image'], 'product');
+            $validatedData['image'] = $this->photoService->handlePhoto($validatedData['image'], 'product', null);
 
             // Added product data and image path into database
             $this->productRepository->store($validatedData);
@@ -49,6 +48,7 @@ class ProductController extends Controller
             return redirect()->route('product.create')
                 ->with(['message' => __('message.success.stored', ['entity' => 'Product'])]);
         } catch (\Exception $e) {
+            dd($e->getMessage());
             \Log::error('Failed to store product: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => __('message.error.stored', ['entity' => 'Product'])]);
         }
@@ -57,17 +57,20 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         // $product = $this->productService->mapProduct($product->getAttributes());
-        return inertia()->render('Product/EditProduct', ['product' => $product]);
-    }
-    public function update($product, UpdateProductRequest $request)
-    {
+        $product->load(['category']);
 
+        $categories = $this->mstProductCategoryRepository->index();
+
+        return inertia()->render('POS/EditProduct', ['product' => $product, 'categories' => $categories]);
+    }
+    public function update(UpdateProductRequest $request, $product)
+    {
         try {
             // Validate product data
             $validatedData = $request->validated();
 
             // Handle Photo Product
-            $image = $this->photoService->handleUpdatePhoto($validatedData['image'], $product['image'], 'product');
+            $image = $this->photoService->handleUpdatePhoto($validatedData['image'], $product['image'], 'product', null);
             
             // Sets the image to the old path when the image variable is null 
             $validatedData['image'] = $image !== null ? $image : $product['image'];

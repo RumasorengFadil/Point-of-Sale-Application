@@ -10,11 +10,15 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_id',
         'name',
+        'category_id',
         'price',
         'discount',
         'stock',
         'image',
     ];
+
+    public function category() {
+        return $this->belongsTo(MstProductCategory::class, 'category_id');
+    }
 }

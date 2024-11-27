@@ -52,7 +52,7 @@ class CashierLoginRequest extends FormRequest
             'email' => $this->email,
             'password' => $this->password,
         ];
-        
+
         $this->ensureIsNotRateLimited();
         
         if (!Auth::guard('cashier')->attempt($crendentials, $this->boolean('remember'))) {

@@ -43,7 +43,7 @@ class CashierSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('member')->logout();
+        Auth::guard('cashier')->logout();
 
         $request->session()->invalidate();
 

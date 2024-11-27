@@ -23,10 +23,10 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
-    Route::get('login', [CashierSessionController::class, 'create'])
-                ->name('login');
+    Route::get('cashier-login', [CashierSessionController::class, 'create'])
+                ->name('cashier-login');
 
-    Route::post('login', [CashierSessionController::class, 'store']);
+    Route::post('cashier-login', [CashierSessionController::class, 'store']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->name('password.request');
@@ -62,4 +62,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+});
+
+Route::middleware('auth:cashier')->group(function () {
+    Route::post('cashier-logout', [CashierSessionController::class, 'destroy'])->name('cashier.logout');
+
 });

@@ -1,8 +1,8 @@
-export default function ApplicationLogoSm(props) {
+export default function ApplicationLogo(props) {
     return (
         <svg
-            width="102"
-            height="75"
+            width="75"
+            height="50"
             viewBox="0 0 102 75"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

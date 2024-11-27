@@ -29,9 +29,9 @@ return new class extends Migration
             ->onDelete('restrict');
 
             $table->string('product_name');
-            $table->int('quantity');
-            $table->int('unit_price');
-            $table->int('sub_total');
+            $table->integer('quantity');
+            $table->integer('unit_price');
+            $table->integer('sub_total');
             
             $table->timestamps();
         });

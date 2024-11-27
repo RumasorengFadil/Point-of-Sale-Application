@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\POS;
 
+use App\Models\POS\MstProductCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,7 @@ class MstCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        MstProductCategory::create(['category_name' => 'Makanan']);
+        MstProductCategory::create(['category_name' => 'Minuman']);
     }
 }

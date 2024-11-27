@@ -12,9 +12,9 @@ trait ProductRules
         return [
             'categoryId' => 'required|exists:mst_product_categories,id',
             'name' => 'required|string',
-            'price' => 'required|number',
-            'discount' => 'nullable|number',
-            'stock' => 'nullable|number',
+            'price' => 'required|integer',
+            'discount' => 'nullable|integer',
+            'stock' => 'nullable|integer',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ];
     }
