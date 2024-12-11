@@ -1,9 +1,9 @@
 import { memo } from "react";
 import Product from "./Product";
-import { useTransactionContext } from "@/Context/TransactionContext";
+import useCategoryStore from "@/store/useCategoryStore";
 
 export default memo(function ProductList({ products }) {
-    const { category, setCategory } = useTransactionContext();
+    const category = useCategoryStore((state) => state.category);
 
     return (
         <div className="h-full overflow-auto py-2 w-full">
