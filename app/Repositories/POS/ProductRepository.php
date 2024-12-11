@@ -34,7 +34,6 @@ class ProductRepository
             'stock' => $data['stock'],
             'image' => $data['image'],
         ];
-
         return $mappedData;
     }
 }

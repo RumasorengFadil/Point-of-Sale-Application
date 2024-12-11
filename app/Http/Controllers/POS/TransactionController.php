@@ -27,11 +27,14 @@ class TransactionController extends Controller
         $products = $this->productRepository->index();
         $categories = $this->mstProductCategoryRepository->index();
 
-        return inertia()->render('POS/Transaction', ['products' => $products, 'categories' => $categories]);
+        return inertia()->render('POS/Transaction/Transaction', ['products' => $products, 'categories' => $categories]);
     }
     public function create()
-    {
-        return inertia()->render('Product/CreateTransaction');
+    {   
+        $products = $this->productRepository->index();
+        $categories = $this->mstProductCategoryRepository->index();
+
+        return inertia()->render('POS/Transaction/CreateTransaction', ['products' => $products, 'categories' => $categories]);
     }
     public function store(StoreTransactionRequest $request)
     {

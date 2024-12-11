@@ -25,12 +25,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productRepository->index();
-        return inertia()->render('POS/Product', ['products' => $products]);
+        return inertia()->render('POS/Product/Product', ['products' => $products]);
     }
     public function create()
     {
         $categories = $this->mstProductCategoryRepository->index();
-        return inertia()->render('POS/CreateProduct', ['categories' => $categories]);
+        return inertia()->render('POS/Product/CreateProduct', ['categories' => $categories]);
     }
     public function store(StoreProductRequest $request)
     {
@@ -61,7 +61,7 @@ class ProductController extends Controller
 
         $categories = $this->mstProductCategoryRepository->index();
 
-        return inertia()->render('POS/EditProduct', ['product' => $product, 'categories' => $categories]);
+        return inertia()->render('POS/Product/EditProduct', ['product' => $product, 'categories' => $categories]);
     }
     public function update(UpdateProductRequest $request, $product)
     {

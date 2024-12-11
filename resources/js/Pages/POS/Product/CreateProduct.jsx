@@ -11,16 +11,16 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import toastUtils from "@/utils/toastUtils";
 import { useImagePreview } from "@/hooks/useImagePreview";
 
-export default function EditProduct({ auth, product, categories }) {
+export default function CreateProduct({ auth, categories }) {
     const { imagePreview, handleFileChange } = useImagePreview(); // State untuk menyimpan Data URL
 
     const { post, data, setData, errors, reset } = useForm({
-        name: product.name,
-        categoryId: product.category.id,
-        price: product.price,
-        discount: product.discount,
-        stock: product.stock,
-        image: null,
+        name: "",
+        categoryId: "",
+        price: "",
+        discount: "",
+        stock: "",
+        image: "",
     });
     const handleChange = (e) => {
         setData((prevData) => ({
@@ -31,7 +31,8 @@ export default function EditProduct({ auth, product, categories }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("product.update", product.id), {
+
+        post(route("product.store"), {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
                 reset();
@@ -43,7 +44,7 @@ export default function EditProduct({ auth, product, categories }) {
     };
     return (
         <AuthenticatedLayout user={auth.user}>
-            <Head title="Edit Produk" />
+            <Head title="Tambah Produk" />
 
             {/* Content */}
             <div className="flex flex-col overflow-y-auto overflow-x-hidden space-y-8 flex-1 px-4 max-h-screen">
@@ -72,7 +73,7 @@ export default function EditProduct({ auth, product, categories }) {
                 <div className="flex flex-col w-full h-full overflow-y-auto space-y-5 px-4 py-6 my-8 rounded shadow-lg bg-white">
                     {/* Title */}
                     <p className="">
-                        <span className="font-bold">Edit</span> Produk
+                        <span className="font-bold">Tambah</span> Produk
                     </p>
 
                     <div className="flex flex-col gap-2">
@@ -181,11 +182,7 @@ export default function EditProduct({ auth, product, categories }) {
                                 />
                                 <img
                                     className="rounded-md"
-                                    src={
-                                        imagePreview
-                                            ? imagePreview
-                                            : `/storage/uploads/POS/img/products/${product.image}`
-                                    }
+                                    src={imagePreview}
                                     alt=""
                                 />
                             </div>
@@ -216,7 +213,7 @@ export default function EditProduct({ auth, product, categories }) {
                         onClick={submit}
                         className="flex justify-center bg-primary max-w-80 p-3"
                     >
-                        Simpan
+                        Tambah
                     </PrimaryButton>
                     {/* Ordered Products Header */}
 
