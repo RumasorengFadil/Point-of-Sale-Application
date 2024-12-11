@@ -9,7 +9,6 @@ import TopBar from "@/Components/TopBar";
 import Modal from "@/Components/Modal";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { Inertia } from "@inertiajs/inertia";
 import { Head, Link, useForm } from "@inertiajs/react";
 import toastUtils from "@/utils/toastUtils";
 
