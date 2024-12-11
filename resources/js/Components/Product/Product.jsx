@@ -1,20 +1,22 @@
 import useCartStore from "@/store/useCartStore";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { memo, useState } from "react";
+import { FigCaption } from "../FigCaption";
+import { Figure } from "../Figure";
 
 export default memo(function Product({ product }) {
-    const handleAddToCart = useCartStore((state)=>state.handleAddToCart);
+    const handleAddToCart = useCartStore((state) => state.handleAddToCart);
     const [isBlinking, setIsBlinking] = useState(false);
 
     const handleClick = () => {
         setIsBlinking(true);
-    
+
         // Hentikan animasi setelah selesai
         setTimeout(() => setIsBlinking(false), 500);
-    
+
         // Panggil callback untuk menambah produk ke keranjang
         handleAddToCart(product);
-      };
+    };
 
     return (
         <div
@@ -24,14 +26,10 @@ export default memo(function Product({ product }) {
                 isBlinking ? "opacity-40" : ""
             }`}
         >
-            <img
-                className="w-24 h-20 rounded"
-                src={`/storage/uploads/POS/img/products/${product.image}`}
-                alt=""
-            />
-            <p>Rp. {formatNumberWithDots(product.price)}</p>
-            <p className="font-bold">{product.name}</p>
+            <Figure rounded="md" className="w-24 text-center" src={`/storage/uploads/POS/img/products/${product.image}`}>
+                <p>Rp. {formatNumberWithDots(product.price)}</p>
+                <p className="font-bold">{product.name}</p>
+            </Figure>
         </div>
     );
 });
-// if (product.category.category_name !== category) return;

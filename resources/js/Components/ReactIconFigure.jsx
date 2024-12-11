@@ -22,6 +22,7 @@ export const ReactIconFigure = ({
                 <IconCaption
                     size={captionSize}
                     caption={figCaption}
+                    align="left"
                 />
             )}
         </figure>

@@ -1,21 +1,18 @@
-import useCartStore from "@/store/useCartStore";
-import useUIStore from "@/store/UseUIStore";
+import PrimaryButton from "@/Components/PrimaryButton";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { FaChevronRight } from "react-icons/fa6";
 
-export default function FloatingCartSummary({
-    className = "",
+export default function ButtonCartSummary({
     label = "Button",
     onClick = () => {},
+    cart,
+    ...props
 }) {
-    const cart = useCartStore((state)=>state.cart);
-    const showCart = useUIStore((state) => state.showCart);
-    const setShowCart = useUIStore((state) => state.setShowCart);
-    
     return (
-        <div
-            onClick={() => onClick(showCart, setShowCart)}
-            className={`rounded pl-5 pr-2 py-2  flex w-full items-center justify-between bg-primary cursor-pointer shadow-md+ ${className}`}
+        <PrimaryButton
+            {...props}
+            onClick={()=>onClick()}
+            className="rounded py-2 px-4 flex w-full items-center justify-between bg-primary cursor-pointer shadow-md+"
         >
             <h1 className="font-bold text-white">
                 Rp.{" "}
@@ -36,6 +33,6 @@ export default function FloatingCartSummary({
                     size={20}
                 />
             </div>
-        </div>
+        </PrimaryButton>
     );
 }

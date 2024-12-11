@@ -6,10 +6,11 @@ export const IconCaption = ({
     isSelected=false,
     classNameIfTrue="",
     classNameIfFalse="",
+    align = "center",
 }) => {
     return (
         <figcaption
-            className={`text-center text-${size} ${className} ${
+            className={`text-${align} text-${size} ${className} ${
                 isSelected ? classNameIfTrue : classNameIfFalse
             }`}
         >

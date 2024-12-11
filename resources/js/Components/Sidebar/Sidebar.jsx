@@ -13,9 +13,13 @@ export default function Sidebar({
     return (
         <div className="flex flex-col w-full bg-white py-4 space-y-4 | lg:static lg:w-36 lg:bg-gray-100 lg:overflow-auto |">
             {backBtn && (
-                <BackBtn title={title} />
+                <BackBtn
+                    onClick={() => window.history.back()}
+                    className="px-4"
+                    title={title}
+                />
             )}
-            
+
             {/* Logo */}
             <div className="hidden lg:flex justify-center">
                 <Link href="/">

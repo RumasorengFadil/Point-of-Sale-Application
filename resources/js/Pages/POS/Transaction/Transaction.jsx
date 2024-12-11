@@ -1,11 +1,11 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import { useSearchProducts } from "@/hooks/useSearchProducts";
-import ProductList from "@/Components/Product/ProductList";
-import FloatingCartSummary from "@/Components/Transaction/FloatingCartSummary";
+import ProductList from "@/Organisms/ProductList";
 import SearchBar from "@/Components/SearchBar";
-import Cart from "@/Components/Transaction/Cart";
-import CartGroupList from "@/Components/Transaction/CartGroupList";
 import Navbar from "@/Organisms/Navbar";
+import Cart from "@/Organisms/Cart";
+import ButtonNextToCart from "@/Organisms/ButtonNextToCart";
+import ButtonPay from "@/Organisms/ButtonPay";
 
 export default function Transaction({ auth, products, categories }) {
     const { filteredProducts, setSearchKeyword } = useSearchProducts(products, [
@@ -25,29 +25,22 @@ export default function Transaction({ auth, products, categories }) {
 
             <ProductList products={filteredProducts} />
 
-            <FloatingCartSummary
-                className="lg:hidden"
-                onClick={(showCart, setShowCart) => {
-                    setShowCart(!showCart);
-                }}
-                label="Lanjut"
-            />
+            <ButtonNextToCart />
         </>
     );
 
-    const transactionCart = (
+    const footer = (
         <>
-            <Cart>
-                <CartGroupList />
-            </Cart>
+            <Cart />
+
+            <ButtonPay />
         </>
     );
     return (
         <ApplicationLayout
             header={header}
             content={content}
-            footer={transactionCart}
-            direction="col"
+            footer={footer}
             md="row"
         ></ApplicationLayout>
     );

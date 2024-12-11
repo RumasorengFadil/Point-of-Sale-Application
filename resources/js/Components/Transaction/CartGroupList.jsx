@@ -2,12 +2,15 @@ import useCartStore from "@/store/useCartStore";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { memo } from "react";
 import { TiDelete } from "react-icons/ti";
+import QuantityControl from "../QuantityControl ";
 
 export default memo(function CartGroupList() {
-    const cart = useCartStore((state)=>state.cart);
-    const handleDecreaseQty = useCartStore((state)=>state.handleDecreaseQty);
-    const handleIncreaseQty = useCartStore((state)=>state.handleIncreaseQty);
-    const handleDestroyFromCart = useCartStore((state)=>state.handleDestroyFromCart);
+    const cart = useCartStore((state) => state.cart);
+    const handleDecreaseQty = useCartStore((state) => state.handleDecreaseQty);
+    const handleIncreaseQty = useCartStore((state) => state.handleIncreaseQty);
+    const handleDestroyFromCart = useCartStore(
+        (state) => state.handleDestroyFromCart
+    );
     return (
         <div className="flex flex-col w-full h-full space-y-2 mb-12">
             {cart.map((product, i) => (
@@ -26,25 +29,12 @@ export default memo(function CartGroupList() {
                     <div className="flex flex-1 space-x-2">
                         <div className="flex flex-col space-y-5 text-sm w-full">
                             <p>{product.name}</p>
-                            <div className="flex items-center justify-between ">
-                                <div
-                                    onClick={() =>
-                                        handleDecreaseQty(product.id)
-                                    }
-                                    className="flex text-xl cursor-pointer items-center justify-center w-7 h-7 bg-primary rounded-full text-white"
-                                >
-                                    -
-                                </div>
-                                <div className="">{product.quantity}</div>
-                                <div
-                                    onClick={() =>
-                                        handleIncreaseQty(product.id)
-                                    }
-                                    className="flex text-xl cursor-pointer items-center justify-center w-7 h-7 bg-primary rounded-full text-white"
-                                >
-                                    +
-                                </div>
-                            </div>
+                            <QuantityControl
+                                quantity={product.quantity}
+                                onIncrease={() => handleIncreaseQty(product.id)}
+                                onDecrease={() => handleDecreaseQty(product.id)}
+                                className="space-x-16 lg:space-x-4"
+                            />
                         </div>
                         <div className="flex flex-col text-sm justify-between w-full items-end">
                             <p className="text-gray-900 font-bold">

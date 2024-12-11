@@ -3,18 +3,23 @@ import BackBtn from "@/Components/BackBtn";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { CulinaryReactIconFigure } from "@/Components/CulinaryReactIconFigure";
 import useCategoryStore from "@/store/useCategoryStore";
+import Card from "@/Components/Card";
 
 export default function Navbar({
     backBtn = false,
     categories,
-    title = "Kembali",
 }) {
     const category = useCategoryStore((state) => state.category);
     const setCategory = useCategoryStore((state) => state.setCategory);
 
     return (
-        <div className="flex flex-col w-full bg-white py-4 space-y-4 | lg:static lg:w-36 lg:bg-gray-100 lg:overflow-auto |">
-            {backBtn && <BackBtn title={title} />}
+        <div className="flex flex-col w-full  space-y-4 | lg:static lg:w-36 lg:bg-gray-100 lg:overflow-auto |">
+            {backBtn && (
+                <BackBtn
+                    className="px-4"
+                    onClick={()=> window.history.back()}
+                />
+            )}
 
             {/* Logo */}
             <div className="hidden lg:flex justify-center">
@@ -26,12 +31,12 @@ export default function Navbar({
             {/* Sidebar List */}
             <div className="flex flex-row lg:flex-col px-4 gap-5 items-center">
                 {categories.map((productCategory) => (
-                    <div
+                    <Card
                         key={productCategory.id}
                         onClick={() =>
                             setCategory(productCategory.category_name)
                         }
-                        className={`flex flex-col cursor-pointer w-full shadow-md | lg:w-20 lg:shadow-none | h-20 rounded space-y-2 items-center justify-center p-2 ${
+                        className={`h-20 w-full lg:w-20 ${
                             category === productCategory.category_name
                                 ? "bg-primary"
                                 : "bg-white"
@@ -46,7 +51,7 @@ export default function Navbar({
                             }
                             classNameIfTrue="text-white"
                         />
-                    </div>
+                    </Card>
                 ))}
             </div>
         </div>

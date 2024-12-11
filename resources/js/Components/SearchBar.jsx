@@ -7,7 +7,7 @@ export default function SearchBar({
 }) {
     
     return (
-        <div className={"flex justify-between items-center w-full " + className}>
+        <div className={"flex px-4 justify-between items-center w-full " + className}>
             <div className="flex w-full relative shadow-sm">
                 <FaSearch
                     className="absolute text-gray-400 h-full left-4"
