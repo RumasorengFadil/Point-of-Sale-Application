@@ -1,5 +1,5 @@
-import { useTransactionContext } from "@/Context/TransactionContext";
-import useUIStore from "@/store/useUiStore";
+import useCartStore from "@/store/useCartStore";
+import useUIStore from "@/store/UseUIStore";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { FaChevronRight } from "react-icons/fa6";
 
@@ -8,9 +8,10 @@ export default function FloatingCartSummary({
     label = "Button",
     onClick = () => {},
 }) {
-    const { cart } = useTransactionContext();
+    const cart = useCartStore((state)=>state.cart);
     const showCart = useUIStore((state) => state.showCart);
     const setShowCart = useUIStore((state) => state.setShowCart);
+    
     return (
         <div
             onClick={() => onClick(showCart, setShowCart)}

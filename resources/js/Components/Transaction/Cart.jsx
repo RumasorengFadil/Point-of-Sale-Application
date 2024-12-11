@@ -1,14 +1,15 @@
-import { useTransactionContext } from "@/Context/TransactionContext";
 import { memo } from "react";
 import { RiDeleteBinFill } from "react-icons/ri";
 import FloatingCartSummary from "./FloatingCartSummary";
 import { MdArrowBack } from "react-icons/md";
 import { Inertia } from "@inertiajs/inertia";
-import useUIStore from "@/store/useUiStore";
+import useUIStore from "@/store/UseUIStore";
+import useCartStore from "@/store/useCartStore";
 
 export default memo(function Cart({ children, show = false }) {
     const showCart = useUIStore((state) => state.showCart);
     const setShowCart = useUIStore((state) => state.setShowCart);
+    const handleClearCart = useCartStore((state) => state.handleClearCart);
     return (
         <div
             className={`${
@@ -25,7 +26,7 @@ export default memo(function Cart({ children, show = false }) {
                     <span className="font-semibold">Keranjang</span>
                 </h1>
                 <RiDeleteBinFill
-                    // onClick={handleClearCart}
+                    onClick={handleClearCart}
                     className="cursor-pointer"
                     size={20}
                 />

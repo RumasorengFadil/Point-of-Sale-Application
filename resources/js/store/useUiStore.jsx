@@ -4,6 +4,6 @@ import { create } from "zustand";
 const useUIStore = create((set) => ({
     showCart: false,
     setShowCart: (value) => set({ showCart: value }),
-}))
-
-export default useUIStore;
+  }));
+  
+  export default useUIStore;

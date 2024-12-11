@@ -1,16 +1,13 @@
-import { useTransactionContext } from "@/Context/TransactionContext";
+import useCartStore from "@/store/useCartStore";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { memo } from "react";
 import { TiDelete } from "react-icons/ti";
 
 export default memo(function CartGroupList() {
-    const {
-        cart,
-        handleDecreaseQty,
-        handleIncreaseQty,
-        handleDestroyFromCart,
-    } = useTransactionContext();
-
+    const cart = useCartStore((state)=>state.cart);
+    const handleDecreaseQty = useCartStore((state)=>state.handleDecreaseQty);
+    const handleIncreaseQty = useCartStore((state)=>state.handleIncreaseQty);
+    const handleDestroyFromCart = useCartStore((state)=>state.handleDestroyFromCart);
     return (
         <div className="flex flex-col w-full h-full space-y-2 mb-12">
             {cart.map((product, i) => (

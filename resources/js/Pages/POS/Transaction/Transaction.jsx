@@ -1,13 +1,9 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import { useSearchProducts } from "@/hooks/useSearchProducts";
 import ProductList from "@/Components/Product/ProductList";
-import { TransactionProvider } from "@/Context/TransactionContext";
 import FloatingCartSummary from "@/Components/Transaction/FloatingCartSummary";
 import SearchBar from "@/Components/SearchBar";
-import Sidebar from "@/Components/Sidebar/Sidebar";
-import ProductCategoryTabBar from "@/Components/Transaction/ProductCategoryTabBar";
 import Cart from "@/Components/Transaction/Cart";
-import CartListGroup from "@/Components/Transaction/CartGroupList";
 import CartGroupList from "@/Components/Transaction/CartGroupList";
 import Navbar from "@/Organisms/Navbar";
 
@@ -47,14 +43,12 @@ export default function Transaction({ auth, products, categories }) {
         </>
     );
     return (
-        <TransactionProvider>
-            <ApplicationLayout
-                header={header}
-                content={content}
-                footer={transactionCart}
-                direction="col"
-                md="row"
-            ></ApplicationLayout>
-        </TransactionProvider>
+        <ApplicationLayout
+            header={header}
+            content={content}
+            footer={transactionCart}
+            direction="col"
+            md="row"
+        ></ApplicationLayout>
     );
 }

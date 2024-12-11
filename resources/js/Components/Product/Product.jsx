@@ -1,12 +1,9 @@
-import { useTransactionContext } from "@/Context/TransactionContext";
+import useCartStore from "@/store/useCartStore";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { memo, useState } from "react";
 
 export default memo(function Product({ product }) {
-    const {
-        handleAddToCart,
-    } = useTransactionContext();
-
+    const handleAddToCart = useCartStore((state)=>state.handleAddToCart);
     const [isBlinking, setIsBlinking] = useState(false);
 
     const handleClick = () => {
