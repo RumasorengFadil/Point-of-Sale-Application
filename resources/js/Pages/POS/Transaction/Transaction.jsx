@@ -4,8 +4,7 @@ import ProductList from "@/Organisms/ProductList";
 import SearchBar from "@/Components/SearchBar";
 import Navbar from "@/Organisms/Navbar";
 import Cart from "@/Organisms/Cart";
-import ButtonNextToCart from "@/Organisms/ButtonNextToCart";
-import ButtonPay from "@/Organisms/ButtonPay";
+import ButtonNextSummary from "@/Organisms/ButtonNextSummary";
 
 export default function Transaction({ auth, products, categories }) {
     const { filteredProducts, setSearchKeyword } = useSearchProducts(products, [
@@ -25,15 +24,13 @@ export default function Transaction({ auth, products, categories }) {
 
             <ProductList products={filteredProducts} />
 
-            <ButtonNextToCart />
+            <ButtonNextSummary />
         </>
     );
 
     const footer = (
         <>
             <Cart />
-
-            <ButtonPay />
         </>
     );
     return (
@@ -41,6 +38,8 @@ export default function Transaction({ auth, products, categories }) {
             header={header}
             content={content}
             footer={footer}
+            contentClassName = "py-0 lg:py-4"
+            footerClassName = "py-0 lg:py-4"
             md="row"
         ></ApplicationLayout>
     );

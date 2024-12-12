@@ -6,17 +6,16 @@ export default function Sidebar({
     className = "",
     links,
     children,
-    backBtn = false,
-    title = "Kembali",
+    backBtn = true,
     ...props
 }) {
     return (
-        <div className="flex flex-col w-full bg-white py-4 space-y-4 | lg:static lg:w-36 lg:bg-gray-100 lg:overflow-auto |">
+        <div className="flex flex-col w-full bg-white space-y-4 lg:static  lg:bg-gray-100 lg:overflow-auto">
             {backBtn && (
                 <BackBtn
                     onClick={() => window.history.back()}
                     className="px-4"
-                    title={title}
+                    title="Pembayaran"
                 />
             )}
 
