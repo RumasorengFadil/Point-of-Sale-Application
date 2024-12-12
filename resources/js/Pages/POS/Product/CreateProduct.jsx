@@ -11,6 +11,8 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import toastUtils from "@/utils/toastUtils";
 import { useImagePreview } from "@/hooks/useImagePreview";
 import { toTitleCase } from "@/utils/toTitleCase";
+import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
+import { convertToNumber } from "@/utils/convertToNumber";
 
 export default function CreateProduct({ auth, categories }) {
     const { imagePreview, handleFileChange } = useImagePreview(); // State untuk menyimpan Data URL
@@ -30,6 +32,13 @@ export default function CreateProduct({ auth, categories }) {
         }));
     };
 
+    const handlePriceChange = (e) => {
+        setData((prevData) => ({
+            ...prevData,
+            [e.target.name]: convertToNumber(e.target.value) || ,
+        }));
+
+    }
     const submit = (e) => {
         e.preventDefault();
 
@@ -127,13 +136,13 @@ export default function CreateProduct({ auth, categories }) {
 
                         <TextInput
                             id="price"
-                            type="number"
+                            type="text"
                             name="price"
-                            value={data.price}
+                            value={formatNumberWithDots(data.price)}
                             className="block w-full text-xs p-3 bg-gray-100"
                             autoComplete="price"
                             placeholder="Masukan Harga Jual"
-                            onChange={handleChange}
+                            onChange={handlePriceChange}
                         />
 
                         <InputError message={errors.price} className="" />
