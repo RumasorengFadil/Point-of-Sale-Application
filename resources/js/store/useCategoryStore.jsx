@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const useCategoryStore = create((set) => ({
-    category: "Makanan",
+    category: "makanan",
     setCategory: (category) => set({ category }),
   }));
   

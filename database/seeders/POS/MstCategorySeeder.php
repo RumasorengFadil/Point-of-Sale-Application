@@ -13,7 +13,7 @@ class MstCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        MstProductCategory::create(['category_name' => 'Makanan']);
-        MstProductCategory::create(['category_name' => 'Minuman']);
+        MstProductCategory::create(['category_name' => 'makanan']);
+        MstProductCategory::create(['category_name' => 'minuman']);
     }
 }

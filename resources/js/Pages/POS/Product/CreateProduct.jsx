@@ -10,6 +10,7 @@ import { FaMountainSun } from "react-icons/fa6";
 import PrimaryButton from "@/Components/PrimaryButton";
 import toastUtils from "@/utils/toastUtils";
 import { useImagePreview } from "@/hooks/useImagePreview";
+import { toTitleCase } from "@/utils/toTitleCase";
 
 export default function CreateProduct({ auth, categories }) {
     const { imagePreview, handleFileChange } = useImagePreview(); // State untuk menyimpan Data URL
@@ -113,7 +114,7 @@ export default function CreateProduct({ auth, categories }) {
                                     className="text-xs"
                                     value={category.id}
                                 >
-                                    {category.category_name}
+                                    {toTitleCase(category.category_name)}
                                 </option>
                             ))}
                         </select>

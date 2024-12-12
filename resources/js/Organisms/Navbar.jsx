@@ -4,11 +4,9 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import { CulinaryReactIconFigure } from "@/Components/CulinaryReactIconFigure";
 import useCategoryStore from "@/store/useCategoryStore";
 import Card from "@/Components/Card";
+import { toTitleCase } from "@/utils/toTitleCase";
 
-export default function Navbar({
-    backBtn = false,
-    categories,
-}) {
+export default function Navbar({ backBtn = false, categories }) {
     const category = useCategoryStore((state) => state.category);
     const setCategory = useCategoryStore((state) => state.setCategory);
 
@@ -17,7 +15,7 @@ export default function Navbar({
             {backBtn && (
                 <BackBtn
                     className="px-4"
-                    onClick={()=> window.history.back()}
+                    onClick={() => window.history.back()}
                 />
             )}
 
@@ -44,7 +42,9 @@ export default function Navbar({
                     >
                         <CulinaryReactIconFigure
                             reactIcon={productCategory.category_name}
-                            figCaption={productCategory.category_name}
+                            figCaption={toTitleCase(
+                                productCategory.category_name
+                            )}
                             className="items-center"
                             isSelected={
                                 category === productCategory.category_name

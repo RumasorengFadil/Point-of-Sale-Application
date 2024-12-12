@@ -28,8 +28,8 @@ export const CulinaryReactIconFigure = ({
     }[size];
 
     const reactIconHelper = {
-        Makanan: <IoFastFood size={sizeHelper.iconSize} />,
-        Minuman: <BiSolidDrink size={sizeHelper.iconSize} />,
+        makanan: <IoFastFood size={sizeHelper.iconSize} />,
+        minuman: <BiSolidDrink size={sizeHelper.iconSize} />,
     }[reactIcon];
 
     return (
