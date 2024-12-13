@@ -1,17 +1,11 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
-import { useSearchProducts } from "@/hooks/useSearchProducts";
 import ProductList from "@/Organisms/ProductList";
-import SearchBar from "@/Components/SearchBar";
 import Navbar from "@/Organisms/Navbar";
 import Cart from "@/Organisms/Cart";
 import ButtonNextSummary from "@/Organisms/ButtonNextSummary";
+import ProductSearchBar from "@/Organisms/ProductSearchBar";
 
 export default function Transaction({ auth, products, categories }) {
-    const { filteredProducts, setSearchKeyword } = useSearchProducts(products, [
-        "name",
-        "price",
-    ]);
-
     const header = (
         <>
             <Navbar backBtn={true} categories={categories} />
@@ -20,17 +14,17 @@ export default function Transaction({ auth, products, categories }) {
 
     const content = (
         <>
-            <SearchBar onChange={(e) => setSearchKeyword(e.target.value)} />
+            <ProductSearchBar products={products} />
 
-            <ProductList products={filteredProducts} />
+            <ProductList />
 
-            <ButtonNextSummary />
+            <ButtonNextSummary products={products} />
         </>
     );
 
     const footer = (
         <>
-            <Cart />
+            <Cart products={products} />
         </>
     );
     return (
@@ -38,9 +32,8 @@ export default function Transaction({ auth, products, categories }) {
             header={header}
             content={content}
             footer={footer}
-            contentClassName = "py-0 lg:py-4"
-            footerClassName = "py-0 lg:py-4"
-            md="row"
+            contentClassName="py-0 lg:py-4"
+            footerClassName="py-0 lg:py-4"
         ></ApplicationLayout>
     );
 }

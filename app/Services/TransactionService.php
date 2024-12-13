@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Product\Product;
+use App\Repositories\POS\TransactionDetailsRepository;
 use App\Repositories\POS\TransactionRepository;
 use App\Repositories\Product\ProductRepository;
 use DB;
@@ -13,9 +14,11 @@ use Storage;
 class TransactionService
 {
     protected $transactionRepository;
-    public function __construct(TransactionRepository $transactionRepository)
+    protected $transactionDetailsRepository;
+    public function __construct(TransactionRepository $transactionRepository, TransactionDetailsRepository $transactionDetailsRepository)
     {
         $this->transactionRepository = $transactionRepository;
+        $this->transactionDetailsRepository = $transactionDetailsRepository;
     }
 
     public function store($transaction)
@@ -26,7 +29,7 @@ class TransactionService
                 $createdTransaction = $this->transactionRepository->store($transaction);
 
                 // Create Transaction Details entry
-                $this->transactionRepository->store($transaction->products + [
+                $this->transactionDetailsRepository->store($transaction->cartDetails + [
                     'transactionId' => $createdTransaction->id,
                 ]);
 

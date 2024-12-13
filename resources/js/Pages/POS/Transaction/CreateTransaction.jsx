@@ -4,12 +4,12 @@ import Cart from "@/Organisms/Cart";
 import PaymentMethod from "@/Organisms/PaymentMethod";
 import PaymentInfo from "@/Organisms/PaymentInfo";
 import Calculator from "@/Organisms/Calculator";
-import ButtonCartSummary from "@/Components/Button/ButtonCartSummary";
+import ButtonPaySummary from "@/Organisms/ButtonPaySummary";
 
-export default function CreateTransaction({ auth, products, categories }) {
+export default function CreateTransaction({ auth, products }) {
     const header = <Sidebar></Sidebar>;
 
-    const content = <Cart buttonSummary={false} />;
+    const content = <Cart products={products} buttonSummary={false} />;
 
     const footer = (
         <>
@@ -19,9 +19,7 @@ export default function CreateTransaction({ auth, products, categories }) {
 
             <Calculator />
 
-            <div className="px-4">
-                <ButtonCartSummary />
-            </div>
+            <ButtonPaySummary auth={auth} products={products} />
         </>
     );
 

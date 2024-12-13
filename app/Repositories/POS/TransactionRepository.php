@@ -17,6 +17,7 @@ class TransactionRepository
     {
         $mappedData = [
             'cashier_id' => $data['cashierId'],
+            'user_id' => $data['userId'],
             'subtotal' => $data['subtotal'],
             'discount' => $data['discount'],
             'tax' => $data['tax'],

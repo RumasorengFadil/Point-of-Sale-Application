@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Route;
@@ -36,6 +37,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'guard' => Auth::guard()
             ],
             'currentRouteName' => $currentRouteName,
             'baseRouteName' => $baseRouteName,

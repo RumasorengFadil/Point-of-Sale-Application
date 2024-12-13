@@ -21,6 +21,7 @@ use Inertia\Inertia;
 
 Route::get('pos/transaction', [TransactionController::class, 'index'])->middleware(['auth', 'verified'])->name('transaction.index');
 Route::get('pos/transaction/create', [TransactionController::class, 'create'])->middleware(['auth', 'verified'])->name('transaction.create');
+Route::post('pos/transaction/store', [TransactionController::class, 'store'])->middleware(['auth', 'verified'])->name('transaction.store');
 
 Route::get('/pos/dashboard', function () {
     return Inertia::render('POS/Dashboard');

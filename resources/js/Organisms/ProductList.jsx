@@ -1,9 +1,11 @@
 import { memo } from "react";
 import Product from "../Components/Product/Product";
 import useCategoryStore from "@/store/useCategoryStore";
+import useSearch from "@/store/useSearch";
 
-export default memo(function ProductList({ products }) {
+export default memo(function ProductList() {
     const category = useCategoryStore((state) => state.category);
+    const products = useSearch((state)=>state.searchResult);
     
     return (
         <div className="h-full overflow-auto py-2 w-full px-4">

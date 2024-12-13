@@ -6,7 +6,7 @@ export const useSearchProducts = (products, fields) => {
 
     // Menggunakan useMemo untuk memfilter produk
     const filteredProducts = useMemo(() => {
-        console.log("Filtering products...");
+        // console.log("Filtering products...");
         if (!searchKeyword.trim()) return products; // Jika kata kunci kosong, kembalikan semua produk.
 
         const lowerCaseKeyword = searchKeyword.toLowerCase();

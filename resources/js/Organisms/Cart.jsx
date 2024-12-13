@@ -7,12 +7,16 @@ import BackBtn from "@/Components/BackBtn";
 import { EmptyStateMessage } from "@/Components/EmptyStateMessage";
 import ButtonCartSummary from "@/Components/Button/ButtonCartSummary";
 import { Inertia } from "@inertiajs/inertia";
+import { useTransactionCalculations } from "@/hooks/useTransactionCalculations ";
+import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 
-export default memo(function Cart({ buttonSummary = true }) {
+export default memo(function Cart({ products, buttonSummary = true }) {
     const showCart = useUIStore((state) => state.showCart);
     const setShowCart = useUIStore((state) => state.setShowCart);
     const cart = useCartStore((state) => state.cart);
     const handleClearCart = useCartStore((state) => state.handleClearCart);
+    const { total } = useTransactionCalculations(products, cart);
+
     return (
         <div
             className={`${
@@ -40,13 +44,13 @@ export default memo(function Cart({ buttonSummary = true }) {
                 />
             )}
 
-            <CartGroupList />
+            <CartGroupList products={products} cart={cart} />
 
             {buttonSummary && (
                 <div className={`flex flex-col w-full py-4 z-50`}>
                     <ButtonCartSummary
                         label={"bayar"}
-                        cart={cart}
+                        summary={formatNumberWithDots(total)}
                         disabled={!cart.length}
                         onClick={() => Inertia.get(route("transaction.create"))}
                     />

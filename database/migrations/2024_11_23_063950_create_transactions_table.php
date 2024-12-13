@@ -14,11 +14,18 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('cashier_id'); // Foreign key to mst_publisher table
+            $table->unsignedBigInteger('cashier_id')->nullable(); // Foreign key to mst_publisher table
             
             $table->foreign('cashier_id') // Defining mst_publisher the foreign key constraint
             ->references('id')
             ->on('cashiers')
+            ->onDelete('restrict');
+            
+            $table->unsignedBigInteger('user_id')->nullable(); // Foreign key to mst_publisher table
+            
+            $table->foreign('user_id') // Defining mst_publisher the foreign key constraint
+            ->references('id')
+            ->on('users')
             ->onDelete('restrict');
 
             $table->integer('subtotal');

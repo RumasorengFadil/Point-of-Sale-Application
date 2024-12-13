@@ -24,10 +24,7 @@ const useCartStore = create(
                 ...cart,
                 {
                   id: product.id,
-                  name: product.name,
                   quantity: 1,
-                  unitPrice: product.price,
-                  image: product.image,
                 },
               ],
             });
@@ -64,7 +61,16 @@ const useCartStore = create(
       }),
       {
         name: "cart-store", // Key untuk localStorage/sessionStorage
-        getStorage: () => sessionStorage, // Default ke sessionStorage
+        storage: {
+          getItem: (key) => {
+            const value = sessionStorage.getItem(key);
+            return value ? JSON.parse(value) : null; // Parsing data JSON saat mengambil
+          },
+          setItem: (key, value) => {
+            sessionStorage.setItem(key, JSON.stringify(value)); // Serialize data JSON saat menyimpan
+          },
+          removeItem: (key) => sessionStorage.removeItem(key),
+        },
       }
     )
   );

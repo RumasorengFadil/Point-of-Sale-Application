@@ -9,38 +9,22 @@ use DB;
 
 class TransactionDetailsRepository
 {
-    public function store(array $data): Product
+    public function store(array $data)  
     {
         DB::transaction(function () use ($data) {
             $insertData = [];
             foreach ($data['products'] as $product) {
                 $insertData[] = [
                     'transaction_id' => $data['transactionId'],
-                    'product_id' => $product['productId'],
+                    'product_id' => $product['id'],
                     'product_name' => $product['name'],
                     'quantity' => $product['quantity'],
                     'unit_price' => $product['unitPrice'],
-                    'sub_total' => $product['subTotal'],
+                    'discount_amount' => $product['discountAmount'],
+                    'discount_percentage' => $product['discountPercentage'],
                 ];
             }
             TransactionDetails::insert($insertData);
         }); 
-    }
-    private function mapData(array $data): array
-    {
-        $mappedData = [
-            'transactionId' => $data['cashierId'],
-            'subtotal' => $data['subtotal'],
-            'discount' => $data['discount'],
-            'tax' => $data['tax'],
-            'payment_method' => $data['paymentMethod'],
-            'paid_amount' => $data['paidAmount'],
-            'change' => $data['change'],
-            'status' => $data['status'],
-            'note' => $data['note'],
-            'transaction_date' => $data['transactionDate'],
-        ];
-
-        return $mappedData;
     }
 }

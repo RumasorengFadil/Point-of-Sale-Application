@@ -38,8 +38,8 @@ class TransactionController extends Controller
     }
     public function store(StoreTransactionRequest $request)
     {
-
         try {
+            dd($request);
             // Melakukan validasi terhadap data product
             $validatedData = $request->validated();
 

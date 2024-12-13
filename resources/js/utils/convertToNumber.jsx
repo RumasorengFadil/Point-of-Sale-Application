@@ -10,7 +10,8 @@ export const convertToNumber = (formattedNumber) => {
     const result = Number(plainNumber);
 
     if (isNaN(result)) {
-        throw new Error("Input tidak dapat dikonversi menjadi angka.");
+        return false;
+        // throw new Error("Input tidak dapat dikonversi menjadi angka.");
     }
 
     return result;

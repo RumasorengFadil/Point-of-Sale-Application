@@ -33,12 +33,20 @@ export default function CreateProduct({ auth, categories }) {
     };
 
     const handlePriceChange = (e) => {
+        if (e.target.value === "") setData("price", "");
+
+        const price = convertToNumber(e.target.value);
+
+        if (price.toString().length > 8) return;
+
+        if (!price) return;
+
         setData((prevData) => ({
             ...prevData,
-            [e.target.name]: convertToNumber(e.target.value) || ,
+            [e.target.name]: price,
         }));
+    };
 
-    }
     const submit = (e) => {
         e.preventDefault();
 
@@ -132,7 +140,7 @@ export default function CreateProduct({ auth, categories }) {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <InputLabel htmlFor="price" value="Harga Jual*" />
+                        <InputLabel htmlFor="price" value="Harga Jual (Rp)*" />
 
                         <TextInput
                             id="price"
