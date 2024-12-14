@@ -6,6 +6,7 @@ import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { useForm } from "@inertiajs/react";
 import usePaymentMethodStore from "@/store/usePaymentMethodStore";
 import toastUtils from "@/utils/toastUtils";
+import { useEffect } from "react";
 
 export default function ButtonPaySummary({ auth, products }) {
     const cart = useCartStore((state) => state.cart);
@@ -14,18 +15,33 @@ export default function ButtonPaySummary({ auth, products }) {
         useTransactionCalculations(products, cart);
 
     const { cartDetails } = useCartDetails(products, cart);
-    const {post, reset, processing, progress} = useForm({
+    const { post, reset, processing, progress, data, setData } = useForm({
         cashierId: auth.guard.name === "cashier" ? auth.user.id : null,
         userId: auth.guard.name === "web" ? auth.user.id : null,
         subtotal: subtotal,
         discount: discount,
         total: total,
         paymentMethod: paymentMethod,
-        paidAmount : paidAmount,
-        change : change,
-        note : null,
-        cartDetails : cartDetails
+        paidAmount: paidAmount,
+        change: change,
+        note: null,
+        cartDetails: cartDetails,
     });
+
+    useEffect(() => {
+        setData({
+            cashierId: auth.guard.name === "cashier" ? auth.user.id : null,
+            userId: auth.guard.name === "web" ? auth.user.id : null,
+            subtotal: subtotal,
+            discount: discount,
+            total: total,
+            paymentMethod: paymentMethod,
+            paidAmount: paidAmount,
+            change: change,
+            note: null,
+            cartDetails: cartDetails,
+        });
+    }, [auth, subtotal, discount, total, paymentMethod, paidAmount, change, cartDetails]);
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -36,10 +52,9 @@ export default function ButtonPaySummary({ auth, products }) {
             onError: (errors) => {
                 toastUtils.showError(errors);
                 console.log(errors);
-            } 
-        })
-    }
-    console.log(processing);
+            },
+        });
+    };
 
     return (
         <div className="px-4">

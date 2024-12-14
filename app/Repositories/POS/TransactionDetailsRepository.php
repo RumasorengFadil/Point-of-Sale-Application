@@ -13,15 +13,15 @@ class TransactionDetailsRepository
     {
         DB::transaction(function () use ($data) {
             $insertData = [];
-            foreach ($data['products'] as $product) {
+            foreach ($data['cartDetails'] as $cartDetail) {
                 $insertData[] = [
                     'transaction_id' => $data['transactionId'],
-                    'product_id' => $product['id'],
-                    'product_name' => $product['name'],
-                    'quantity' => $product['quantity'],
-                    'unit_price' => $product['unitPrice'],
-                    'discount_amount' => $product['discountAmount'],
-                    'discount_percentage' => $product['discountPercentage'],
+                    'product_id' => $cartDetail['id'],
+                    'product_name' => $cartDetail['name'],
+                    'quantity' => $cartDetail['quantity'],
+                    'unit_price' => $cartDetail['unitPrice'],
+                    'discount_amount' => $cartDetail['discountAmount'],
+                    'discount_percentage' => $cartDetail['discountPercentage'],
                 ];
             }
             TransactionDetails::insert($insertData);

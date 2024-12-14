@@ -26,18 +26,18 @@ class TransactionService
         try {
             return DB::transaction(function () use ($transaction) {
                 // Create Transaction entry and retrieve the create Transaction object
+
                 $createdTransaction = $this->transactionRepository->store($transaction);
 
                 // Create Transaction Details entry
-                $this->transactionDetailsRepository->store($transaction->cartDetails + [
-                    'transactionId' => $createdTransaction->id,
-                ]);
+                $this->transactionDetailsRepository->store(["cartDetails" => $transaction['cartDetails'], 'transactionId' => $createdTransaction->id]);
 
                 return $createdTransaction;
             });
         } catch (Exception $e) {
             // Log the error for debugging
             Log::error('Failed to create transaction with relations: ' . $e->getMessage());
+            dd($e->getMessage());
             // Handle error (return a custom exception or a specific response)
             throw new Exception("Failed to create transaction", 0, $e);
         }

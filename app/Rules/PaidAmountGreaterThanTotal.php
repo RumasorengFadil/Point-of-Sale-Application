@@ -7,10 +7,13 @@ use Illuminate\Contracts\Validation\ValidationRule;
 
 class PaidAmountGreaterThanTotal implements ValidationRule
 {
-    /**
+      /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  \Closure  $fail
+     * @return void
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -19,7 +22,8 @@ class PaidAmountGreaterThanTotal implements ValidationRule
 
         // Jika paidAmount lebih kecil dari total, panggil fail untuk menghasilkan pesan error
         if ($value < $total) {
-            $fail('Paid Amount tidak boleh kurang dari Total.');
+            $fail('Jumlah yang dibayarkan kurang.');
         }
     }
 }
+

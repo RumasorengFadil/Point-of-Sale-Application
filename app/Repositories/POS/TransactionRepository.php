@@ -4,13 +4,15 @@ namespace App\Repositories\POS;
 
 use App\Models\POS\Product;
 use App\Models\POS\Transaction;
+use DB;
 
 class TransactionRepository
 {
-    public function store(array $data): Product
+    public function store(array $data): Transaction
     {
-
-        return Transaction::create($this->mapData($data));
+        return DB::transaction(function () use ($data) {
+            return Transaction::create($this->mapData($data));
+        });
     }
 
     private function mapData(array $data): array
@@ -20,15 +22,14 @@ class TransactionRepository
             'user_id' => $data['userId'],
             'subtotal' => $data['subtotal'],
             'discount' => $data['discount'],
-            'tax' => $data['tax'],
+            'total' => $data['total'],
             'payment_method' => $data['paymentMethod'],
             'paid_amount' => $data['paidAmount'],
             'change' => $data['change'],
-            'status' => $data['status'],
+            'status' => "selesai",
             'note' => $data['note'],
             'transaction_date' => now()->toDateString(),
         ];
-
         return $mappedData;
     }
 }

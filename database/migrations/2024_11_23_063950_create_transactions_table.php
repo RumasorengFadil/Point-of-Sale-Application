@@ -29,13 +29,13 @@ return new class extends Migration
             ->onDelete('restrict');
 
             $table->integer('subtotal');
-            $table->integer('discount');
-            $table->float('tax');
+            $table->integer('discount')->nullable();
+            $table->float('tax')->nullable();
             $table->integer('total');
-            $table->integer('payment_method');
+            $table->enum('payment_method', ['cash']);
             $table->integer('paid_amount');
             $table->integer('change');
-            $table->enum('status', ['belum', 'selesai']);
+            $table->enum('status', ['belum', 'selesai'])->nullable();
             $table->text('note')->nullable();
             $table->date('transaction_date');
 

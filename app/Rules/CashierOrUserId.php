@@ -14,6 +14,16 @@ class CashierOrUserId implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        //
+        $cashierId = request()->input('cashierId');
+        $userId = request()->input('userId');
+
+        if (empty($cashierId) && empty($userId)) {
+            $fail('Baik ID Kasir ataupun ID User tidak boleh kosong'); // Keduanya kosong
+        }
+        
+        if (!empty($cashierId) && !empty($userId)) {
+            $fail('Hanya salah satu dari kasir atau user yang dapat melakukan transaksi');
+        }
     }
 }
+

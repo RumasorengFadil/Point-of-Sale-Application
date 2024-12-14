@@ -20,8 +20,7 @@ export default memo(function CartGroupList({ cart, products }) {
                 const discountedPrice = product.discount
                     ? calculateDiscount(product.price, product.discount) *
                       cart.quantity
-                    : null;
-
+                    : "";
                 return (
                     <div
                         key={i}
@@ -51,15 +50,9 @@ export default memo(function CartGroupList({ cart, products }) {
                             </div>
                             <div className="flex flex-col text-sm justify-between w-full items-end">
                                 <ProductPriceAndDiscount
-                                    price={
-                                        discountedPrice
-                                            ? formatNumberWithDots(
-                                                  product.price
-                                              )
-                                            : ""
-                                    }
+                                    price={product.price}
                                     discount={formatNumberWithDots(
-                                        discountedPrice
+                                        discountedPrice ? discountedPrice:""
                                     )}
                                 />
                                 <TiDelete
