@@ -21,9 +21,9 @@ use Inertia\Inertia;
 
 Route::get('pos/transaction', [TransactionController::class, 'index'])->middleware(['auth', 'verified'])->name('transaction.index');
 Route::get('pos/transaction/create', [TransactionController::class, 'create'])->middleware(['auth', 'verified', 'preventBackToCreate'])->name('transaction.create');
-Route::post('pos/transaction/store', [TransactionController::class, 'store'])->middleware(['auth', 'verified', 'preventBackToCreate'])->name('transaction.store');
+Route::post('pos/transaction/store', [TransactionController::class, 'store'])->middleware(['auth', 'verified'])->name('transaction.store');
 Route::get('pos/transaction/success', [TransactionController::class, 'success'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', 'redirectIfNoTransaction'])
     ->name('transaction.success');
 
 Route::get('/pos/dashboard', function () {

@@ -25,6 +25,12 @@ class TransactionController extends Controller
     }
     public function index()
     {
+        // Get User ID
+        $userId = Auth::user()->id;
+
+        // Clear the session transaction
+        session()->forget("$userId.transaction");
+
         $products = $this->productRepository->index();
         $categories = $this->mstProductCategoryRepository->index();
 
@@ -68,7 +74,7 @@ class TransactionController extends Controller
             $userId = Auth::user()->id;
 
             $transaction = session()->get("$userId.transaction");
-            
+
             return inertia()->render('POS/Transaction/TransactionSuccess', ['transaction' => $transaction]);
 
         } catch (\Exception $e) {
