@@ -1,5 +1,5 @@
 import ProductPrice from "./ProductPrice";
-import ProductDiscount from "./ProductDiscount";
+import DiscountedPrice from "./DiscountedPrice";
 
 const ProductPriceAndDiscount = ({
     price = 0,
@@ -9,20 +9,7 @@ const ProductPriceAndDiscount = ({
 
     return (
         <div className="flex flex-col">
-            <ProductPrice
-                price={price}
-                className={`${
-                    discount ? "line-through text-gray-300" : `text-black`
-                } `}
-            />
-            {discount ? (
-                <ProductDiscount
-                    className={`font-${discountWeight}`}
-                    discountedPrice={discount}
-                />
-            ) : (
-                ""
-            )}
+           
         </div>
     );
 };

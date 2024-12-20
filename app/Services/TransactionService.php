@@ -2,14 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Product\Product;
 use App\Repositories\POS\TransactionDetailsRepository;
 use App\Repositories\POS\TransactionRepository;
 use App\Repositories\Product\ProductRepository;
 use DB;
 use Exception;
 use Log;
-use Storage;
 
 class TransactionService
 {
@@ -32,7 +30,7 @@ class TransactionService
                 // Create Transaction Details entry
                 $this->transactionDetailsRepository->store(["cartDetails" => $transaction['cartDetails'], 'transactionId' => $createdTransaction->id]);
 
-                return $createdTransaction;
+                return $createdTransaction->load("details");
             });
         } catch (Exception $e) {
             // Log the error for debugging

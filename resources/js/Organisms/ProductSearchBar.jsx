@@ -1,21 +1,24 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect, useCallback } from "react";
 import SearchBar from "@/Components/SearchBar";
 import useSearch from "@/store/useSearch";
 import { searchItems } from "@/utils/searchItems";
 
-export default memo(function ProductSearchBar({ products }) {
+function ProductSearchBar({ products }) {
     const setSearchResult = useSearch((state) => state.setSearchResult);
 
+    // Gunakan useEffect untuk memperbarui hasil pencarian jika produk berubah
     useEffect(() => {
         setSearchResult(products);
-    }, [products]);
+    }, [products, setSearchResult]);
 
-    const handleSearch = (e) => {
-        const searchedProducts = searchItems(products, e.target.value, [
-            "name",
-            "price",
-        ]);
+    // Optimasi pencarian produk
+    const handleSearch = useCallback((e) => {
+        const searchValue = e.target.value;
+        const searchedProducts = searchItems(products, searchValue, ["name", "price"]);
         setSearchResult(searchedProducts);
-    };
-    return <SearchBar onChange={(e) => handleSearch(e)} />;
-});
+    }, [products, setSearchResult]);
+
+    return <SearchBar onChange={handleSearch} />;
+}
+
+export default memo(ProductSearchBar);

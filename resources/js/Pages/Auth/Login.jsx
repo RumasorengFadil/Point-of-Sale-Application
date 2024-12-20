@@ -7,6 +7,9 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { FaChevronLeft } from "react-icons/fa6";
+import withLoading from "@/Components/WithLoading";
+import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
+import ButtonLoadingWrapper from "@/Components/ButtonLoadingWrapper";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,16 +30,25 @@ export default function Login({ status, canResetPassword }) {
         post(route("login"));
     };
 
+    const ButtonWithLoading = withLoading({ SpinnerWithLabel })(PrimaryButton);
     return (
         <GuestLayout>
             <Head title="Log in" />
 
-            <form onSubmit={submit} className="flex w-full max-w-96 flex-col space-y-20">
+            <form
+                onSubmit={submit}
+                className="flex w-full max-w-96 flex-col space-y-20"
+            >
                 <div className="flex items-center space-x-10">
-                    <div onClick={() => history.back()} className="bg-primary rounded-md p-2 cursor-pointer">
+                    <div
+                        onClick={() => history.back()}
+                        className="bg-primary rounded-md p-2 cursor-pointer"
+                    >
                         <FaChevronLeft color="white" />
                     </div>
-                    <p className="text-xl font-medium text-primary">Log in as Owner</p>
+                    <p className="text-xl font-medium text-primary">
+                        Log in as Owner
+                    </p>
                 </div>
 
                 <div className="flex space-y-5 flex-col">
@@ -56,7 +68,10 @@ export default function Login({ status, canResetPassword }) {
                             }
                         />
 
-                        <InputError message={errors.username} className="mt-2" />
+                        <InputError
+                            message={errors.username}
+                            className="mt-2"
+                        />
                     </div>
                     <div>
                         <InputLabel htmlFor="password" value="Password" />
@@ -94,9 +109,13 @@ export default function Login({ status, canResetPassword }) {
                     </div>
                 </div>
 
-                <PrimaryButton className="bg-primary fles justify-center" disabled={processing}>
+                <ButtonWithLoading
+                    isLoading={processing}
+                    className="bg-primary fles justify-center"
+                    disabled={processing}
+                >
                     Log in
-                </PrimaryButton>
+                </ButtonWithLoading>
             </form>
             {/* {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 

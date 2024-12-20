@@ -12,9 +12,9 @@ trait ProductRules
         return [
             'categoryId' => 'required|exists:mst_product_categories,id',
             'name' => 'required|string',
-            'price' => 'required|integer',
-            'discount' => 'nullable|integer',
-            'stock' => 'nullable|integer',
+            'price' => 'required|integer|min:0',
+            'discount' => 'required|integer|min:0',
+            'stock' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ];
     }
@@ -27,8 +27,11 @@ trait ProductRules
             'name.required' => 'Nama produk belum diisi!.',
             'name.string' => 'Nama harus berupa string!.',
             'price.required' => 'Harga produk belum diisi!.',
-            // 'discount.required' => 'Deskripsi harus diisi!',
-            // 'image.required' => 'Member image harus diisi!',
+            'price.min' => 'Harga tidak boleh negatif!.',
+            'discount.required' => 'Diskon harus diisi!',
+            'discount.min' => 'Diskon tidak boleh negatif!.',
+            'stock.required' => 'Stok harus diisi!',
+            'stock.min' => 'Stok tidak boleh negatif!.',
             'image.image' => 'File harus berupa gambar!',
             'image.mimes' => 'Eksitensi yang didukung:jpg,jpeg, dan png',
             'image.max' => 'Gambar tidak boleh melebihi 4mb!',

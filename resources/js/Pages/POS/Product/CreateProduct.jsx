@@ -1,4 +1,4 @@
-import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { BsBoxFill } from "react-icons/bs";
 import { MdAddBox } from "react-icons/md";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
@@ -15,14 +15,14 @@ import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { convertToNumber } from "@/utils/convertToNumber";
 
 export default function CreateProduct({ auth, categories }) {
-    const { imagePreview, handleFileChange } = useImagePreview(); // State untuk menyimpan Data URL
+    const { imagePreview, handleFileChange, setImagePreview } = useImagePreview(); // State untuk menyimpan Data URL
 
     const { post, data, setData, errors, reset } = useForm({
         name: "",
         categoryId: "",
         price: "",
-        discount: "",
-        stock: "",
+        discount: 0,
+        stock: 0,
         image: "",
     });
     const handleChange = (e) => {
@@ -53,6 +53,7 @@ export default function CreateProduct({ auth, categories }) {
         post(route("product.store"), {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
+                setImagePreview("");
                 reset();
             },
             onError: (errors) => {
@@ -156,7 +157,7 @@ export default function CreateProduct({ auth, categories }) {
                         <InputError message={errors.price} className="" />
                     </div>
                     <div className="flex flex-col gap-2">
-                        <InputLabel htmlFor="discount" value="Diskon (%)" />
+                        <InputLabel htmlFor="discount" value="Diskon (%)*" />
 
                         <TextInput
                             id="discount"
@@ -172,7 +173,7 @@ export default function CreateProduct({ auth, categories }) {
                         <InputError message={errors.discount} className="" />
                     </div>
                     <div className="flex flex-col gap-2">
-                        <InputLabel htmlFor="stock" value="Stok Produk" />
+                        <InputLabel htmlFor="stock" value="Stok Produk*" />
 
                         <TextInput
                             id="stock"

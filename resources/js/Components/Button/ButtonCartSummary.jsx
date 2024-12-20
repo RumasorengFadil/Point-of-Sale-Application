@@ -7,6 +7,7 @@ export default function ButtonCartSummary({
     onClick = () => {},
     className = "",
     summary = 0,
+    children,
     ...props
 }) {
     return (
@@ -18,13 +19,17 @@ export default function ButtonCartSummary({
                 className
             }
         >
-            <h1 className="font-bold text-white">Rp. {summary}</h1>
+            {children || (
+                <>
+                    <h1 className="font-bold text-white">Rp. {summary}</h1>
 
-            <LabelWithIcon
-                direction="row-reverse"
-                label={label}
-                icon={<FaChevronRight size={20} />}
-            />
+                    <LabelWithIcon
+                        direction="row-reverse"
+                        label={label}
+                        icon={<FaChevronRight size={20} />}
+                    />
+                </>
+            )}
         </PrimaryButton>
     );
 }

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export const useImagePreview = (data) => {
-    const [imagePreview, setImagePreview] = useState(null); // State untuk menyimpan Data URL
+    const [imagePreview, setImagePreview] = useState(""); // State untuk menyimpan Data URL
 
     const handleFileChange = (e, callback) => {
         const file = e.target.files[0]; // Ambil file pertama dari input
@@ -18,5 +18,5 @@ export const useImagePreview = (data) => {
         callback(file);
     };
 
-    return { imagePreview, handleFileChange };
+    return { imagePreview, handleFileChange, setImagePreview };
 };

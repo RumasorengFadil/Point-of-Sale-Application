@@ -19,7 +19,7 @@ export default {
                 primary: "#1A72DD",
             },
             boxShadow: {
-                "md+" : "0px 4px 20px rgba(0, 0, 0, 0.1)"
+                "md+" : "0px 4px 20px rgba(0, 0, 0, 0.1)",
             },
             listStyleType: {
                 circle: "circle",

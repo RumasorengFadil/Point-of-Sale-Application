@@ -6,7 +6,7 @@
  * @returns {number} - Harga setelah diskon diterapkan.
  * @throws {Error} - Jika input tidak valid.
  */
-export const calculateDiscount = (price, discount) =>{
+export const calcDiscountedPrice = (price, discount) =>{
     if (typeof price !== 'number' || typeof discount !== 'number') {
         throw new Error('Price and discount must be numbers.');
     }

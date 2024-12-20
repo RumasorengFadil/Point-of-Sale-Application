@@ -3,9 +3,9 @@ import { memo } from "react";
 import { TiDelete } from "react-icons/ti";
 import QuantityControl from "../QuantityControl ";
 import findElementById from "@/utils/findElementById";
-import ProductPriceAndDiscount from "../ProductPriceAndDiscount";
-import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
-import { calculateDiscount } from "@/utils/calculateDiscount";
+import { calcDiscountedPrice } from "@/utils/calcDiscount";
+import DiscountedPrice from "../DiscountedPrice";
+import ProductPrice from "../ProductPrice";
 
 export default memo(function CartGroupList({ cart, products }) {
     const handleDecreaseQty = useCartStore((state) => state.handleDecreaseQty);
@@ -18,7 +18,7 @@ export default memo(function CartGroupList({ cart, products }) {
             {cart.map((cart, i) => {
                 const product = findElementById(products, cart.id);
                 const discountedPrice = product.discount
-                    ? calculateDiscount(product.price, product.discount) *
+                    ? calcDiscountedPrice(product.price, product.discount) *
                       cart.quantity
                     : "";
                 return (
@@ -49,12 +49,22 @@ export default memo(function CartGroupList({ cart, products }) {
                                 />
                             </div>
                             <div className="flex flex-col text-sm justify-between w-full items-end">
-                                <ProductPriceAndDiscount
-                                    price={product.price}
-                                    discount={formatNumberWithDots(
-                                        discountedPrice ? discountedPrice:""
+                                <div>
+                                    <ProductPrice
+                                        className={
+                                            product.discount
+                                                ? "line-through"
+                                                : ""
+                                        }
+                                        price={product.price}
+                                    />
+                                    {product.discount > 0 && (
+                                        <DiscountedPrice
+                                            className="font-semibold"
+                                            discountedPrice={discountedPrice}
+                                        />
                                     )}
-                                />
+                                </div>
                                 <TiDelete
                                     onClick={() =>
                                         handleDestroyFromCart(product.id)

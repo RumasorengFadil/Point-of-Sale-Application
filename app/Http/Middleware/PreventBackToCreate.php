@@ -19,7 +19,8 @@ class PreventBackToCreate
         // Get User ID
         $userId = Auth::user()->id;
 
-        if (!session()->has("$userId.transaction")) {
+
+        if (session()->has("$userId.transaction")) {
             return redirect()->route('transaction.index');
         }
 

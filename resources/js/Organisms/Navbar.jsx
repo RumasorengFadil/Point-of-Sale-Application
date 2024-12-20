@@ -13,10 +13,9 @@ export default function Navbar({ backBtn = false, categories }) {
     return (
         <div className="flex flex-col w-full  space-y-4 | lg:static lg:w-36 lg:bg-gray-100 lg:overflow-auto |">
             {backBtn && (
-                <BackBtn
-                    className="px-4"
-                    onClick={() => window.history.back()}
-                />
+                <Link href={route("pos-dashboard.index")}>
+                    <BackBtn className="px-4" />
+                </Link>
             )}
 
             {/* Logo */}

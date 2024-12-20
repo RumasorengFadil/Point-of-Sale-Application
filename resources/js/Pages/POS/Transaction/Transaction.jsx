@@ -1,9 +1,9 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
-import ProductList from "@/Organisms/ProductList";
 import Navbar from "@/Organisms/Navbar";
 import Cart from "@/Organisms/Cart";
 import ButtonNextSummary from "@/Organisms/ButtonNextSummary";
 import ProductSearchBar from "@/Organisms/ProductSearchBar";
+import FilteredProductList from "@/Organisms/FilteredProductList";
 
 export default function Transaction({ auth, products, categories }) {
     const header = (
@@ -16,7 +16,7 @@ export default function Transaction({ auth, products, categories }) {
         <>
             <ProductSearchBar products={products} />
 
-            <ProductList />
+            <FilteredProductList />
 
             <ButtonNextSummary products={products} />
         </>

@@ -2,7 +2,6 @@
 
 namespace App\Repositories\POS;
 
-use App\Models\POS\Product;
 use App\Models\POS\Transaction;
 use DB;
 

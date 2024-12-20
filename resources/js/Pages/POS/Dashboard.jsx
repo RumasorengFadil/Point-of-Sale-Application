@@ -1,14 +1,10 @@
-import ApplicationLogo from "@/Components/ApplicationLogoSm";
 import PosLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 import { FaMoneyBill } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { IoFastFood } from "react-icons/io5";
-import { BiDrink, BiFoodMenu, BiSolidDrink } from "react-icons/bi";
-import ApplicationLogoSm from "@/Components/ApplicationLogo";
+import { BiSolidDrink } from "react-icons/bi";
 import BarChart from "@/Components/Chart/BarChart";
-import { RiSettingsFill } from "react-icons/ri";
-import { IoMdSettings } from "react-icons/io";
 
 export default function Dashboard({ auth }) {
     return (
@@ -32,9 +28,12 @@ export default function Dashboard({ auth }) {
                             Thursday | 17:30
                         </p>
                     </div>
-                    <div className="cursor-pointer">
+                    <Link
+                        href={route("transaction.index")}
+                        className="cursor-pointer"
+                    >
                         <img src="/icons/app/menu.svg" alt="" />
-                    </div>
+                    </Link>
                 </div>
 
                 {/* stats */}

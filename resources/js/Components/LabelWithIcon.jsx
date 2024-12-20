@@ -24,18 +24,3 @@ export default function LabelWithIcon({
         </div>
     );
 }
-
-// const sizeHelper = {
-//     sm: {
-//         iconSize: 20,
-//         labelSize: "sm",
-//     },
-//     base: {
-//         iconSize: 24,
-//         labelSize: "base",
-//     },
-//     md: {
-//         iconSize: 28,
-//         labelSize: "md",
-//     },
-// }[size];

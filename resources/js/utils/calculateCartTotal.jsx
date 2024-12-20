@@ -1,4 +1,4 @@
-import { calculateDiscount } from "./calculateDiscount";
+import { calculateDiscount } from "./calcDiscount";
 
 export const calculateCartTotal = (cart, products) =>{
     if (!Array.isArray(cart) || !Array.isArray(products)) {

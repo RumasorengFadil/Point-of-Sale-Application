@@ -23,4 +23,9 @@ class Transaction extends Model
         'note',
         'transaction_date',
     ];
+
+    public function details()
+    {
+        return $this->hasMany(TransactionDetails::class, "transaction_id");
+    }
 }

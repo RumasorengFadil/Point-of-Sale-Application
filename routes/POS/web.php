@@ -2,9 +2,6 @@
 
 use App\Http\Controllers\POS\ProductController;
 use App\Http\Controllers\POS\TransactionController;
-use App\Http\Controllers\ProfileController;
-use App\Repositories\POS\ProductRepository;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
