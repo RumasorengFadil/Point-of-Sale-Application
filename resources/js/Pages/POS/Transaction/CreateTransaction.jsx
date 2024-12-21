@@ -28,6 +28,7 @@ export default function CreateTransaction({ auth, products }) {
             header={header}
             content={content}
             footer={footer}
+            className = "lg:space-x-4"
             contentClassName="hidden lg:flex bg-white"
             footerClassName="lg:flex-1 h-full"
         ></ApplicationLayout>

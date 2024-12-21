@@ -1,15 +1,11 @@
-import { IconCaption } from "./IconCaption";
+import { FigCaption } from "./FigCaption";
 
 export const IconFigure = ({
-    src,
-    figCaption = "",
+    icon: Icon,
     className,
     children,
     size = "base",
-    rounded = "",
-    isSelected = false,
-    classNameIfTrue = "",
-    classNameIfFalse = "",
+    caption,
 }) => {
     const sizeHelper = {
         sm: {
@@ -28,29 +24,13 @@ export const IconFigure = ({
     return (
         <figure className={"flex flex-col space-y-2 " + className}>
             {/* Icon */}
-            {src && (
-                <img
-                    className={`w-full rounded-${rounded} ${
-                        sizeHelper.iconSize
-                    } ${isSelected} ${
-                        isSelected ? classNameIfTrue : classNameIfFalse
-                    }`}
-                    src={src}
-                    alt=""
-                />
-            )}
+            {Icon && <Icon size={sizeHelper.iconSize} />}
 
             {/* Figcaption */}
             {children ? (
                 children
             ) : (
-                <IconCaption
-                    size={sizeHelper.captionSize}
-                    isSelected={isSelected}
-                    classNameIfTrue={classNameIfTrue}
-                    classNameIfFalse={classNameIfFalse}
-                    caption={figCaption}
-                />
+                <div size={sizeHelper.captionSize}>{caption}</div>
             )}
         </figure>
     );

@@ -25,15 +25,3 @@ const TransactionSuccessCard = ({}) => {
 };
 
 export default TransactionSuccessCard;
-
-/* Fond */
-
-// position: absolute;
-// width: 292px;
-// height: 282px;
-// left: 577.5px;
-// top: 376.5px;
-
-// background: #3AA6FF;
-// box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.2);
-// border-radius: 10px;
