@@ -1,6 +1,3 @@
-import { TableHeader } from "../TableBody";
-import { TableData } from "../TableData";
-import { TableBody } from "../TableHeader";
 
 export const Table = ({ className = "", children }) => {
     return (

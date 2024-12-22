@@ -3,14 +3,14 @@ import React, { forwardRef } from "react";
 import SummaryRow from "../SummaryRow";
 
 const Receipt = forwardRef(
-    ({ transaction, formatNumberWithDots = (value) => value }, ref) => {
+    ({ transaction, formatNumberWithDots = (value) => value, className }, ref) => {
         const { details, total, paid_amount, change, discount, subtotal } =
             transaction;
 
         return (
             <div
                 ref={ref}
-                className="w-80 p-4 bg-white text-black rounded-lg shadow-md"
+                className={"w-80 p-4 bg-white text-black rounded-lg shadow-md " + className}
             >
                 <h1 className="text-lg font-bold text-center">Wadon Firly</h1>
                 <p className="text-center text-sm">"Jalan pattimura"</p>

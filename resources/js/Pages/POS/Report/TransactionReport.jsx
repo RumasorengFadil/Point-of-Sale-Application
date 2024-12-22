@@ -5,6 +5,8 @@ import DateRangeFilter from "@/Organisms/DateRangePicker";
 import TransactionReportTitle from "@/Organisms/TransactionReportTitle";
 import { Head } from "@inertiajs/react";
 import StatsOverview from "@/Organisms/StatsOverview";
+import TransactionTable from "@/Organisms/TransactionTable";
+
 
 export default function Transaction({ transaction }) {
     const { data, label } = transaction;
@@ -17,7 +19,6 @@ export default function Transaction({ transaction }) {
             <NavigationMenu />
         </>
     );
-
     const content = (
         <>
             <TransactionReportTitle />
@@ -26,9 +27,7 @@ export default function Transaction({ transaction }) {
 
             <StatsOverview />
 
-            <div>
-                <Table
-            </div>
+            <TransactionTable data={data} />
         </>
     );
 
@@ -36,7 +35,7 @@ export default function Transaction({ transaction }) {
         <ApplicationLayout
             header={header}
             content={content}
-            contentClassName = "bg-white"
+            contentClassName="bg-white"
             direction="col-reverse"
         ></ApplicationLayout>
     );

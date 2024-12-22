@@ -17,7 +17,7 @@ class TransactionReportController extends Controller
     public function index()
     {
         $transactions = $this->transactionRepository->index();
+        
         return inertia()->render('POS/Report/TransactionReport', ['transaction' => $transactions]);
     }
-
 }

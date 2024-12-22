@@ -1,7 +1,7 @@
 
-export const TableHeader = ({children}) => {
+export const TableBody = ({children,className}) => {
     return (
-        <div className="flex text-xs w-full space-x-4 font-bold border-b">
+        <div className={"" + className}>
             {children}
         </div>
     );
