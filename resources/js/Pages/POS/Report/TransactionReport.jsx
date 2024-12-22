@@ -7,8 +7,7 @@ import { Head } from "@inertiajs/react";
 import StatsOverview from "@/Organisms/StatsOverview";
 import TransactionTable from "@/Organisms/TransactionTable";
 
-
-export default function Transaction({ transaction }) {
+export default function Transaction({ transaction, analytics }) {
     const { data, label } = transaction;
     const header = (
         <>
@@ -25,7 +24,7 @@ export default function Transaction({ transaction }) {
 
             <DateRangeFilter label={label} />
 
-            <StatsOverview />
+            <StatsOverview analytics={analytics} />
 
             <TransactionTable data={data} />
         </>

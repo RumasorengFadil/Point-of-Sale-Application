@@ -10,14 +10,7 @@ class TransactionRepository
 {
     public function index()
     {
-        $ninetyDaysAgo = Carbon::now()->subDays(90);
-
-        return [
-            'label' => '90 Hari Terakhir',
-            'data' => Transaction::with('details') // Memuat relasi 'details'
-                ->where('created_at', '>=', $ninetyDaysAgo) // Filter 90 hari terakhir
-                ->get()
-        ];
+        return ['data' => Transaction::with('details')->get(), 'label' => 'semua',];
     }
     public function store(array $data): Transaction
     {

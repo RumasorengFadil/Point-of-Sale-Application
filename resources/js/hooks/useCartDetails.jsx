@@ -13,6 +13,7 @@ export const useCartDetails = (products = [], cart = []) => {
                 name: product.name,
                 quantity: cartItem.quantity,
                 unitPrice: product.price,
+                categoryName : product.category.category_name,
                 discountAmount:
                     calculateDiscountAmount(product.price, product.discount) * cartItem.quantity,
                 discountPercentage: product.discount,

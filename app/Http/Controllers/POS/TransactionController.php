@@ -4,13 +4,10 @@ namespace App\Http\Controllers\POS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\POS\StoreTransactionRequest;
-use App\Models\POS\MstProductCategory;
 use App\Repositories\POS\MstProductCategoryRepository;
 use App\Repositories\POS\ProductRepository;
-use App\Services\PhotoService;
 use App\Services\TransactionService;
 use Auth;
-use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {

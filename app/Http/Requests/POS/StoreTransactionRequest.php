@@ -37,6 +37,7 @@ class StoreTransactionRequest extends FormRequest
             'cartDetails.*.name' => 'required|string',
             'cartDetails.*.quantity' => 'required|numeric',
             'cartDetails.*.unitPrice' => 'required|numeric',
+            'cartDetails.*.categoryName' => 'required|string',
             'cartDetails.*.discountAmount' => 'required|numeric',
             'cartDetails.*.discountPercentage' => 'required|numeric',
         ];
@@ -54,6 +55,7 @@ class StoreTransactionRequest extends FormRequest
             'change.required' => 'uang Kembalian belum diisi!.',
             'cartDetails.required' => 'Produk belum ditambahkan.!',
             'cartDetails.*.id.required' => 'Produk tidak ditemukan.!',
+            'cartDetails.*.categoryName' => 'Kategori harus diisi.!',
         ];
     }
 }

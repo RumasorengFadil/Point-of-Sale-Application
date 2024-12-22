@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('product_name');
             $table->integer('quantity');
             $table->integer('unit_price');
+            $table->string('category_name');
             $table->integer('discount_amount');
             $table->integer('discount_percentage');
             

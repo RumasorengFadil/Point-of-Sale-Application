@@ -18,4 +18,5 @@ class TransactionDetails extends Model
         'discount_amount',
         'discount_percentage',
     ];
+
 }

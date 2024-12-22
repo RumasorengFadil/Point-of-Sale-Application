@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('stock')->nullable();
             $table->string('image')->nullable();
             
+            $table->softDeletes();
+            
             $table->timestamps();
         });
     }

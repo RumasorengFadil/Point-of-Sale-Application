@@ -24,7 +24,6 @@ class TransactionService
         try {
             return DB::transaction(function () use ($transaction) {
                 // Create Transaction entry and retrieve the create Transaction object
-
                 $createdTransaction = $this->transactionRepository->store($transaction);
 
                 // Create Transaction Details entry

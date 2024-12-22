@@ -3,21 +3,34 @@
 namespace App\Http\Controllers\POS;
 
 use App\Http\Controllers\Controller;
-use App\Models\POS\Transaction;
+use App\Repositories\POS\TransactionAnalyticsRepository;
 use App\Repositories\POS\TransactionRepository;
-use Illuminate\Http\Request;
 
 class TransactionReportController extends Controller
 {
     protected $transactionRepository;
-    public function __construct(TransactionRepository $transactionRepository)
+    protected $analyticsRepository;
+    public function __construct(TransactionRepository $transactionRepository, TransactionAnalyticsRepository $analyticsRepository)
     {
         $this->transactionRepository = $transactionRepository;
+        $this->analyticsRepository = $analyticsRepository;
     }
     public function index()
     {
         $transactions = $this->transactionRepository->index();
-        
-        return inertia()->render('POS/Report/TransactionReport', ['transaction' => $transactions]);
+        $totalRevenue = $this->analyticsRepository->calculateTotalRevenue();
+        $totalOrders = $this->analyticsRepository->calculateTotalOrders();
+        $mostPopularFood = $this->analyticsRepository->getMostPopularFood();
+        $mostPopularDrink = $this->analyticsRepository->getMostPopularDrink();
+        return inertia()->render('POS/Report/TransactionReport', [
+            'transaction' => $transactions,
+            'analytics' => [
+                'totalRevenue' => $totalRevenue,
+                'totalOrders' => $totalOrders,
+                'mostPopularFood' => $mostPopularFood,
+                'mostPopularDrink' => $mostPopularDrink,
+                'dateRange' => 'semua'
+            ]
+        ]);
     }
 }

@@ -65,6 +65,7 @@ const TransactionTable = ({ data }) => {
                                     convertDate={convertDate}
                                 />
                             }
+                            fileName="Laporan-Transaksi"
                         >
                             <FaFilePdf
                                 className="text-red-500 cursor-pointer"
@@ -127,17 +128,15 @@ const TransactionTable = ({ data }) => {
                         </TableRow>
                     ))}
                     <TableRow>
-                        <TableData className="font-semibold">Total Pendapatan</TableData>
-                        <TableData></TableData>
-                        <TableData></TableData>
-                        <TableData></TableData>
-                        <TableData></TableData>
-                        <TableData></TableData>
-                        <TableData></TableData>
+                        <TableData className="font-semibold">
+                            Total Pendapatan
+                        </TableData>
+                        <TableData /> <TableData /> <TableData /> <TableData />{" "}
+                        <TableData /> <TableData />
                         <TableData className="text-gray-700">
                             {formatNumberWithDots(calculateTotal(data))}
                         </TableData>
-                        <TableData></TableData>
+                        <TableData />
                     </TableRow>
                 </TableBody>
             </Table>
