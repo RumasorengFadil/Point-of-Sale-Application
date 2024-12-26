@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class UserAccountsController extends Controller
 {
-    //
+    public function index(){
+
+        return inertia()->render('Settings/UserAccounts/UserAccounts'); 
+    }
 }

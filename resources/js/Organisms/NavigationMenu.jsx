@@ -11,7 +11,7 @@ import { IoMdSettings } from "react-icons/io";
 
 export default function NavigationMenu({ }) {
     const { baseRouteName } = usePage().props;
-
+console.log(baseRouteName);
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
             <NavItem
@@ -43,7 +43,7 @@ export default function NavigationMenu({ }) {
             />
 
             <NavItem
-                href={route("transaction-report.index")}
+                href={route("settings.user-accounts.index")}
                 icon={IoMdSettings}
                 label="Settings"
                 isActive={baseRouteName === "settings"}
