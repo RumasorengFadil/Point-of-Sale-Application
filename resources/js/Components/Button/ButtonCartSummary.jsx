@@ -26,7 +26,8 @@ export default function ButtonCartSummary({
                     <LabelWithIcon
                         direction="row-reverse"
                         label={label}
-                        icon={<FaChevronRight size={20} />}
+                        icon={FaChevronRight}
+                        iconSize={20}
                     />
                 </>
             )}

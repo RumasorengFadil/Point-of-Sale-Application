@@ -42,7 +42,7 @@ export default memo(function ApplicationLayout({
 
                 {footer && (
                     <div
-                        className={`flex flex-col space-y-8 bg-white lg:py-4 ${footerClassName}`}
+                        className={`flex flex-col space-y-8 bg-white overflow-auto lg:py-4 ${footerClassName}`}
                     >
                         {footer}
                         {/* <div className="w-80 h-80 bg-yellow-500"></div> */}

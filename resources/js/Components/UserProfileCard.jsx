@@ -1,15 +1,20 @@
-const UserProfile = ({
+const UserProfileCard = ({
     name,
     description,
     avatar,
+    defaultAvatar = "/images/common/user-default-picture.png",
     className = "",
     size = "regular",
     ring = "white"
 }) => {
     const helperSize = {
+        xs: {
+            avatarSize: "w-16 h-16",
+            fontSize: "text-base",
+        },
         sm: {
             avatarSize: "w-20 h-20",
-            fontSize: "text-sm",
+            fontSize: "text-base",
         },
         regular: {
             avatarSize: "w-24 h-24",
@@ -29,7 +34,7 @@ const UserProfile = ({
         <div className={"flex space-x-4 items-center " + className}>
             <img
                 className={`rounded-full bg-${ring} p-1 ${helperSize.avatarSize} ${helperSize.avatarSize}`}
-                src={avatar}
+                src={avatar?avatar:defaultAvatar}
                 alt={`${name}'s avatar`}
             />
             <div>
@@ -37,7 +42,7 @@ const UserProfile = ({
                     {name}
                 </p>
                 <p
-                    className={`max-w-28 overflow-hidden ${helperSize.fontSize}`}
+                    className={`${helperSize.fontSize}`}
                 >
                     {description}
                 </p>
@@ -46,4 +51,4 @@ const UserProfile = ({
     );
 };
 
-export default UserProfile;
+export default UserProfileCard;

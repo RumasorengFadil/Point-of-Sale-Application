@@ -3,7 +3,6 @@ import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/react";
 import { BiSolidReport } from "react-icons/bi";
 import { BsBoxFill } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { RiCursorFill } from "react-icons/ri";
@@ -11,7 +10,6 @@ import { IoMdSettings } from "react-icons/io";
 
 export default function NavigationMenu({ }) {
     const { baseRouteName } = usePage().props;
-console.log(baseRouteName);
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
             <NavItem

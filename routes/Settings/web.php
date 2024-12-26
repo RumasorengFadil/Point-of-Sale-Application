@@ -5,6 +5,7 @@ use App\Http\Controllers\POS\ProductController;
 use App\Http\Controllers\POS\TransactionController;
 use App\Http\Controllers\POS\TransactionReportController;
 use App\Http\Controllers\Settings\UserAccountsController;
+use App\Http\Controllers\Settings\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('settings/user-accounts', [UserAccountsController::class, 'index'])->middleware(['auth', 'verified'])->name('settings.user-accounts.index');
+Route::get('settings/user-accounts', [UserProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('settings.user-accounts.index');

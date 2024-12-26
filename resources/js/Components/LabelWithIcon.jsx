@@ -5,7 +5,8 @@ export default function LabelWithIcon({
     label = "label",
     direction = "row",
     labelSize = "base",
-    icon = "",
+    icon: Icon = "",
+    iconSize = 24,
     ...props
 }) {
     const directionHelper = {
@@ -17,9 +18,9 @@ export default function LabelWithIcon({
     return (
         <div
             {...props}
-            className={`flex ${directionHelper} items-center justify-center gap-4 ${className}`}
+            className={`flex ${directionHelper} items-center gap-4 ${className}`}
         >
-            {icon && icon}
+            {Icon ? <Icon size={iconSize} /> : null}
             {children ? children : <p className={`${labelSize}`}>{label}</p>}
         </div>
     );

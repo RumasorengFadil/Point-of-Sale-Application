@@ -7,7 +7,7 @@ export default function PaymentInfo({}) {
             <LabelWithIcon
                 label="Uang yang dibayarkan"
                 className="font-semibold text-gray-700"
-                icon={<IoIosWallet size={24} />}
+                icon={IoIosWallet}
             />
         </div>
     );

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\RouteHelper;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -33,6 +34,8 @@ class HandleInertiaRequests extends Middleware
     {
         $currentRouteName = Route::currentRouteName();
         $baseRouteName = explode('.', $currentRouteName)[0];
+        $lastRouteName = RouteHelper::getLastRouteName();
+
         return [
             ...parent::share($request),
             'auth' => [
@@ -41,6 +44,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'currentRouteName' => $currentRouteName,
             'baseRouteName' => $baseRouteName,
+            'lastRouteName' => $lastRouteName,
             'flash' => [
                 'message' => fn() => $request->session()->get('message'),
                 'error' => fn() => $request->session()->get('error'),
