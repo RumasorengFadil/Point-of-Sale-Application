@@ -3,14 +3,13 @@
 namespace App\Repositories\POS;
 
 use App\Models\POS\Transaction;
-use Carbon\Carbon;
 use DB;
 
 class TransactionRepository
 {
-    public function index()
+    public function index($size = 50)
     {
-        return ['data' => Transaction::with('details')->get(), 'label' => 'semua',];
+        return Transaction::with('details')->paginate($size);
     }
     public function store(array $data): Transaction
     {
@@ -18,7 +17,13 @@ class TransactionRepository
             return Transaction::create($this->mapData($data));
         });
     }
-
+    public function filter($startDate, $endDate, $type, $size = 50)
+    {
+        return Transaction::with('details')
+            ->when($type !== 'default' && $startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('created_at', [$startDate, $endDate]);
+            })->paginate($size);
+    }
     private function mapData(array $data): array
     {
         $mappedData = [
@@ -30,10 +35,13 @@ class TransactionRepository
             'payment_method' => $data['paymentMethod'],
             'paid_amount' => $data['paidAmount'],
             'change' => $data['change'],
-            'status' => "selesai",
+            'status' => "completed",
             'note' => $data['note'],
             'transaction_date' => now()->toDateString(),
         ];
         return $mappedData;
     }
+
+    
 }
+

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\POS\DashboardController;
 use App\Http\Controllers\POS\ProductController;
 use App\Http\Controllers\POS\TransactionController;
 use App\Http\Controllers\POS\TransactionReportController;
@@ -17,9 +18,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/pos/dashboard', function () {
-    return Inertia::render('POS/Dashboard');
-})->middleware(['auth', 'verified'])->name('pos-dashboard.index');
+Route::get('/pos/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('pos-dashboard.index');
+Route::get('/pos/dashboard/filter', [DashboardController::class, 'filter'])->middleware(['auth', 'verified'])->name('pos-dashboard.filter');
 
 Route::get('/pos/product', [ProductController::class, 'index'])->middleware(['auth', 'verified'])->name('product.index');
 Route::get('/pos/product/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('product.create');
@@ -29,10 +29,11 @@ Route::post('/pos/product/update/{id}', [ProductController::class, 'update'])->m
 Route::delete('/pos/product/destroy/{id}', [ProductController::class, 'destroy'])->middleware(['auth', 'verified'])->name('product.destroy');
 
 Route::get('pos/transaction', [TransactionController::class, 'index'])->middleware(['auth', 'verified'])->name('transaction.index');
-Route::get('pos/transaction/create', [TransactionController::class, 'create'])->middleware(['auth', 'verified', 'preventBackToCreate'])->name('transaction.create');
+Route::get('pos/transaction/create', [TransactionController::class, 'create'])->middleware(['auth', 'verified'])->name('transaction.create');
 Route::post('pos/transaction/store', [TransactionController::class, 'store'])->middleware(['auth', 'verified'])->name('transaction.store');
 Route::get('pos/transaction/success', [TransactionController::class, 'success'])
-    ->middleware(['auth', 'verified', 'redirectIfNoTransaction'])
+    ->middleware(['auth', 'verified'])
     ->name('transaction.success');
 
 Route::get('pos/transaction-report', [TransactionReportController::class, 'index'])->middleware(['auth', 'verified'])->name('transaction-report.index');
+Route::get('pos/transaction-report/filter', [TransactionReportController::class, 'filter'])->middleware(['auth', 'verified'])->name('transaction-report.filter');

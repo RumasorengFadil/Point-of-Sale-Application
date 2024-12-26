@@ -25,14 +25,28 @@ const styles = StyleSheet.create({
 });
 
 // Component
-const TransactionReportPdf = ({ data, convertDate = (value) => value }) => {
+const TransactionReportPdf = ({
+    transactionReport,
+    convertDate = (value) => value,
+}) => {
+    const {transactionData, startDate, endDate, type} = transactionReport;
     // Calculate total overall transaction
-    const totalTransaction = data.reduce((sum, item) => sum + item.total, 0);
+    const totalTransaction = transactionData.data.reduce(
+        (sum, item) => sum + item.total,
+        0
+    );
     return (
         <Document>
             <PdfTablePage style={styles.page}>
                 {/* Title */}
-                <PdfTitle>Laporan Transaksi 90 Hari Terakhir</PdfTitle>
+                <PdfTitle>
+                    Laporan Transaksi,{" "}
+                    {type !== "default"
+                        ? `${convertDate(
+                              startDate
+                          )} - ${convertDate(endDate)}`
+                        : "Semua"}
+                </PdfTitle>
 
                 {/* Header */}
                 <PdfTableHeader style={styles.header}>
@@ -70,7 +84,7 @@ const TransactionReportPdf = ({ data, convertDate = (value) => value }) => {
 
                 {/* Data Body */}
                 <PdfTableBody>
-                    {data.map((item, index) => (
+                    {transactionData.data.map((item, index) => (
                         <PdfTableRow key={index} style={styles.row}>
                             <PdfTableData style={styles.cell}>
                                 {item.id}

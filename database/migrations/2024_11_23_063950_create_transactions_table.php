@@ -35,7 +35,7 @@ return new class extends Migration
             $table->enum('payment_method', ['cash']);
             $table->integer('paid_amount');
             $table->integer('change');
-            $table->enum('status', ['belum', 'selesai'])->nullable();
+            $table->enum('status', ['incompleted', 'completed'])->nullable();
             $table->text('note')->nullable();
             $table->date('transaction_date');
 

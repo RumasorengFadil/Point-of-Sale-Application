@@ -6,9 +6,9 @@ import TransactionReportTitle from "@/Organisms/TransactionReportTitle";
 import { Head } from "@inertiajs/react";
 import StatsOverview from "@/Organisms/StatsOverview";
 import TransactionTable from "@/Organisms/TransactionTable";
+import Pagination from "@/Components/Pagination";
 
-export default function Transaction({ transaction, analytics }) {
-    const { data, label } = transaction;
+export default function Transaction({ transactionReport, analytics }) {
     const header = (
         <>
             <Head title="Laporan Transaksi" />
@@ -22,11 +22,20 @@ export default function Transaction({ transaction, analytics }) {
         <>
             <TransactionReportTitle />
 
-            <DateRangeFilter label={label} />
+            <DateRangeFilter analytics={analytics} />
 
             <StatsOverview analytics={analytics} />
 
-            <TransactionTable data={data} />
+            <TransactionTable transactionReport={transactionReport} />
+
+            <Pagination
+                links={transactionReport.transactionData.links}
+                params={{
+                    startDate: transactionReport.startDate,
+                    endDate: transactionReport.endDate,
+                    type: transactionReport.type
+                }}
+            />
         </>
     );
 

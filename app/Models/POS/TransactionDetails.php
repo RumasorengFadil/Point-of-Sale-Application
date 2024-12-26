@@ -15,6 +15,7 @@ class TransactionDetails extends Model
         'product_name',
         'quantity',
         'unit_price',
+        'category_name',
         'discount_amount',
         'discount_percentage',
     ];

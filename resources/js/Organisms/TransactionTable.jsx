@@ -12,7 +12,9 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useState } from "react";
 import { FaFilePdf } from "react-icons/fa6";
 
-const TransactionTable = ({ data }) => {
+const TransactionTable = ({ transactionReport }) => {
+    const {transactionData, type } = transactionReport;
+
     const [open, setOpen] = useState(false);
     const [transaction, setData] = useState({});
 
@@ -31,8 +33,8 @@ const TransactionTable = ({ data }) => {
         </div>
     );
 
-    const calculateTotal = (transactions) =>
-        transactions.reduce((acc, transaction) => acc + transaction.total, 0);
+    const calculateTotal = (transactionData) =>
+        transactionData.data.reduce((acc, transaction) => acc + transaction.total, 0);
 
     return (
         <>
@@ -61,7 +63,8 @@ const TransactionTable = ({ data }) => {
                         <PDFDownloadLink
                             document={
                                 <TransactionReportPdf
-                                    data={data}
+                                transactionReport={transactionReport}
+                                    type = {type}
                                     convertDate={convertDate}
                                 />
                             }
@@ -77,7 +80,7 @@ const TransactionTable = ({ data }) => {
                 </TableHeader>
 
                 <TableBody>
-                    {data.map((transaction) => (
+                    {transactionData.data.map((transaction) => (
                         <TableRow key={transaction.id}>
                             <TableData className="text-gray-900 overflow-hidden">
                                 {transaction.id}
@@ -127,17 +130,17 @@ const TransactionTable = ({ data }) => {
                             </TableData>
                         </TableRow>
                     ))}
-                    <TableRow>
+                    {/* <TableRow>
                         <TableData className="font-semibold">
                             Total Pendapatan
                         </TableData>
                         <TableData /> <TableData /> <TableData /> <TableData />{" "}
                         <TableData /> <TableData />
                         <TableData className="text-gray-700">
-                            {formatNumberWithDots(calculateTotal(data))}
+                            {formatNumberWithDots(calculateTotal(transactionData.data))}
                         </TableData>
                         <TableData />
-                    </TableRow>
+                    </TableRow> */}
                 </TableBody>
             </Table>
 

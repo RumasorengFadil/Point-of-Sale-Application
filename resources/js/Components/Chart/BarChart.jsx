@@ -14,18 +14,17 @@ import {
 // Register chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const BarChart = () => {
+const BarChart = ({salesSummary}) => {
   // Data untuk grafik
   const data = {
-    labels: ["BigMac", "Es Tea", "Lemon Tea"], // Label untuk sumbu X
+    labels: salesSummary.product_name, // Label untuk sumbu X
     datasets: [
       {
-        label: "Makanan", // Label dataset
-        data: [100, 200, 50], // Data yang akan ditampilkan
+        label: salesSummary.category_name, // Label dataset
+        data: salesSummary.total_product_sold, // Data yang akan ditampilkan
         backgroundColor: "#1A72DD", // Warna batang
         borderColor: "rgba(75, 192, 192, 1)", // Warna border batang
         borderWidth: 1, // Lebar border
-        
       },
     ],
   };
@@ -61,7 +60,7 @@ const BarChart = () => {
   
 
   return (
-    <div style={{ width: "80%", margin: "0 auto" }}>
+    <div>
       <Bar data={data} options={options} />
     </div>
   );

@@ -7,12 +7,13 @@ import { FaUser } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { RiCursorFill } from "react-icons/ri";
+import { IoMdSettings } from "react-icons/io";
 
 export default function NavigationMenu({ }) {
     const { baseRouteName } = usePage().props;
 
     return (
-        <div className="flex px-6 gap-5 items-center lg:flex-col">
+        <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
             <NavItem
                 href={route("pos-dashboard.index")}
                 icon={MdDashboard}
@@ -43,9 +44,9 @@ export default function NavigationMenu({ }) {
 
             <NavItem
                 href={route("transaction-report.index")}
-                icon={FaUser}
-                label="Akun"
-                isActive={baseRouteName === "profile"}
+                icon={IoMdSettings}
+                label="Settings"
+                isActive={baseRouteName === "settings"}
             />
 
             <NavItem

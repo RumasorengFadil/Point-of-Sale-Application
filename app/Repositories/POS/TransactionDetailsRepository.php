@@ -9,12 +9,11 @@ use DB;
 
 class TransactionDetailsRepository
 {
-    public function store(array $data)  
+    public function store(array $data)
     {
         DB::transaction(function () use ($data) {
-            $insertData = [];
             foreach ($data['cartDetails'] as $cartDetail) {
-                $insertData[] = [
+                TransactionDetails::create([
                     'transaction_id' => $data['transactionId'],
                     'product_id' => $cartDetail['id'],
                     'product_name' => $cartDetail['name'],
@@ -23,9 +22,8 @@ class TransactionDetailsRepository
                     'category_name' => $cartDetail['categoryName'],
                     'discount_amount' => $cartDetail['discountAmount'],
                     'discount_percentage' => $cartDetail['discountPercentage'],
-                ];
+                ]);
             }
-            TransactionDetails::insert($insertData);
-        }); 
+        });
     }
 }

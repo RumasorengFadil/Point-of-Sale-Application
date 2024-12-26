@@ -18,7 +18,7 @@ const DateRangeSelector = ({
             {/* Start Date */}
             <div className="flex-1 relative hover:bg-gray-200">
                 <label className="flex items-center justify-between cursor-pointer text-gray-700">
-                    <p>{startDate || "Start Date"}</p>
+                    <p>{startDate || "Tanggal mulai"}</p>
                     <MdCalendarMonth className="cursor-pointer" size={16} />
                 </label>
                 <input
@@ -37,7 +37,7 @@ const DateRangeSelector = ({
                     htmlFor="endDate"
                     className="flex items-center justify-between cursor-pointer text-gray-700"
                 >
-                    <p>{endDate || "End Date"}</p>
+                    <p>{endDate || "Tanggal berakhir"}</p>
                     <MdCalendarMonth className="cursor-pointer" size={16} />
                 </label>
                 <input
