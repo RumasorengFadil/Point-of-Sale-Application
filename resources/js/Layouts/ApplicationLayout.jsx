@@ -26,7 +26,7 @@ export default memo(function ApplicationLayout({
             >
                 {header && (
                     <div
-                        className={`flex flex-col overflow-auto space-y-5 lg:py-4`}
+                        className={`flex flex-col overflow-auto lg:space-y-5 lg:py-4`}
                     >
                         {header}
                     </div>
@@ -45,7 +45,6 @@ export default memo(function ApplicationLayout({
                         className={`flex flex-col space-y-8 bg-white overflow-auto lg:py-4 ${footerClassName}`}
                     >
                         {footer}
-                        {/* <div className="w-80 h-80 bg-yellow-500"></div> */}
                     </div>
                 )}
             </div>

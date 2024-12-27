@@ -1,8 +1,8 @@
 // hooks/useAutocomplete.js
 import { useEffect, useState } from "react";
 
-export const useImagePreview = (data) => {
-    const [imagePreview, setImagePreview] = useState(""); // State untuk menyimpan Data URL
+export const useImagePreview = (defaultPreview="") => {
+    const [imagePreview, setImagePreview] = useState(defaultPreview); // State untuk menyimpan Data URL
 
     const handleFileChange = (e, callback) => {
         const file = e.target.files[0]; // Ambil file pertama dari input

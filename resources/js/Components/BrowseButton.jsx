@@ -1,12 +1,12 @@
 export default function BrowseButton({ className = "", onChange }) {
     return (
-        <div>
+        <div className="flex flex-col">
             <label
                 type="submit"
                 htmlFor="file-upload"
-                className={"px-4 cursor-pointer rounded py-3 bg-gray-300 text-gray-800 text-sm " + className}
+                className={"px-6 w-max cursor-pointer rounded py-3 bg-gray-300 text-gray-800 text-sm " + className}
             >
-                Browse
+                Pilih
             </label>
 
             <input

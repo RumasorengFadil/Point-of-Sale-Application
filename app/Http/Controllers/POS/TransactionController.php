@@ -71,6 +71,7 @@ class TransactionController extends Controller
             $userId = Auth::user()->id;
 
             $transaction = session()->get("$userId.transaction");
+            
             return inertia()->render('POS/Transaction/TransactionSuccess', ['transaction' => $transaction]);
 
         } catch (\Exception $e) {

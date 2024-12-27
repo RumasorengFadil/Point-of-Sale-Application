@@ -7,13 +7,14 @@ import { useForm } from "@inertiajs/react";
 import { useImagePreview } from "@/hooks/useImagePreview";
 import withLoading from "@/Components/WithLoading";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
+import toastUtils from "@/utils/toastUtils";
 
-const EditUserProfileForm = (user) => {
+const EditUserProfileForm = ({ user }) => {
     const { setData, data, post, processing } = useForm({
-        name: "",
-        username: "",
-        noTelp: "",
-        email: "",
+        realName: user.real_name,
+        username: user.username,
+        phoneNumber: user.phone_number,
+        email: user.email,
         password: "",
         confirmPassword: "",
         image: "",
@@ -23,12 +24,14 @@ const EditUserProfileForm = (user) => {
         FormActions
     );
 
-    const { imagePreview, handleFileChange } = useImagePreview(); // State untuk menyimpan Data URL
+    const { imagePreview, handleFileChange } = useImagePreview(
+        user.image ? `/storage/uploads/POS/img/users/${user.image}` : ""
+    ); // State untuk menyimpan Data URL
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("profile.update"), {
+        post(route("settings.user-profile.update"), {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
             },
@@ -46,29 +49,15 @@ const EditUserProfileForm = (user) => {
     };
 
     return (
-        <div className="flex flex-col space-y-4 px-4">
-            <UserProfileCard
-                avatar={imagePreview}
-                name={toTitleCase(user.real_name)}
-                description={
-                    <BrowseButton
-                        onChange={(e) =>
-                            handleFileChange(e, (file) =>
-                                setData("image", file)
-                            )
-                        }
-                        className="w-full"
-                    />
-                }
-            />
-
-            <div className="flex flex-col space-y-5">
+        <div className="flex w-full flex-col bg-white lg:py-4 lg:overflow-auto rounded">
+            <div className="flex flex-col px-4 space-y-5">
                 <FormField
                     onChange={handleChange}
-                    name="name"
-                    label="Nama"
+                    name="realName"
+                    label="Nama Asli"
                     type="text"
-                    placeholder="Nama"
+                    placeholder="Nama Asli"
+                    value={data.realName}
                 />
                 <FormField
                     onChange={handleChange}
@@ -76,13 +65,15 @@ const EditUserProfileForm = (user) => {
                     label="Username"
                     type="text"
                     placeholder="Username"
+                    value={data.username}
                 />
                 <FormField
                     onChange={handleChange}
-                    name="numberPhone"
+                    name="phoneNumber"
                     label="No Telp"
                     type="text"
                     placeholder="No Telp"
+                    value={data.phoneNumber}
                 />
                 <FormField
                     onChange={handleChange}
@@ -90,6 +81,7 @@ const EditUserProfileForm = (user) => {
                     label="Email"
                     type="email"
                     placeholder="Email"
+                    value={data.email}
                 />
                 <FormField
                     onChange={handleChange}
@@ -105,7 +97,20 @@ const EditUserProfileForm = (user) => {
                     type="password"
                     placeholder="Konfirmasi Password"
                 />
-
+                <UserProfileCard
+                    avatar={imagePreview}
+                    name={toTitleCase(user.real_name)}
+                    description={
+                        <BrowseButton
+                            onChange={(e) =>
+                                handleFileChange(e, (file) =>
+                                    setData("image", file)
+                                )
+                            }
+                            className="w-full"
+                        />
+                    }
+                />
                 <FormActionsWithLoading
                     isLoading={processing}
                     onSave={submit}

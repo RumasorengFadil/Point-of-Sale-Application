@@ -32,7 +32,7 @@ export default function Transaction({ auth, products, categories }) {
             header={header}
             content={content}
             footer={footer}
-            className = "lg:space-x-4"
+            className = "py-4 lg:space-x-4"
         ></ApplicationLayout>
     );
 }

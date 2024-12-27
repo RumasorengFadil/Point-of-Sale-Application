@@ -1,9 +1,16 @@
 import { Link } from "@inertiajs/react";
 import LabelWithIcon from "../LabelWithIcon";
 
-const SidebarItem = ({ href, icon: Icon, label, isActive, className }) => {
+const SidebarItem = ({
+    href,
+    icon: Icon,
+    label,
+    isActive,
+    onClick,
+    className,
+}) => {
     return (
-        <Link href={href} className={" " + className}>
+        <Link onClick={onClick} href={href} className={" " + className}>
             <LabelWithIcon
                 className={`${
                     isActive

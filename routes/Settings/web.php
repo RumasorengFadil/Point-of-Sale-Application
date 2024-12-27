@@ -19,4 +19,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('settings/user-accounts', [UserProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('settings.user-accounts.index');
+Route::get('settings/user-profile', [UserProfileController::class, 'index'])->middleware(['auth', 'verified'])->name('settings.user-profile.index');
+Route::post('settings/user-profile/update', [UserProfileController::class, 'update'])->middleware(['auth', 'verified'])->name('settings.user-profile.update');

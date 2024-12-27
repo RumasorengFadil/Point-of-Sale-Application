@@ -32,7 +32,6 @@ export default function Login({ status, canResetPassword }) {
 
     const ButtonWithLoading = withLoading({
         SpinnerWithLabel,
-        LoadingWrapper: ButtonLoadingWrapper,
     })(PrimaryButton);
     return (
         <GuestLayout>
@@ -115,7 +114,12 @@ export default function Login({ status, canResetPassword }) {
                     Log in
                 </ButtonWithLoading>
             </form>
-            {/* {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+        </GuestLayout>
+    );
+}
+
+{
+    /* {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
             <form onSubmit={submit}>
                 <div>
@@ -176,7 +180,5 @@ export default function Login({ status, canResetPassword }) {
                         Log in
                     </PrimaryButton>
                 </div>
-            </form> */}
-        </GuestLayout>
-    );
+            </form> */
 }

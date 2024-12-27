@@ -22,29 +22,29 @@ export default function UserProfile({ auth }) {
 
     const content = (
         <>
-            <UserProfileCard
-                name={toTitleCase(user.username)}
-                description={user.real_name}
-                className="px-4"
-            />
+            <div className="flex bg-white rounded w-full flex-col lg:overflow-auto space-y-8 lg:py-4">
+                <UserProfileCard
+                    avatar={`/storage/uploads/POS/img/users/${user.image}`}
+                    name={toTitleCase(user.username)}
+                    description={user.real_name}
+                    className="px-4"
+                />
 
-            <SidebarMenu />
+                <SidebarMenu />
+            </div>
+            
+            <EditUserProfileForm user={user} />
         </>
     );
 
-    const footer = (
-        <>
-            <EditUserProfileForm user = {user} />
-        </>
-    );
+    const footer = <></>;
     return (
         <ApplicationLayout
             header={header}
             content={content}
             footer={footer}
-            className="lg:space-x-4"
-            contentClassName="bg-white flex-0"
-            footerClassName="hidden lg:flex-1 lg:flex"
+            className="space-y-0 lg:space-x-4"
+            contentClassName="py-8 lg:flex-row lg:space-x-4 lg:space-y-0"
             direction="col-reverse"
         ></ApplicationLayout>
     );

@@ -10,8 +10,9 @@ use Intervention\Image\ImageManager;
 
 class PhotoService
 {
-    const EVIDENCE_PHOTO_PATH = '/uploads/accounting/img/evidences/';
-    const PRODUCT_PHOTO_PATH = '/uploads/POS/img/products/';
+    private const EVIDENCE_PHOTO_PATH = '/uploads/accounting/img/evidences/';
+    private const PRODUCT_PHOTO_PATH = '/uploads/POS/img/products/';
+    private const USER_PHOTO_PATH = '/uploads/POS/img/users/';
     // const ADMIN_PHOTO_PATH = '/uploads/img/admin/';
     // const BIBLIO_PHOTO_PATH = '/uploads/img/biblios/';
     // const DEFAULT_PHOTO_PATH = '/img/bibliography/biblio-default-picture.png';
@@ -49,7 +50,7 @@ class PhotoService
             throw new PhotoHandlingException("Failed to handle $type photo", 0, $e);
         }
     }
-    public function handleUpdatePhoto($photo, $photoPath, $type, $size=800)
+    public function handleUpdatePhoto($photo, $photoPath, $type, $size = 800)
     {
         if (!$photo)
             return;
@@ -66,15 +67,14 @@ class PhotoService
     public function removePhoto($photoPath, $type)
     {
         $path = $this->getPathByType($type);
-
+        
         if (Storage::disk('public')->exists((string) $path . $photoPath)) {
             Storage::disk('public')->delete((string) $path . $photoPath);
         }
-        // dd($photoPath);
     }
 
     private function getPathByType($type)
     {
-        return $type === 'evidence' ? self::EVIDENCE_PHOTO_PATH : self::PRODUCT_PHOTO_PATH;
+        return $type === 'user' ? self::USER_PHOTO_PATH : self::PRODUCT_PHOTO_PATH;
     }
 }

@@ -8,8 +8,9 @@ import { MdDashboard } from "react-icons/md";
 import { RiCursorFill } from "react-icons/ri";
 import { IoMdSettings } from "react-icons/io";
 
-export default function NavigationMenu({ }) {
-    const { baseRouteName } = usePage().props;
+export default function NavigationMenu({}) {
+    const { baseRouteName, auth } = usePage().props;
+    
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
             <NavItem
@@ -17,6 +18,7 @@ export default function NavigationMenu({ }) {
                 icon={MdDashboard}
                 label="Dashboard"
                 isActive={baseRouteName === "pos-dashboard"}
+                isHidden={auth.guard.name !== "web"}
             />
 
             <NavItem
@@ -24,6 +26,7 @@ export default function NavigationMenu({ }) {
                 icon={BsBoxFill}
                 label="Invetaris"
                 isActive={baseRouteName === "product"}
+                isHidden={auth.guard.name !== "web"}
             />
 
             <NavItem
@@ -41,18 +44,37 @@ export default function NavigationMenu({ }) {
             />
 
             <NavItem
-                href={route("settings.user-accounts.index")}
+                href={route("settings.user-profile.index")}
                 icon={IoMdSettings}
                 label="Settings"
                 isActive={baseRouteName === "settings"}
+                isHidden={auth.guard.name !== "web"}
+            />
+            
+            <NavItem
+                href={route("settings.user-profile.index")}
+                icon={IoMdSettings}
+                label="Settings"
+                isActive={baseRouteName === "settings"}
+                isHidden={auth.guard.name !== "cashier"}
             />
 
             <NavItem
                 onClick={() => Inertia.post(route("logout"))}
                 icon={IoLogOut}
-                label="Logout"
+                label="Keluar"
                 className="hidden lg:flex"
+                isHidden={auth.guard.name !== "web"}
             />
+
+            <NavItem
+                onClick={() => Inertia.post(route("cashier.logout"))}
+                icon={IoLogOut}
+                label="Keluar"
+                className="hidden lg:flex"
+                isHidden={auth.guard.name !== "cashier"}
+            />
+
         </div>
     );
 }
