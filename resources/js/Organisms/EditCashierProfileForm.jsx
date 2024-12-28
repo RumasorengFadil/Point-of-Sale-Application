@@ -9,7 +9,7 @@ import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 import toastUtils from "@/utils/toastUtils";
 import UserProfileFormField from "@/Components/UserProfileForm/UserProfileForm";
 
-const EditUserProfileForm = ({ user }) => {
+const EditCashierProfileForm = ({ user }) => {
     const { setData, data, post, processing } = useForm({
         realName: user.real_name,
         username: user.username,
@@ -25,13 +25,13 @@ const EditUserProfileForm = ({ user }) => {
     );
 
     const { imagePreview, handleFileChange } = useImagePreview(
-        user.image ? `/storage/uploads/POS/img/users/${user.image}` : ""
+        user.image ? `/storage/uploads/POS/img/cashiers/${user.image}` : ""
     ); // State untuk menyimpan Data URL
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("settings.user-profile.update"), {
+        post(route("settings.cashier-profile.update"), {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
             },
@@ -67,7 +67,7 @@ const EditUserProfileForm = ({ user }) => {
                         />
                     }
                 />
-
+                
                 <FormActionsWithLoading
                     isLoading={processing}
                     onSave={submit}
@@ -77,4 +77,4 @@ const EditUserProfileForm = ({ user }) => {
     );
 };
 
-export default EditUserProfileForm;
+export default EditCashierProfileForm;

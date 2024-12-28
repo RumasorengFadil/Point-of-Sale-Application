@@ -1,14 +1,23 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
-import Navbar from "@/Organisms/Navbar";
 import Cart from "@/Organisms/Cart";
 import ButtonNextSummary from "@/Organisms/ButtonNextSummary";
 import ProductSearchBar from "@/Organisms/ProductSearchBar";
 import FilteredProductList from "@/Organisms/FilteredProductList";
+import HeaderLogo from "@/Organisms/HeaderLogo";
+import CategoryMenu from "@/Organisms/CategoryMenu";
+import DynamicBackButton from "@/Organisms/DynamicBackButton";
+import { Head } from "@inertiajs/react";
 
 export default function Transaction({ auth, products, categories }) {
     const header = (
         <>
-            <Navbar backBtn={true} categories={categories} />
+            <Head title="Transaction" />
+            
+            <DynamicBackButton auth={auth} />
+
+            <HeaderLogo />
+
+            <CategoryMenu categories={categories} />
         </>
     );
 
@@ -32,7 +41,10 @@ export default function Transaction({ auth, products, categories }) {
             header={header}
             content={content}
             footer={footer}
-            className = "py-4 lg:space-x-4"
+            className="lg:space-x-4"
+            headerClassName = "py-4 space-y-4"
+            contentClassName = "py-4"
+            withContainerSpace = {false}
         ></ApplicationLayout>
     );
 }

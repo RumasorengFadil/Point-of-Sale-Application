@@ -25,7 +25,7 @@ const FilteredProductList = memo(() => {
     // Format data produk untuk Product component
 
     return (
-        <div className="h-full overflow-auto py-2 w-full">
+        <div className="h-full px-4 overflow-auto py-2 w-full">
             <div className="grid grid-cols-2 gap-7 sm:grid-cols-3">
                 {filteredProducts.map((product) => (
                     <div key={product.id}>

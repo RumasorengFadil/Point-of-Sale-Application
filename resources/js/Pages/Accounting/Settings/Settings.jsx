@@ -6,8 +6,9 @@ import { toTitleCase } from "@/utils/toTitleCase";
 import SidebarMenu from "@/Organisms/SidebarMenu";
 import EditUserProfileForm from "@/Organisms/EditUserProfileForm";
 import UserProfileCard from "@/Components/UserProfileCard";
+import EditCashierProfileForm from "@/Organisms/EditCashierProfileForm";
 
-export default function UserProfile({ auth }) {
+export default function Settings({ auth }) {
     const { user } = auth;
 
     const header = (
@@ -24,7 +25,12 @@ export default function UserProfile({ auth }) {
         <>
             <div className="flex bg-white rounded w-full flex-col lg:overflow-auto space-y-8 lg:py-4">
                 <UserProfileCard
-                    avatar={`/storage/uploads/POS/img/users/${user.image}`}
+                    avatar={`${
+                        user.image &&
+                        `/storage/uploads/POS/img/${
+                            auth.guard.name === "web" ? "users" : "cashiers"
+                        }/${user.image}`
+                    }`}
                     name={toTitleCase(user.username)}
                     description={user.real_name}
                     className="px-4"
@@ -32,20 +38,23 @@ export default function UserProfile({ auth }) {
 
                 <SidebarMenu />
             </div>
-            
-            <EditUserProfileForm user={user} />
+
+            {auth.guard.name === "web" ? (
+                <EditUserProfileForm user={user} />
+            ) : (
+                <EditCashierProfileForm user={user} />
+            )}
         </>
     );
 
-    const footer = <></>;
     return (
         <ApplicationLayout
             header={header}
             content={content}
-            footer={footer}
-            className="space-y-0 lg:space-x-4"
+            className="lg:space-x-4"
             contentClassName="py-8 lg:flex-row lg:space-x-4 lg:space-y-0"
             direction="col-reverse"
+            withContainerSpace={false}
         ></ApplicationLayout>
     );
 }

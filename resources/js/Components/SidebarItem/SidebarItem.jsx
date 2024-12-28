@@ -8,9 +8,14 @@ const SidebarItem = ({
     isActive,
     onClick,
     className,
+    isHidden = false,
 }) => {
     return (
-        <Link onClick={onClick} href={href} className={" " + className}>
+        <Link
+            onClick={onClick}
+            href={href}
+            className={`${className}  ${isHidden ? "lg:hidden hidden" : ""}`}
+        >
             <LabelWithIcon
                 className={`${
                     isActive

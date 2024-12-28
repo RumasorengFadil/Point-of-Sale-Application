@@ -1,4 +1,4 @@
-import { Link, usePage } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import BackBtn from "../BackBtn";
 import ApplicationLogo from "../ApplicationLogoSm";
 

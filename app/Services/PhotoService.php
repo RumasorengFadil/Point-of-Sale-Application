@@ -13,9 +13,8 @@ class PhotoService
     private const EVIDENCE_PHOTO_PATH = '/uploads/accounting/img/evidences/';
     private const PRODUCT_PHOTO_PATH = '/uploads/POS/img/products/';
     private const USER_PHOTO_PATH = '/uploads/POS/img/users/';
-    // const ADMIN_PHOTO_PATH = '/uploads/img/admin/';
-    // const BIBLIO_PHOTO_PATH = '/uploads/img/biblios/';
-    // const DEFAULT_PHOTO_PATH = '/img/bibliography/biblio-default-picture.png';
+    private const CASHIER_PHOTO_PATH = '/uploads/POS/img/cashiers/';
+    private const COMMON_PHOTO_PATH = '/uploads/commons/img/';
 
     public function handlePhoto($image, $type, $size = 800)
     {
@@ -53,21 +52,21 @@ class PhotoService
     public function handleUpdatePhoto($photo, $photoPath, $type, $size = 800)
     {
         if (!$photo)
-            return;
-
-        // Menghapus data foto sebelumnya
-        self::removePhoto($photoPath, $type);
-
-        // Handle gambar biblio
-        $filename = self::handlePhoto($photo, $type, $size);
-
+        return;
+    
+    // Menghapus data foto sebelumnya
+    self::removePhoto($photoPath, $type);
+    
+    // Handle gambar biblio
+    $filename = self::handlePhoto($photo, $type, $size);
+    
         return $filename;
     }
 
     public function removePhoto($photoPath, $type)
     {
         $path = $this->getPathByType($type);
-        
+
         if (Storage::disk('public')->exists((string) $path . $photoPath)) {
             Storage::disk('public')->delete((string) $path . $photoPath);
         }
@@ -75,6 +74,18 @@ class PhotoService
 
     private function getPathByType($type)
     {
-        return $type === 'user' ? self::USER_PHOTO_PATH : self::PRODUCT_PHOTO_PATH;
+        if ($type === 'product') {
+            return self::PRODUCT_PHOTO_PATH;
+        }
+
+        if ($type === 'user') {
+            return self::USER_PHOTO_PATH;
+        }
+
+        if ($type === 'cashier') {
+            return self::CASHIER_PHOTO_PATH;
+        }
+
+        return self::COMMON_PHOTO_PATH;
     }
 }

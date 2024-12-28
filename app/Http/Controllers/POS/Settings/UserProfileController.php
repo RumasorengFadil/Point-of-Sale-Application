@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Settings;
+namespace App\Http\Controllers\POS\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\POS\Settings\UserProfileRequest;
@@ -9,7 +9,7 @@ use App\Services\PhotoService;
 use Auth;
 
 class UserProfileController extends Controller
-{   
+{
     private const PHOTO_TYPE = 'user';
     protected $photoService;
     protected $userProfileRepository;
@@ -19,10 +19,6 @@ class UserProfileController extends Controller
         $this->userProfileRepository = $userProfileRepository;
     }
 
-    public function index(){
-
-        return inertia()->render('Settings/UserProfile/UserProfile'); 
-    }
     public function update(UserProfileRequest $request){
 
          // Get user 
@@ -37,6 +33,6 @@ class UserProfileController extends Controller
          // Updated admin data
          $this->userProfileRepository->update($validatedData, $user);
  
-        return redirect()->route('settings.user-profile.index')->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
+        return redirect()->route('pos-settings.index')->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
     }
 }

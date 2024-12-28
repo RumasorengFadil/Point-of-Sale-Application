@@ -1,35 +1,32 @@
 import { Head } from "@inertiajs/react";
-import StatsOverview from "@/Organisms/StatsOverview";
 import HeaderLogo from "@/Organisms/HeaderLogo";
 import NavigationMenu from "@/Organisms/NavigationMenu";
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import InfoBar from "@/Organisms/InfoBar";
-import OrderSummary from "@/Organisms/OrderSummary ";
-import SidebarStatistics from "@/Organisms/SidebarStatistics";
+import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 
-export default function Dashboard({ analytics }) {
+export default function Dashboard({  }) {
     const header = (
         <>
             <Head title="Laporan Transaksi" />
 
             <HeaderLogo />
 
-            <NavigationMenu />
+            <AccountingNavigationMenu />
         </>
     );
     const content = (
         <>
             <InfoBar />
 
-            <StatsOverview analytics={analytics} />
+            {/* <StatsOverview analytics={analytics} /> */}
 
-            <OrderSummary analytics={analytics} />
         </>
     );
 
     const footer = (
         <>
-           <SidebarStatistics analytics={analytics}  />
+           {/* <SidebarStatistics analytics={analytics}  /> */}
         </>
     );
     return (

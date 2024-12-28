@@ -60,7 +60,7 @@ export default memo(function Cart({ products, buttonSummary = true }) {
 
     // Render Summary Button
     const renderSummaryButton = () => (
-        <div className="flex flex-col w-full py-4 z-50">
+        <div className="flex flex-col w-full z-50">
             <ButtonCartSummary
                 label="bayar"
                 summary={formatNumberWithDots(total)}

@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/pos/dashboard';
+    public const HOME = '/accounting/dashboard';
     public const CASHIER_HOME = '/pos/transaction';
 
     /**
@@ -40,8 +40,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'))
                 ->group(base_path('routes/POS/web.php'))
-                ->group(base_path('routes/Accounting/web.php'))
-                ->group(base_path('routes/Settings/web.php'));
+                ->group(base_path('routes/Accounting/web.php'));
         });
     }
 }

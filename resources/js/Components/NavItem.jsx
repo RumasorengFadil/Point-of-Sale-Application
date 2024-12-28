@@ -5,7 +5,7 @@ const NavItem = ({
     icon: Icon,
     label,
     isActive,
-    isHidden,
+    isHidden = false,
     onClick,
     className,
 }) => {

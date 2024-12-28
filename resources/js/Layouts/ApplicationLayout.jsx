@@ -9,24 +9,20 @@ export default memo(function ApplicationLayout({
     className = "",
     contentClassName = "",
     footerClassName = "",
-    layoutPySize = "sm",
+    withContainerSpace = true,
+    headerClassName
 }) {
-    const layoutPy = {
-        none: "py-0",
-        sm: "py-4",
-        md: "py-6",
-        lg: "py-8",
-    }[layoutPySize];
-
     return (
         <>
             <ToastContainer />
             <div
-                className={`w-full h-screen bg-white space-y-8 flex flex-${direction} lg:space-y-0 ${className} lg:bg-gray-100 dark:bg-gray-900 lg:flex-row`}
+                className={`w-full h-screen bg-white flex flex-${direction} ${
+                    withContainerSpace ? "space-y-8" : ""
+                } ${className} lg:space-y-0 lg:bg-gray-100 dark:bg-gray-900 lg:flex-row`}
             >
                 {header && (
                     <div
-                        className={`flex flex-col overflow-auto lg:space-y-5 lg:py-4`}
+                        className={`flex flex-col overflow-auto lg:space-y-5 lg:py-4 ${headerClassName}`}
                     >
                         {header}
                     </div>

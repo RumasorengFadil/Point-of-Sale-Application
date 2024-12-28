@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Settings;
+namespace App\Http\Controllers\POS\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\POS\Settings\CashierProfileRequest;
@@ -18,11 +18,9 @@ class CashierProfileController extends Controller
         $this->photoService = $photoService;
         $this->cashierProfileRepository = $cashierProfileRepository;
     }
-    public function index(){
-        return inertia()->render('Settings/CashierProfile/CashierProfile'); 
-    }
 
     public function update(CashierProfileRequest $request){
+
         // Get user 
         $user = Auth::user();
 
@@ -35,6 +33,6 @@ class CashierProfileController extends Controller
         // Updated Cashier data
         $this->cashierProfileRepository->update($validatedData, $user);
 
-       return redirect()->route('settings.cashier-profile.index')->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
+        return redirect()->route('pos-settings.index')->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
    }
 }

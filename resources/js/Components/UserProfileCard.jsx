@@ -41,11 +41,11 @@ const UserProfileCard = ({
                 <p className={`font-extrabold ${helperSize.fontSize}`}>
                     {name}
                 </p>
-                <p
+                <div
                     className={`${helperSize.fontSize}`}
                 >
                     {description}
-                </p>
+                </div>
             </div>
         </div>
     );

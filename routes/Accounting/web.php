@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\Accounting\DashboardController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +14,4 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/accounting/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('accounting.dashboard.index');

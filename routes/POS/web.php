@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\POS\DashboardController;
 use App\Http\Controllers\POS\ProductController;
+use App\Http\Controllers\POS\Settings\CashierProfileController;
+use App\Http\Controllers\POS\Settings\SettingsController;
+use App\Http\Controllers\POS\Settings\UserProfileController;
 use App\Http\Controllers\POS\TransactionController;
 use App\Http\Controllers\POS\TransactionReportController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +39,9 @@ Route::get('pos/transaction/success', [TransactionController::class, 'success'])
 
 Route::get('pos/transaction-report', [TransactionReportController::class, 'index'])->middleware(['auth:cashier,web', 'verified'])->name('transaction-report.index');
 Route::get('pos/transaction-report/filter', [TransactionReportController::class, 'filter'])->middleware(['auth:cashier,web', 'verified'])->name('transaction-report.filter');
+
+
+Route::get('pos/settings', [SettingsController::class, 'index'])->middleware(['auth:cashier,web', 'verified'])->name('pos-settings.index');
+Route::post('settings/user-profile/update', [UserProfileController::class, 'update'])->middleware(['auth', 'verified'])->name('settings.user-profile.update');
+
+Route::post('settings/cashier-profile/update', [CashierProfileController::class, 'update'])->middleware(['auth:cashier', 'verified'])->name('settings.cashier-profile.update');

@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import BackBtn from "@/Components/BackBtn";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { CulinaryReactIconFigure } from "@/Components/CulinaryReactIconFigure";
@@ -9,13 +9,29 @@ import { toTitleCase } from "@/utils/toTitleCase";
 export default function Navbar({ backBtn = false, categories }) {
     const category = useCategoryStore((state) => state.category);
     const setCategory = useCategoryStore((state) => state.setCategory);
+    const { auth } = usePage().props;
 
     return (
-        <div className="flex flex-col w-full  space-y-4 | lg:static lg:w-36 lg:bg-gray-100 lg:overflow-auto |">
+        <div className="flex flex-col w-full space-y-4 | lg:static lg:w-36 lg:bg-gray-100 lg:overflow-auto |">
             {backBtn && (
-                <Link href={route("pos-dashboard.index")}>
-                    <BackBtn className="px-4" />
-                </Link>
+                <>
+                    <Link
+                        className={`${
+                            auth.guard.name === "web" ? "" : "hidden"
+                        }`}
+                        href={route(`pos-dashboard.index`)}
+                    >
+                        <BackBtn className="px-4" />
+                    </Link>
+                    <Link
+                        className={`${
+                            auth.guard.name === "web" ? "hidden" : ""
+                        }`}
+                        href={route('transaction-report.index')}
+                    >
+                        <BackBtn className="px-4" />
+                    </Link>
+                </>
             )}
 
             {/* Logo */}

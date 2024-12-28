@@ -16,15 +16,22 @@ class RedirectIfAuthenticated
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next, string ...$guards): Response
-    {
-        $guards = empty($guards) ? [null] : $guards;
+{
+    $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
+    foreach ($guards as $guard) {
+        if (Auth::guard($guard)->check()) {
+            if ($guard === 'web') {
                 return redirect(RouteServiceProvider::HOME);
+            } elseif ($guard === 'cashier') {
+                return redirect(RouteServiceProvider::CASHIER_HOME);
             }
-        }
 
-        return $next($request);
+            // Default fallback jika guard tidak dikenali
+            return redirect(RouteServiceProvider::HOME);
+        }
     }
+
+    return $next($request);
+}
 }
