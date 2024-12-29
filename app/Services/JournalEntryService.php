@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Product\Product;
-use App\Repositories\Product\ProductRepository;
-use DB;
-use Storage;
+use App\Repositories\Accounting\MstAccountRepository;
+use App\Repositories\Accounting\MstCategoryRepository;
+use App\Repositories\Accounting\MstTypeRepository;
+
 
 class JournalEntryService
 {

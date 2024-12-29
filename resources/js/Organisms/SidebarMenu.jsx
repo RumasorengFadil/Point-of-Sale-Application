@@ -15,10 +15,11 @@ export default function SidebarMenu({}) {
                 label="Profile Pengguna"
                 icon={FaUser}
                 href={route("pos-settings.index")}
+                isHidden={auth.guard.name !== "cashier"}
             />
 
             <SidebarItem
-                href={route("accounting.dashboard.index")}
+                href={route("accounting-dashboard.index")}
                 label="Ke Dashboard Accounting"
                 icon={FaMoneyBillTrendUp}
                 isHidden={auth.guard.name !== "web"}

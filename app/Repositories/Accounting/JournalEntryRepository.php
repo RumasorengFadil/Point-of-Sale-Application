@@ -3,10 +3,6 @@
 namespace App\Repositories\Accounting;
 
 use App\Models\Accounting\JournalEntry;
-use App\Models\Member;
-use App\Models\Product\Product;
-use DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class JournalEntryRepository
 {

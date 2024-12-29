@@ -10,7 +10,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { LuSettings2 } from "react-icons/lu";
 
-const DateRangeFilter = ({ analytics }) => {
+const DateRangeFilter = ({ analytics, routeName }) => {
     const [open, setOpen] = useState(false);
     const { get, data, reset, setData, processing } = useForm({
         startDate: "",
@@ -21,7 +21,7 @@ const DateRangeFilter = ({ analytics }) => {
     // Submit filter request
     const submitFilter = (e) => {
         e.preventDefault();
-        get(route("transaction-report.filter"), {
+        get(route(routeName), {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
                 reset();

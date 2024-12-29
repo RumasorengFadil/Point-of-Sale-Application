@@ -4,9 +4,6 @@ import { MdDashboard } from "react-icons/md";
 import { BsBoxFill } from "react-icons/bs";
 import { RiCursorFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa6";
-import { TbReportAnalytics } from "react-icons/tb";
-import { IoLogOut } from "react-icons/io5";
-import { Inertia } from "@inertiajs/inertia";
 import { ToastContainer } from "react-toastify";
 import NavigationMenu from "@/Organisms/NavigationMenu";
 

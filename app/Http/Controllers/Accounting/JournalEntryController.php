@@ -7,12 +7,8 @@ use App\Http\Requests\Accounting\StoreJournalEntryRequest;
 use App\Http\Requests\Accounting\UpdateJournalEntryRequest;
 use App\Models\Accounting\JournalEntry;
 use App\Repositories\Accounting\JournalEntryRepository;
-use App\Repositories\Accounting\MstAccountRepository;
-use App\Repositories\Accounting\MstCategoryRepository;
-use App\Repositories\Accounting\MstTypeRepository;
 use App\Services\JournalEntryService;
 use App\Services\PhotoService;
-use Illuminate\Http\Request;
 
 class JournalEntryController extends Controller
 {
@@ -30,7 +26,7 @@ class JournalEntryController extends Controller
         $journalEntries = $this->journalEntryRepository->index();
 
 
-        return inertia()->render('Accounting/JournalEntry', ['JournalEntries' => $journalEntries]);
+        return inertia()->render('Accounting/JournalEntry/JournalEntry', ['JournalEntries' => $journalEntries]);
     }
     public function create()
     {

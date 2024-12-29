@@ -53,7 +53,7 @@ const SidebarStatistics = ({ analytics }) => {
     );
 
     return (
-        <div className="flex overflow-auto gap-8 flex-col py-4 px-4 items-start w-80 max-h-screen bg-white">
+        <div className="flex overflow-auto gap-8 flex-col px-4 items-start w-80 max-h-screen bg-white">
             <div className="flex w-full justify-between">
                 <h1>
                     <span className="font-bold">Overal</span> Statistic

@@ -5,6 +5,7 @@ export const IconFigure = ({
     className,
     children,
     size = "base",
+    position = "left",
     caption,
 }) => {
     const sizeHelper = {
@@ -22,7 +23,9 @@ export const IconFigure = ({
         },
     }[size];
     return (
-        <figure className={"flex flex-col space-y-2 " + className}>
+        <figure
+            className={`flex flex-col space-y-2 ${className} items-${position}`}
+        >
             {/* Icon */}
             {Icon && <Icon size={sizeHelper.iconSize} />}
 
@@ -30,7 +33,9 @@ export const IconFigure = ({
             {children ? (
                 children
             ) : (
-                <div size={sizeHelper.captionSize}>{caption}</div>
+                <div className={"text-" + sizeHelper.captionSize}>
+                    {caption}
+                </div>
             )}
         </figure>
     );

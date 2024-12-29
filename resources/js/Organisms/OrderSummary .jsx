@@ -1,5 +1,4 @@
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
-import { BiSolidDrink } from "react-icons/bi";
 import { IoFastFood } from "react-icons/io5";
 
 export default function OrderSummary({ analytics }) {
@@ -7,7 +6,7 @@ export default function OrderSummary({ analytics }) {
 
     return (
         <div className="p-4 overflow-y-auto">
-            <div className="flex flex-col w-full h-full overflow-y-auto space-y-5 px-4 py-6 rounded shadow-lg bg-white">
+            <div className="flex flex-col w-full h-full overflow-y-auto space-y-5 p-4 rounded shadow-lg bg-white">
                 {/* Title */}
                 <p className="font-bold">Produk Yang Terjual</p>
 

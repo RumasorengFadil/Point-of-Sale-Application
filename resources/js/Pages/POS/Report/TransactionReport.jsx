@@ -22,7 +22,10 @@ export default function Transaction({ transactionReport, analytics }) {
         <>
             <TransactionReportTitle />
 
-            <DateRangeFilter analytics={analytics} />
+            <DateRangeFilter
+                analytics={analytics}
+                routeName="transaction-report.filter"
+            />
 
             <StatsOverview analytics={analytics} />
 
@@ -33,7 +36,7 @@ export default function Transaction({ transactionReport, analytics }) {
                 params={{
                     startDate: transactionReport.startDate,
                     endDate: transactionReport.endDate,
-                    type: transactionReport.type
+                    type: transactionReport.type,
                 }}
             />
         </>

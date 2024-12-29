@@ -1,11 +1,15 @@
 import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
-import NavigationMenu from "@/Organisms/NavigationMenu";
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import InfoBar from "@/Organisms/InfoBar";
 import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
+import CashFlowStats from "@/Organisms/CashFlowStats ";
+import RecentTransactions from "@/Organisms/RecentTransactions";
+import FinancialOverviewSidebar from "@/Organisms/FinancialOverviewSidebar ";
+import TimePeriodSwitcher from "@/Organisms/TimePeriodSwitcher ";
+import TitleSection from "@/Components/SectionTitle";
 
-export default function Dashboard({  }) {
+export default function Dashboard({}) {
     const header = (
         <>
             <Head title="Laporan Transaksi" />
@@ -19,22 +23,27 @@ export default function Dashboard({  }) {
         <>
             <InfoBar />
 
-            {/* <StatsOverview analytics={analytics} /> */}
+            <CashFlowStats />
 
+            <RecentTransactions />
         </>
     );
 
     const footer = (
         <>
-           {/* <SidebarStatistics analytics={analytics}  /> */}
+            <TitleSection boldText="Overal" subtitle="Statistic" />
+            
+            <TimePeriodSwitcher />
+            
+            <FinancialOverviewSidebar />
         </>
     );
     return (
         <ApplicationLayout
             header={header}
             content={content}
-            footer = {footer}
-            footerClassName = "hidden lg:flex"
+            footer={footer}
+            footerClassName="hidden lg:flex"
             direction="col-reverse"
         ></ApplicationLayout>
     );

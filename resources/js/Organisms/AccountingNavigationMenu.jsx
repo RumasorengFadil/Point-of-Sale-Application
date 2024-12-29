@@ -5,7 +5,8 @@ import { BiSolidReport } from "react-icons/bi";
 import { IoLogOut } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
-import { FaBook } from "react-icons/fa";
+import { BiSolidBook } from "react-icons/bi";
+
 
 export default function AccountingNavigationMenu({}) {
     const { baseRouteName, auth } = usePage().props;
@@ -13,18 +14,18 @@ export default function AccountingNavigationMenu({}) {
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
             <NavItem
-                href={route("accounting.dashboard.index")}
+                href={route("accounting-dashboard.index")}
                 icon={MdDashboard}
                 label="Dashboard"
-                isActive={baseRouteName === "accounting"}
+                isActive={baseRouteName === "accounting-dashboard"}
                 isHidden={auth.guard.name !== "web"}
             />
 
             <NavItem
-                href={route("product.index")}
-                icon={FaBook}
+                href={route("accounting-journal-entry.index")}
+                icon={BiSolidBook}
                 label="Buku Kas"
-                isActive={baseRouteName === "product"}
+                isActive={baseRouteName === "accounting-journal-entry"}
                 isHidden={auth.guard.name !== "web"}
             />
 

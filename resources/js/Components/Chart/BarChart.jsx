@@ -14,7 +14,7 @@ import {
 // Register chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const BarChart = ({salesSummary}) => {
+const BarChart = ({salesSummary={}}) => {
   // Data untuk grafik
   const data = {
     labels: salesSummary.product_name, // Label untuk sumbu X

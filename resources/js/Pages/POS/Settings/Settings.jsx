@@ -39,9 +39,7 @@ export default function Settings({ auth }) {
                 <SidebarMenu />
             </div>
 
-            {auth.guard.name === "web" ? (
-                <EditUserProfileForm user={user} />
-            ) : (
+            {auth.guard.name === "cashier" && (
                 <EditCashierProfileForm user={user} />
             )}
         </>
