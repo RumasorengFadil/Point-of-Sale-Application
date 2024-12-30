@@ -5,10 +5,9 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { FaChevronLeft } from "react-icons/fa6";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
-import ButtonLoadingWrapper from "@/Components/ButtonLoadingWrapper";
 import withLoading from "@/Components/WithLoading";
 
 export default function Login({ status, canResetPassword }) {
@@ -108,7 +107,7 @@ export default function Login({ status, canResetPassword }) {
 
                 <ButtonWithLoading
                     isLoading={processing}
-                    className="bg-primary fles justify-center"
+                    className="bg-primary flex justify-center"
                     disabled={processing}
                 >
                     Log in

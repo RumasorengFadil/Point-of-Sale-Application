@@ -3,18 +3,18 @@
 namespace App\Services;
 
 use App\Repositories\Accounting\MstAccountRepository;
-use App\Repositories\Accounting\MstCategoryRepository;
+use App\Repositories\Accounting\MstJournalCategoryRepository;
 use App\Repositories\Accounting\MstTypeRepository;
 
 
 class JournalEntryService
 {
-    protected $mstCategoryRepository;
+    protected $mstJournalCategoryRepository;
     protected $mstTypeRepository;
     protected $mstAccountRepository;
-    public function __construct(MstAccountRepository $mstAccountRepository, MstTypeRepository $mstTypeRepository, MstCategoryRepository $mstCategoryRepository)
+    public function __construct(MstAccountRepository $mstAccountRepository, MstTypeRepository $mstTypeRepository, MstJournalCategoryRepository $mstJournalCategoryRepository)
     {
-        $this->mstCategoryRepository = $mstCategoryRepository;
+        $this->mstJournalCategoryRepository = $mstJournalCategoryRepository;
         $this->mstTypeRepository = $mstTypeRepository;
         $this->mstAccountRepository = $mstAccountRepository;
     }
@@ -25,7 +25,7 @@ class JournalEntryService
      */
     public function getMasterData(): array
     {
-        $categories = $this->mstCategoryRepository->index();
+        $categories = $this->mstJournalCategoryRepository->index();
         $types = $this->mstTypeRepository->index();
         $accounts = $this->mstTypeRepository->index();
 

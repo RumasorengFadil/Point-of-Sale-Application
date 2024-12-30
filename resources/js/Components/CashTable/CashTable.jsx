@@ -6,6 +6,7 @@ import { TableHeader } from "../TableHeader";
 import { TableRow } from "../TableRow";
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBinFill } from "react-icons/ri";
+import ActionableIcon from "../ActionableIcon ";
 
 export default function CashTable({ type = "cash" }) {
     return (
@@ -44,19 +45,17 @@ export default function CashTable({ type = "cash" }) {
                     >
                         500.000
                     </TableData>
-                    <TableData className="min-w-20">
-                        <Link className="flex flex-1">
-                            <FaEdit
-                                className="text-primary cursor-pointer"
-                                size={16}
-                            />
-                        </Link>
-                        <Link className="flex flex-1">
-                            <RiDeleteBinFill
-                                className="text-red-500 cursor-pointer"
-                                size={16}
-                            />
-                        </Link>
+                    <TableData className="flex space-x-4 min-w-20">
+                        <ActionableIcon
+                            className="text-primary"
+                            icon={FaEdit}
+                            size={16}
+                        />
+                        <ActionableIcon
+                            className="text-red-500"
+                            icon={RiDeleteBinFill}
+                            size={16}
+                        />
                     </TableData>
                 </TableRow>
             </TableBody>

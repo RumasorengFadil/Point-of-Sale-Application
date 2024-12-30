@@ -32,7 +32,7 @@ class JournalEntryController extends Controller
     {
         $masterData = $this->journalEntryService->getMasterData();
 
-        return inertia()->render('Accounting/CreateJournalEntry', ['masterData' => $masterData]);
+        return inertia()->render('Accounting/JournalEntry/CreateJournalEntry', ['masterData' => $masterData]);
     }
     public function store(StoreJournalEntryRequest $request)
     {

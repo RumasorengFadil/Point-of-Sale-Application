@@ -13,7 +13,7 @@ export default memo(function FormActions({
     onBack,
     onEdit,
     onSearch,
-    ...props
+    icon:Icon,
 }) {
     return (
         <div className="flex bg-light-gray">
@@ -46,7 +46,7 @@ export default memo(function FormActions({
                     onClick={(e) => onEdit(e)}
                     className="cursor-pointer mx-1 bg-primary hover:bg-gray-700"
                 >
-                    Edit
+                    {Icon ? <Icon size={24} />:"Edit"}
                 </PrimaryButton>
             )}
 
