@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Accounting\JournalEntry;
 use App\Models\POS\Product;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -31,7 +32,9 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         // Model Binding
-        Route::model('id', Product::class);
+        Route::model('product', Product::class);
+        Route::model('journalEntry', JournalEntry::class);
+        
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')

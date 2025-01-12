@@ -34,10 +34,7 @@ class TransactionReportService
         // Buat custom labels untuk pagination
         $pagination['links'] = $this->paginationService->formatPaginationLinks($transactionData);
 
-        return [
-            'transactionData' => $pagination, // Mengganti 'transactions' menjadi 'data' agar lebih generik
-            'type' => "default"
-        ];
+        return $pagination;
     }
     public function getAnalytics(): array
     {
@@ -50,7 +47,6 @@ class TransactionReportService
             'foodSalesSummary' => $this->analyticsRepository->getSalesSummary(self::CATEGORY_FOOD_NAME),
             'drinkSalesSummary' => $this->analyticsRepository->getSalesSummary(self::CATEGORY_DRINK_NAME),
             'dateRange' => 'Semua',
-            'type' => 'default',
         ];
         return $analyticsData;
     }
@@ -70,7 +66,6 @@ class TransactionReportService
             'drinkSalesSummary' => $this->analyticsRepository->getSalesSummary(self::CATEGORY_DRINK_NAME, $startDate, $endDate, $data['type']),
             'startDate' => $data['startDate'],
             'endDate' => $data['endDate'],
-            'type' => $data['type']
         ];
 
         return $analyticsData;
@@ -87,11 +82,6 @@ class TransactionReportService
 
         // Buat custom labels untuk pagination
         $pagination['links'] = $this->paginationService->formatPaginationLinks($transactionData);
-        return [
-            'transactionData' => $pagination,
-            'startDate' => $data['startDate'],
-            'endDate' => $data['endDate'],
-            'type' => $data['type']
-        ];
+        return $pagination;
     }
 }

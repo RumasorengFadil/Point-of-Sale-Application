@@ -12,9 +12,8 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useState } from "react";
 import { FaFilePdf } from "react-icons/fa6";
 
-const TransactionTable = ({ transactionReport }) => {
-    const {transactionData, type } = transactionReport;
-
+const TransactionTable = ({ filterParams = {}, transactionReport = {} }) => {
+    const { startDate, endDate, type } = filterParams;
     const [open, setOpen] = useState(false);
     const [transaction, setData] = useState({});
 
@@ -33,8 +32,11 @@ const TransactionTable = ({ transactionReport }) => {
         </div>
     );
 
-    const calculateTotal = (transactionData) =>
-        transactionData.data.reduce((acc, transaction) => acc + transaction.total, 0);
+    const calculateTotal = (transactionReport) =>
+        transactionReport.data.reduce(
+            (acc, transaction) => acc + transaction.total,
+            0
+        );
 
     return (
         <>
@@ -63,8 +65,10 @@ const TransactionTable = ({ transactionReport }) => {
                         <PDFDownloadLink
                             document={
                                 <TransactionReportPdf
-                                transactionReport={transactionReport}
-                                    type = {type}
+                                    transactionReport={transactionReport}
+                                    type={type}
+                                    startDate={startDate}
+                                    endDate={endDate}
                                     convertDate={convertDate}
                                 />
                             }
@@ -80,7 +84,7 @@ const TransactionTable = ({ transactionReport }) => {
                 </TableHeader>
 
                 <TableBody>
-                    {transactionData.data.map((transaction) => (
+                    {transactionReport.data.map((transaction) => (
                         <TableRow key={transaction.id}>
                             <TableData className="text-gray-900 overflow-hidden">
                                 {transaction.id}
@@ -137,7 +141,7 @@ const TransactionTable = ({ transactionReport }) => {
                         <TableData /> <TableData /> <TableData /> <TableData />{" "}
                         <TableData /> <TableData />
                         <TableData className="text-gray-700">
-                            {formatNumberWithDots(calculateTotal(transactionData.data))}
+                            {formatNumberWithDots(calculateTotal(transactionReport.data))}
                         </TableData>
                         <TableData />
                     </TableRow> */}

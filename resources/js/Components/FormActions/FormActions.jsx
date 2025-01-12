@@ -3,10 +3,6 @@ import PrimaryButton from "../PrimaryButton";
 
 export default memo(function FormActions({
     className = "",
-    status = true,
-    children,
-    label,
-    error,
     onSave,
     onDeactivate,
     onStatusChange,
@@ -16,7 +12,7 @@ export default memo(function FormActions({
     icon:Icon,
 }) {
     return (
-        <div className="flex bg-light-gray">
+        <div className={"flex bg-light-gray " + className}>
             {onStatusChange && (
                 <PrimaryButton
                     onClick={(e) => onStatusChange.callback(e)}
@@ -56,7 +52,7 @@ export default memo(function FormActions({
                 <PrimaryButton
                     type="button"
                     onClick={(e) => onSave(e)}
-                    className="justify-center cursor-pointer w-full bg-primary hover:bg-gray-700"
+                    className="justify-center py-3 cursor-pointer w-full bg-primary hover:bg-gray-700"
                 >
                     Simpan
                 </PrimaryButton>

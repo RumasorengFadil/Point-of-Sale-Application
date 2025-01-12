@@ -1,0 +1,139 @@
+import FormActions from "@/Components/FormActions/FormActions";
+import FormField from "@/Components/FormField/FormField";
+import { FormImageField } from "@/Components/FormImageField/FormImageField";
+import { FormOptionField } from "@/Components/FormOptionField";
+import { FormSelectField } from "@/Components/FormSelectField/FormSelectField";
+import TitleSection from "@/Components/SectionTitle";
+import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
+import withLoading from "@/Components/WithLoading";
+import useFormHandler from "@/hooks/useFormHandler";
+import { useImagePreview } from "@/hooks/useImagePreview";
+import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
+import { isObjectEmpty } from "@/utils/isObjectEmpty";
+import toastUtils from "@/utils/toastUtils";
+import { toTitleCase } from "@/utils/toTitleCase";
+import { useForm } from "@inertiajs/react";
+
+export default function AddCashTransactionForm({
+    journalCategories,
+    journalTypes,
+    routeName = "",
+    formTitle = "",
+    journalEntry = {},
+}) {
+    const { imagePreview, handleFileChange, setImagePreview } =
+        useImagePreview();
+
+    const { post, processing, data, setData, errors, reset } = useForm({
+        categoryId: journalEntry.category_id || "",
+        typeId: journalEntry.type_id || "",
+        inputDate: journalEntry.input_date || "",
+        nominal: journalEntry.nominal || "",
+        description: journalEntry.description || "",
+        evidence: "",
+    });
+    const { handleChange, handleNumberChange } = useFormHandler(data, setData);
+
+    const ActionWithLoading = withLoading({ SpinnerWithLabel })(FormActions);
+
+    const submit = (e) => {
+        e.preventDefault();
+        post(route(routeName, journalEntry.id || ""), {
+            onSuccess: (response) => {
+                toastUtils.showSuccess(response.props.flash);
+
+                if(!isObjectEmpty(journalEntry)) return;
+
+                reset();
+                setImagePreview("");
+            },
+            onError: (errors) => {
+                toastUtils.showError(errors);
+            },
+        });
+    };
+
+    return (
+        <div className="flex flex-col space-y-4">
+            <TitleSection boldText={formTitle} subtitle="Kas" />
+
+            <FormSelectField
+                onChange={handleChange}
+                name="typeId"
+                label="Jenis Transaksi"
+                value={data.typeId}
+                error={errors.typeId}
+                className="px-4"
+            >
+                <FormOptionField label="Pilih" />
+                {journalTypes.map((journalType, i) => (
+                    <FormOptionField
+                        value={journalType.id}
+                        key={i}
+                        label={toTitleCase(journalType.type_name)}
+                    />
+                ))}
+            </FormSelectField>
+
+            <FormSelectField
+                onChange={handleChange}
+                name="categoryId"
+                label="Kategori Transaksi"
+                value={data.categoryId}
+                error={errors.categoryId}
+                className="px-4"
+            >
+                <FormOptionField label="Pilih" />
+                {journalCategories.map((journalCategory, i) => (
+                    <FormOptionField
+                        value={journalCategory.id}
+                        key={i}
+                        label={toTitleCase(journalCategory.category_name)}
+                    />
+                ))}
+            </FormSelectField>
+
+            <FormField
+                onChange={handleChange}
+                name="inputDate"
+                label="Tanggal Transaksi"
+                type="date"
+                value={data.inputDate}
+                error={errors.inputDate}
+                className="px-4"
+            />
+            <FormField
+                onChange={(e) => handleNumberChange(e, 11)}
+                label="Nominal"
+                type="text"
+                name="nominal"
+                value={formatNumberWithDots(data.nominal)}
+                error={errors.nominal}
+                className="px-4"
+            />
+            <FormField
+                onChange={handleChange}
+                name="description"
+                placeholder="exp : Pembelian bahan baku"
+                label="Deskripsi Transaksi"
+                type="text"
+                value={data.description}
+                error={errors.description}
+                className="px-4"
+            />
+            <FormImageField
+                onChange={(e) =>
+                    handleFileChange(e, (file) => setData("evidence", file))
+                }
+                label="Bukti Transaksi"
+                className="px-4"
+                imagePreview={imagePreview}
+            />
+            <ActionWithLoading
+                isLoading={processing}
+                className="px-4"
+                onSave={submit}
+            />
+        </div>
+    );
+}

@@ -9,7 +9,7 @@ export default function ActionableIcon ({
 }) {
     return (
         <Link
-            onCLick={onCLick}
+            onClick={onCLick}
             href={href}
             className={" " + className}
         >

@@ -39,6 +39,11 @@ class TransactionReportController extends Controller
         return inertia()->render('POS/Report/TransactionReport', [
             'transactionReport' => $transactionReport,
             'analytics' => $analytics,
+            'filterParams' => [
+                'startDate' => $validatedData['startDate'], // The parsed and adjusted start date
+                'endDate' => $validatedData['endDate'],     // The parsed and adjusted end date
+                'type' => $validatedData['type']    // The filter type from the input data
+            ],
         ]);
     }
 }

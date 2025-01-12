@@ -22,12 +22,12 @@ return new class extends Migration
             ->on("mst_journal_categories")
             ->onDelete("cascade");
             
-            $table->unsignedBigInteger("account_id"); // Foreign key to mst_publisher table
+            // $table->unsignedBigInteger("account_id"); // Foreign key to mst_publisher table
             
-            $table->foreign("account_id") // Defining mst_publisher the foreign key constraint
-            ->references("id")
-            ->on("mst_accounts")
-            ->onDelete("cascade");
+            // $table->foreign("account_id") // Defining mst_publisher the foreign key constraint
+            // ->references("id")
+            // ->on("mst_accounts")
+            // ->onDelete("cascade");
             
             $table->unsignedBigInteger("type_id"); // Foreign key to mst_publisher table
             
@@ -38,8 +38,7 @@ return new class extends Migration
             
             $table->integer('nominal');
             $table->string('description');
-            $table->integer('evidence')->nullable();
-            $table->integer('last_login');
+            $table->string('evidence')->nullable();
             
             $table->timestamps();
         });

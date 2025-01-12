@@ -7,7 +7,8 @@ use DB;
 
 class TransactionRepository
 {
-    public function index($size = 50)
+    private const DATA_SIZE = 50;
+    public function index($size = self::DATA_SIZE)
     {
         return Transaction::with('details')->paginate($size);
     }
@@ -17,7 +18,7 @@ class TransactionRepository
             return Transaction::create($this->mapData($data));
         });
     }
-    public function filter($startDate, $endDate, $type, $size = 50)
+    public function filter($startDate, $endDate, $type, $size = self::DATA_SIZE)
     {
         return Transaction::with('details')
             ->when($type !== 'default' && $startDate && $endDate, function ($query) use ($startDate, $endDate) {

@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\POS;
 
+use App\Http\Requests\Traits\FilterRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TransactionFilterRequest extends FormRequest
 {
+    use FilterRules;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -21,18 +23,11 @@ class TransactionFilterRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'startDate' => 'nullable|string',
-            'endDate' => 'nullable|string',
-            'type' => 'nullable|string',
-        ];
+        return $this->filterRules();
     }
 
     public function messages():array
     {
-        return [
-            'startDate.required' => "Tanggal Mulai Belum Diisi!.",
-            'endDate.required' => "Tanggal Berakhir Belum Diisi!.",
-        ];
+        return $this->filterMessages();
     }
 }

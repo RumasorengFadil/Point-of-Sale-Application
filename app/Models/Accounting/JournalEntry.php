@@ -12,11 +12,17 @@ class JournalEntry extends Model
     protected $fillable = [
         'input_date',
         'category_id',
-        'account_id',
+        // 'account_id',
         'type_id',
         'nominal',
         'description',
         'evidence',
-        'last_login',
     ];
+
+    public function type(){
+        return $this->belongsTo(MstType::class, 'type_id');
+    }
+    public function category(){
+        return $this->belongsTo(MstType::class, 'category_id');
+    }
 }

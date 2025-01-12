@@ -6,9 +6,10 @@ use App\Models\Accounting\JournalEntry;
 
 class JournalEntryRepository
 {
-    public function index()
+    private const DATA_SIZE = 50;
+    public function index($size = self::DATA_SIZE)
     {
-        return JournalEntry::all();
+        return JournalEntry::with(['type','category'])->paginate($size);
     }
     public function store(array $data): JournalEntry
     {
@@ -23,20 +24,28 @@ class JournalEntryRepository
     {
         $journalEntry->delete();
     }
-
+    public function filter($startDate, $endDate, $type, $size = self::DATA_SIZE)
+    {
+        return JournalEntry::with('type', 'category')
+            ->when($type !== 'default' && $startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('created_at', [$startDate, $endDate]);
+            })->paginate($size);
+    }
     private function mapData(array $data): array
     {
         $mappedData = [
             'input_date' => $data['inputDate'],
             'category_id' => $data['categoryId'],
-            'account_id' => 1,
+            // 'account_id' => 1,
             'type_id' => $data['typeId'],
             'nominal' => $data['nominal'],
             'description' => $data['description'],
             'evidence' => $data['evidence'],
-            'last_login' => now()->toDateTimeString(),
         ];
 
+        if (!is_null($data['evidence'])) {
+            $mappedData["evidence"] = $data['evidence'];
+        }
         return $mappedData;
     }
 }

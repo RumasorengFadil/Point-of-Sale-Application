@@ -1,5 +1,6 @@
 import DateRangeSelector from "@/Components/DateRangeSelector ";
 import PrimaryButton from "@/Components/PrimaryButton";
+import RadioFilterOption from "@/Components/RadioFilterOption";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 import withLoading from "@/Components/WithLoading";
 import { getPastDateRange } from "@/utils/getPastDateRange";
@@ -10,12 +11,12 @@ import { FaChevronRight } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { LuSettings2 } from "react-icons/lu";
 
-const DateRangeFilter = ({ analytics, routeName }) => {
+const DateRangeFilter = ({ analytics = {}, routeName, filterParams = {} }) => {
     const [open, setOpen] = useState(false);
     const { get, data, reset, setData, processing } = useForm({
-        startDate: "",
-        endDate: "",
-        type: analytics.type,
+        startDate: filterParams.startDate || "",
+        endDate: filterParams.endDate || "",
+        type: filterParams.type || "",
     });
 
     // Submit filter request
@@ -93,51 +94,42 @@ const DateRangeFilter = ({ analytics, routeName }) => {
                 </div>
 
                 {/* Filter: All */}
-                <div className="flex flex-row justify-between px-6">
-                    <p>Semua</p>
-                    <input
-                        onChange={handleFilterChange}
-                        name="default"
-                        checked={data.type === "default"}
-                        type="radio"
-                    />
-                </div>
+                <RadioFilterOption
+                    label="Semua"
+                    onChange={handleFilterChange}
+                    name="default"
+                    checked={data.type === "default"}
+                    className="px-6"
+                />
                 <hr />
-                {/* Filter: All */}
-                <div className="flex flex-row justify-between px-6">
-                    <p>Hari Ini</p>
-                    <input
-                        onChange={handleFilterChange}
-                        name="today"
-                        checked={data.type === "today"}
-                        type="radio"
-                    />
-                </div>
+                {/* Filter: Today */}
+                <RadioFilterOption
+                    label="Hari ini"
+                    onChange={handleFilterChange}
+                    name="today"
+                    checked={data.type === "today"}
+                    className="px-6"
+                />
                 <hr />
 
                 {/* Filter: Last 90 Days */}
-                <div className="flex flex-row justify-between px-6">
-                    <p>90 hari terakhir</p>
-                    <input
-                        onChange={handleFilterChange}
-                        name="lastNinetyDays"
-                        checked={data.type === "lastNinetyDays"}
-                        type="radio"
-                    />
-                </div>
+                <RadioFilterOption
+                    label="90 hari terakhir"
+                    onChange={handleFilterChange}
+                    name="lastNinetyDays"
+                    checked={data.type === "lastNinetyDays"}
+                    className="px-6"
+                />
                 <hr />
 
                 {/* Filter: Date Range */}
                 <div className="flex flex-col h-full space-y-2 px-6">
-                    <div className="flex flex-row justify-between">
-                        <p>Pilih Tanggal</p>
-                        <input
-                            onChange={handleFilterChange}
-                            name="dateRange"
-                            checked={data.type === "dateRange"}
-                            type="radio"
-                        />
-                    </div>
+                    <RadioFilterOption
+                        label="Pilih Tanggal"
+                        onChange={handleFilterChange}
+                        name="dateRange"
+                        checked={data.type === "dateRange"}
+                    />
 
                     <DateRangeSelector
                         onStartDateChange={(date) =>
@@ -171,17 +163,7 @@ const DateRangeFilter = ({ analytics, routeName }) => {
                     </ButtonWithLoading>
                 </div>
             </div>
-
-            {/* Footer */}
             <hr />
-
-            {analytics.type !== "default" ? (
-                <p className="font-semibold">
-                    Laporan, {analytics.startDate} sampai {analytics.endDate}
-                </p>
-            ) : (
-                <p className="font-semibold">Laporan, Semua</p>
-            )}
         </div>
     );
 };

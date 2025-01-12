@@ -27,11 +27,13 @@ const styles = StyleSheet.create({
 // Component
 const TransactionReportPdf = ({
     transactionReport,
+    startDate = "",
+    endDate = "",
+    type = "",
     convertDate = (value) => value,
 }) => {
-    const {transactionData, startDate, endDate, type} = transactionReport;
     // Calculate total overall transaction
-    const totalTransaction = transactionData.data.reduce(
+    const totalTransaction = transactionReport.data.reduce(
         (sum, item) => sum + item.total,
         0
     );
@@ -84,7 +86,7 @@ const TransactionReportPdf = ({
 
                 {/* Data Body */}
                 <PdfTableBody>
-                    {transactionData.data.map((item, index) => (
+                    {transactionReport.data.map((item, index) => (
                         <PdfTableRow key={index} style={styles.row}>
                             <PdfTableData style={styles.cell}>
                                 {item.id}

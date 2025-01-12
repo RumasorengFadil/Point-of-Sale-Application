@@ -6,8 +6,10 @@ import TitleSection from "@/Components/SectionTitle";
 import ActionCardSection from "@/Organisms/ActionCardSection";
 import DateRangeFilter from "@/Organisms/DateRangePicker";
 import TabulatedCashView from "@/Organisms/TabulatedCashView";
+import Pagination from "@/Components/Pagination";
 
-export default function JournalEntry({ auth }) {
+export default function JournalEntry({ journalEntries, filterParams }) {
+    const {data, links} = journalEntries;
     const header = (
         <>
             <Head title="Journal Entry" />
@@ -24,9 +26,14 @@ export default function JournalEntry({ auth }) {
 
             <ActionCardSection />
 
-            <DateRangeFilter analytics={{}} />
+            <DateRangeFilter filterParams = {filterParams} routeName={"accounting-journal-entry.filter"} analytics={{}} />
 
-            <TabulatedCashView />
+            <TabulatedCashView journalEntries={data} />
+
+            <Pagination
+                links={links}
+                params={filterParams}
+            />
         </>
     );
 
@@ -34,8 +41,9 @@ export default function JournalEntry({ auth }) {
         <ApplicationLayout
             header={header}
             content={content}
-            contentClassName="bg-white"
+            contentClassName="bg-white py-4"
             direction="col-reverse"
+            withContainerSpace = {false}
         ></ApplicationLayout>
     );
 }

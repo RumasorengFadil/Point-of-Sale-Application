@@ -26,7 +26,7 @@ Route::get('/pos/dashboard/filter', [DashboardController::class, 'filter'])->mid
 Route::get('/pos/product', [ProductController::class, 'index'])->middleware(['auth', 'verified'])->name('product.index');
 Route::get('/pos/product/create', [ProductController::class, 'create'])->middleware(['auth', 'verified'])->name('product.create');
 Route::post('/pos/product/store', [ProductController::class, 'store'])->middleware(['auth', 'verified'])->name('product.store');
-Route::get('/pos/product/edit/{id}', [ProductController::class, 'edit'])->middleware(['auth', 'verified'])->name('product.edit');
+Route::get('/pos/product/edit/{product}', [ProductController::class, 'edit'])->middleware(['auth', 'verified'])->name('product.edit');
 Route::post('/pos/product/update/{id}', [ProductController::class, 'update'])->middleware(['auth', 'verified'])->name('product.update');
 Route::delete('/pos/product/destroy/{id}', [ProductController::class, 'destroy'])->middleware(['auth', 'verified'])->name('product.destroy');
 

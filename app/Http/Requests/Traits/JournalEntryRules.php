@@ -9,11 +9,11 @@ trait JournalEntryRules
     protected function journalEntryRules()
     {
         return [
-            'inputDate' => 'required',
             'categoryId' => 'required|exists:mst_journal_categories,id',
             // 'accountId' => 'required|exists:mst_accounts,id',
             'typeId' => 'required|exists:mst_types,id',
-            'nominal' => 'required|number',
+            'inputDate' => 'required',
+            'nominal' => 'required|numeric',
             'description' => 'required|string',
             'evidence' => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
         ];
@@ -23,9 +23,9 @@ trait JournalEntryRules
     {
         return [
             'inputDate.required' => 'Tanggal transaksi belum diisi!',
-            'categoryId.required' => 'Kategori belum diisi!',
+            'categoryId.required' => 'Kategori transaksi belum diisi!',
             'categoryId.exist' => 'Kategori tidak ditemukan!.',
-            'typeId.required' => 'Tipe belum diisi!',
+            'typeId.required' => 'Jenis transaksi belum diisi!',
             'typeId.exist' => 'Tipe tidak ditemukan!.',
             'nominal.required' => 'Nominal belum diisi!.',
             'nominal.number' => 'Nominal harus berupa angka!.',

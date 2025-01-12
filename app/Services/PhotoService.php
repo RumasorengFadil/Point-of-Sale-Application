@@ -86,6 +86,10 @@ class PhotoService
             return self::CASHIER_PHOTO_PATH;
         }
 
+        if ($type === 'evidence') {
+            return self::EVIDENCE_PHOTO_PATH;
+        }
+
         return self::COMMON_PHOTO_PATH;
     }
 }

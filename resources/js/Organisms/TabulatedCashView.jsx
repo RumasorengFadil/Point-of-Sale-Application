@@ -1,7 +1,7 @@
 import CashTable from "@/Components/CashTable/CashTable";
 import { useState } from "react";
 
-export default function TabulatedCashView() {
+export default function TabulatedCashView({journalEntries}) {
     const [tab, setTab] = useState("book");
     return (
         <div className="flex flex-col space-y-4 px-4 overflow-auto">
@@ -29,9 +29,9 @@ export default function TabulatedCashView() {
                 </div>
             </div>
 
-            {tab === "book" && <CashTable type="book" />}
+            {tab === "book" && <CashTable journalEntries={journalEntries} type="book" />}
 
-            {tab === "flow" && <CashTable type="flow" />}
+            {tab === "flow" && <CashTable journalEntries={journalEntries} type="flow" />}
         </div>
     );
 }

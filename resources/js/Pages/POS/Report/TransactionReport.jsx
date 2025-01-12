@@ -8,7 +8,8 @@ import StatsOverview from "@/Organisms/StatsOverview";
 import TransactionTable from "@/Organisms/TransactionTable";
 import Pagination from "@/Components/Pagination";
 
-export default function Transaction({ transactionReport, analytics }) {
+export default function Transaction({ transactionReport, analytics, filterParams }) {
+    const {links} = transactionReport;
     const header = (
         <>
             <Head title="Laporan Transaksi" />
@@ -29,10 +30,10 @@ export default function Transaction({ transactionReport, analytics }) {
 
             <StatsOverview analytics={analytics} />
 
-            <TransactionTable transactionReport={transactionReport} />
+            <TransactionTable filterParams={filterParams} transactionReport={transactionReport} />
 
             <Pagination
-                links={transactionReport.transactionData.links}
+                links={links}
                 params={{
                     startDate: transactionReport.startDate,
                     endDate: transactionReport.endDate,

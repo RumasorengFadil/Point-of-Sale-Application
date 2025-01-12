@@ -2,13 +2,12 @@
 
 namespace App\Http\Requests\Accounting;
 
-use App\Http\Requests\Traits\JournalEntryRules;
+use App\Http\Requests\Traits\FilterRules;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreJournalEntryRequest extends FormRequest
+class JournalEntryFilterRequest extends FormRequest
 {
-    use JournalEntryRules;
-
+    use FilterRules;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,11 +23,11 @@ class StoreJournalEntryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return $this->journalEntryRules();
+        return $this->filterRules();
     }
 
-    public function messages()
+    public function messages():array
     {
-        return $this->journalEntryMessages();
+        return $this->filterMessages();
     }
 }

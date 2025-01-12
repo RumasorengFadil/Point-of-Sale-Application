@@ -2,11 +2,9 @@ import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
 import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
-import TitleSection from "@/Components/SectionTitle";
-import ActionCardSection from "@/Organisms/ActionCardSection";
 import AddCashTransactionForm from "@/Organisms/AddCashTransactionForm ";
 
-export default function CreateJournalEntry({ masterData }) {
+export default function EditJournalEntry({ masterData, journalEntry }) {
     const { journalCategories, journalTypes } = masterData;
 
     const header = (
@@ -21,15 +19,12 @@ export default function CreateJournalEntry({ masterData }) {
 
     const content = (
         <>
-            <TitleSection boldText="Buku" subtitle="Kas" />
-
-            <ActionCardSection />
-
-            <AddCashTransactionForm
+            <AddCashTransactionForm 
                 journalCategories={journalCategories}
                 journalTypes={journalTypes}
-                routeName="accounting-journal-entry.store"
-                formTitle="Tambah"
+                routeName="accounting-journal-entry.update"
+                formTitle="Edit"
+                journalEntry={journalEntry}
             />
         </>
     );
