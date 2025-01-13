@@ -1,12 +1,7 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
-import NavigationMenu from "@/Organisms/NavigationMenu";
 import HeaderLogo from "@/Organisms/HeaderLogo";
 import DateRangeFilter from "@/Organisms/DateRangePicker";
-import TransactionReportTitle from "@/Organisms/TransactionReportTitle";
 import { Head } from "@inertiajs/react";
-import StatsOverview from "@/Organisms/StatsOverview";
-import TransactionTable from "@/Organisms/TransactionTable";
-import Pagination from "@/Components/Pagination";
 import TitleSection from "@/Components/SectionTitle";
 import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 
