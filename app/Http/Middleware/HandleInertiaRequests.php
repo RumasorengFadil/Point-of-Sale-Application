@@ -35,7 +35,6 @@ class HandleInertiaRequests extends Middleware
         $currentRouteName = Route::currentRouteName();
         $baseRouteName = explode('.', $currentRouteName)[0];
         $lastRouteName = RouteHelper::getLastRouteName();
-
         return [
             ...parent::share($request),
             'auth' => [

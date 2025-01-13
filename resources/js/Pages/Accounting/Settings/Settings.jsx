@@ -1,12 +1,11 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
-import NavigationMenu from "@/Organisms/NavigationMenu";
 import { toTitleCase } from "@/utils/toTitleCase";
-import SidebarMenu from "@/Organisms/SidebarMenu";
 import EditUserProfileForm from "@/Organisms/EditUserProfileForm";
 import UserProfileCard from "@/Components/UserProfileCard";
-import EditCashierProfileForm from "@/Organisms/EditCashierProfileForm";
+import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
+import AccountingSidebarMenu from "@/Organisms/AccountingSidebarMenu";
 
 export default function Settings({ auth }) {
     const { user } = auth;
@@ -17,7 +16,7 @@ export default function Settings({ auth }) {
 
             <HeaderLogo />
 
-            <NavigationMenu />
+            <AccountingNavigationMenu />
         </>
     );
 
@@ -36,14 +35,10 @@ export default function Settings({ auth }) {
                     className="px-4"
                 />
 
-                <SidebarMenu />
+                <AccountingSidebarMenu />
             </div>
 
-            {auth.guard.name === "web" ? (
-                <EditUserProfileForm user={user} />
-            ) : (
-                <EditCashierProfileForm user={user} />
-            )}
+            <EditUserProfileForm user={user} />
         </>
     );
 

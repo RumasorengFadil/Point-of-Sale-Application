@@ -5,7 +5,7 @@ import SidebarItem from "@/Components/SidebarItem/SidebarItem";
 import { IoLogOut } from "react-icons/io5";
 import { Inertia } from "@inertiajs/inertia";
 
-export default function SidebarMenu({}) {
+export default function POSidebarMenu({}) {
     const { lastRouteName, auth } = usePage().props;
 
     return (
@@ -22,13 +22,6 @@ export default function SidebarMenu({}) {
                 href={route("accounting-dashboard.index")}
                 label="Ke Dashboard Accounting"
                 icon={FaMoneyBillTrendUp}
-                isHidden={auth.guard.name !== "web"}
-            />
-
-            <SidebarItem
-                label="Keluar"
-                icon={IoLogOut}
-                onClick={() => Inertia.post(route("logout"))}
                 isHidden={auth.guard.name !== "web"}
             />
 

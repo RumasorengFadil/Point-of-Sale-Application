@@ -3,10 +3,9 @@ import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
 import NavigationMenu from "@/Organisms/NavigationMenu";
 import { toTitleCase } from "@/utils/toTitleCase";
-import SidebarMenu from "@/Organisms/SidebarMenu";
-import EditUserProfileForm from "@/Organisms/EditUserProfileForm";
 import UserProfileCard from "@/Components/UserProfileCard";
 import EditCashierProfileForm from "@/Organisms/EditCashierProfileForm";
+import POSidebarMenu from "@/Organisms/POSidebarMenu";
 
 export default function Settings({ auth }) {
     const { user } = auth;
@@ -36,7 +35,7 @@ export default function Settings({ auth }) {
                     className="px-4"
                 />
 
-                <SidebarMenu />
+                <POSidebarMenu />
             </div>
 
             {auth.guard.name === "cashier" && (

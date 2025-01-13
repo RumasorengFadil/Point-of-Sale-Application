@@ -7,38 +7,30 @@ import { Head } from "@inertiajs/react";
 import StatsOverview from "@/Organisms/StatsOverview";
 import TransactionTable from "@/Organisms/TransactionTable";
 import Pagination from "@/Components/Pagination";
+import TitleSection from "@/Components/SectionTitle";
+import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 
-export default function TransactionReport({ transactionReport, analytics, filterParams }) {
-    const {links} = transactionReport;
+export default function FinancialReport({
+    transactionReport,
+    analytics,
+}) {
+    const { links } = transactionReport;
     const header = (
         <>
-            <Head title="Laporan Transaksi" />
+            <Head title="Laporan Keuangan" />
 
             <HeaderLogo />
 
-            <NavigationMenu />
+            <AccountingNavigationMenu />
         </>
     );
     const content = (
         <>
-            <TransactionReportTitle />
+            <TitleSection boldText="Laporan" subtitle="Keuangan" />
 
             <DateRangeFilter
                 analytics={analytics}
                 routeName="transaction-report.filter"
-            />
-
-            <StatsOverview analytics={analytics} />
-
-            <TransactionTable filterParams={filterParams} transactionReport={transactionReport} />
-
-            <Pagination
-                links={links}
-                params={{
-                    startDate: transactionReport.startDate,
-                    endDate: transactionReport.endDate,
-                    type: transactionReport.type,
-                }}
             />
         </>
     );
