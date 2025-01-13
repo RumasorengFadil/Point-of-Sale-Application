@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Accounting\DashboardController;
+use App\Http\Controllers\Accounting\FinancialReportController;
 use App\Http\Controllers\Accounting\JournalEntryController;
 use App\Http\Controllers\Accounting\Settings\SettingsController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,4 @@ Route::get('/accounting/journal-entry/edit/{journalEntry}', [JournalEntryControl
 Route::get('/accounting/journal-entry/filter', [JournalEntryController::class, 'filter'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.filter');
 Route::post('/accounting/journal-entry/update/{journalEntry}', [JournalEntryController::class, 'update'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.update');
 Route::get('/accounting/settings', [SettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('accounting.settings.index');
+Route::get('/accounting/financial-report', [FinancialReportController::class, 'index'])->middleware(['auth', 'verified'])->name('accounting.financial-report.index');

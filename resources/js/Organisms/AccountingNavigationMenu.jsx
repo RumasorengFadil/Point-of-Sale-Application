@@ -10,7 +10,6 @@ import { BiSolidBook } from "react-icons/bi";
 
 export default function AccountingNavigationMenu({}) {
     const { baseRouteName, auth, lastRouteName } = usePage().props;
-    console.log(lastRouteName);
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
             <NavItem
@@ -31,10 +30,10 @@ export default function AccountingNavigationMenu({}) {
 
 
             <NavItem
-                href={route("transaction-report.index")}
+                href={route("accounting.financial-report.index")}
                 icon={BiSolidReport}
                 label="Laporan"
-                isActive={baseRouteName === "transaction-report"}
+                isActive={lastRouteName === "financial-report"}
             />
 
             <NavItem
