@@ -21,7 +21,7 @@ class FinancialReportController extends Controller
         $financialReport = $this->financialReportService->getFinancialReport();
         return inertia()->render(
             'Accounting/Report/FinancialReport',
-            ['financialReport' => $financialReport,]
+            ['financialReport' => $financialReport]
         );
     }
 

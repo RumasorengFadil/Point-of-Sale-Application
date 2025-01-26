@@ -8,6 +8,7 @@ import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { FaFilePdf } from "react-icons/fa";
 import IncomeReportPdf from "../IncomeReportPdf/IncomeReportPdf";
+import { toTitleCase } from "@/utils/toTitleCase";
 
 export default function NetProfitTable({ incomeReport = {}, filterParams = {} }) {
     const {
@@ -47,7 +48,7 @@ export default function NetProfitTable({ incomeReport = {}, filterParams = {} })
                     {incomeByCategory.map(
                         ({ category_name, total_nominal }, i) => (
                             <TableRow key={i}>
-                                <TableData>{category_name}</TableData>
+                                <TableData>{toTitleCase(category_name)}</TableData>
                                 <TableData>
                                     {formatNumberWithDots(total_nominal)}
                                 </TableData>
@@ -70,7 +71,7 @@ export default function NetProfitTable({ incomeReport = {}, filterParams = {} })
                     {expensesByCategory.map(
                         ({ category_name, total_nominal }, i) => (
                             <TableRow key={i}>
-                                <TableData>{category_name}</TableData>
+                                <TableData>{toTitleCase(category_name)}</TableData>
                                 <TableData>
                                     {formatNumberWithDots(total_nominal)}
                                 </TableData>

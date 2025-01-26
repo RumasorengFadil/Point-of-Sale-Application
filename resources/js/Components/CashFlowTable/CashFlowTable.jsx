@@ -6,8 +6,12 @@ import { TableHeader } from "@/Components/TableHeader";
 import { TableRow } from "@/Components/TableRow";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { FaFilePdf } from "react-icons/fa";
+import IncomeReportPdf from "../IncomeReportPdf/IncomeReportPdf";
+import CashReportPdf from "../ExpensesReportPdf/CashReportPdf";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { toTitleCase } from "@/utils/toTitleCase";
 
-export default function CashFlowTable({ cashReport = {} }) {
+export default function CashFlowTable({ cashReport = {}, filterParams }) {
     const {
         cashInByCategory,
         totalCashIn,
@@ -26,11 +30,21 @@ export default function CashFlowTable({ cashReport = {} }) {
                     <TableData>Keterangan</TableData>
                     <TableData className="space-x-10">
                         <p>Jumlah (Rp)</p>
-                        <FaFilePdf
-                            className="text-red-500 cursor-pointer"
-                            title="Download Pdf"
-                            size={16}
-                        />
+                        <PDFDownloadLink
+                            document={
+                                <CashReportPdf
+                                    cashReport={cashReport}
+                                    filterParams={filterParams}
+                                />
+                            }
+                            fileName="Laporan-Finansial"
+                        >
+                            <FaFilePdf
+                                className="text-red-500 cursor-pointer"
+                                title="Download Pdf"
+                                size={16}
+                            />
+                        </PDFDownloadLink>
                     </TableData>
                 </TableHeader>
                 <TableBody>
@@ -41,7 +55,7 @@ export default function CashFlowTable({ cashReport = {} }) {
                     {cashInByCategory.map(
                         ({ category_name, total_nominal }, i) => (
                             <TableRow key={i}>
-                                <TableData>{category_name}</TableData>
+                                <TableData>{toTitleCase(category_name)}</TableData>
                                 <TableData>
                                     {formatNumberWithDots(total_nominal)}
                                 </TableData>
@@ -64,7 +78,7 @@ export default function CashFlowTable({ cashReport = {} }) {
                     {cashOutByCategory.map(
                         ({ category_name, total_nominal }, i) => (
                             <TableRow key={i}>
-                                <TableData>{category_name}</TableData>
+                                <TableData>{toTitleCase(category_name)}</TableData>
                                 <TableData>
                                     {formatNumberWithDots(total_nominal)}
                                 </TableData>

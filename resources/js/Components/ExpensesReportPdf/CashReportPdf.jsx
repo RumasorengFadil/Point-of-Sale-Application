@@ -25,21 +25,23 @@ const styles = StyleSheet.create({
 });
 
 // Component
-const IncomeReportPdf = ({ incomeReport, filterParams }) => {
+const CashReportPdf = ({ cashReport, filterParams }) => {
     const {
-        incomeByCategory,
-        totalIncome,
-        expensesByCategory,
-        totalExpenses,
-        netIncome,
-    } = incomeReport;
-    
+        cashInByCategory,
+        totalCashIn,
+        cashOutByCategory,
+        totalCashOut,
+        netCash,
+        initialCashBalance,
+        finalCashBalance,
+    } = cashReport;
+
     return (
         <Document>
             <PdfTablePage style={styles.page}>
                 {/* Title */}
                 <PdfTitle>
-                    Laporan Pendapatan Bersih, {""}
+                    Laporan Arus Kas,  {""}
                     {!filterParams.type
                         ? "Keseluruhan"
                         : `Bulan ${convertDateFormat(filterParams.month)}`}{" "}
@@ -54,11 +56,11 @@ const IncomeReportPdf = ({ incomeReport, filterParams }) => {
                 {/* Data Body */}
                 <PdfTableBody>
                     <PdfTableRow>
-                        <PdfTableData>Pendapatan</PdfTableData>
+                        <PdfTableData>Kas Masuk</PdfTableData>
                         <PdfTableData></PdfTableData>
                     </PdfTableRow>
 
-                    {incomeByCategory.map(
+                    {cashInByCategory.map(
                         ({ category_name, total_nominal }, i) => (
                             <PdfTableRow key={i}>
                                 <PdfTableData>{toTitleCase(category_name)}</PdfTableData>
@@ -70,18 +72,18 @@ const IncomeReportPdf = ({ incomeReport, filterParams }) => {
                     )}
 
                     <PdfTableRow>
-                        <PdfTableData>Total Pendapatan</PdfTableData>
+                        <PdfTableData>Total Kas Masuk</PdfTableData>
                         <PdfTableData>
-                            {formatNumberWithDots(totalIncome)}
+                            {formatNumberWithDots(totalCashIn)}
                         </PdfTableData>
                     </PdfTableRow>
 
                     <PdfTableRow>
-                        <PdfTableData>Biaya</PdfTableData>
+                        <PdfTableData>Kas Keluar</PdfTableData>
                         <PdfTableData></PdfTableData>
                     </PdfTableRow>
 
-                    {expensesByCategory.map(
+                    {cashOutByCategory.map(
                         ({ category_name, total_nominal }, i) => (
                             <PdfTableRow key={i}>
                                 <PdfTableData>{toTitleCase(category_name)}</PdfTableData>
@@ -93,16 +95,28 @@ const IncomeReportPdf = ({ incomeReport, filterParams }) => {
                     )}
 
                     <PdfTableRow>
-                        <PdfTableData>Total Biaya</PdfTableData>
+                        <PdfTableData>Total Kas Keluar</PdfTableData>
                         <PdfTableData>
-                            {formatNumberWithDots(totalExpenses)}
+                            {formatNumberWithDots(totalCashOut)}
                         </PdfTableData>
                     </PdfTableRow>
 
                     <PdfTableRow>
-                        <PdfTableData>Pendapatan Bersih</PdfTableData>
+                        <PdfTableData>Kas Bersih</PdfTableData>
                         <PdfTableData>
-                            {formatNumberWithDots(netIncome)}
+                            {formatNumberWithDots(netCash)}
+                        </PdfTableData>
+                    </PdfTableRow>
+                    <PdfTableRow>
+                        <PdfTableData>Saldo Kas Awal</PdfTableData>
+                        <PdfTableData>
+                            {formatNumberWithDots(initialCashBalance)}
+                        </PdfTableData>
+                    </PdfTableRow>
+                    <PdfTableRow>
+                        <PdfTableData>Saldo Kas Akhir</PdfTableData>
+                        <PdfTableData>
+                            {formatNumberWithDots(finalCashBalance)}
                         </PdfTableData>
                     </PdfTableRow>
                 </PdfTableBody>
@@ -111,4 +125,4 @@ const IncomeReportPdf = ({ incomeReport, filterParams }) => {
     );
 };
 
-export default IncomeReportPdf;
+export default CashReportPdf;

@@ -7,7 +7,7 @@ export default function FinancialSummary({financialReport={}, filterParams={}}) 
         <div className="flex flex-col space-y-8 mx-4 py-4 shadow-md rounded">
             <NetProfitTable incomeReport={incomeReport} filterParams={filterParams} />
 
-            <CashFlowTable cashReport={cashReport} />
+            <CashFlowTable cashReport={cashReport} filterParams={filterParams} />
         </div>
     );
 }
