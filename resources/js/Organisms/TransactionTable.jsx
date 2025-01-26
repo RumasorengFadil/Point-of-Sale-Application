@@ -32,12 +32,6 @@ const TransactionTable = ({ filterParams = {}, transactionReport = {} }) => {
         </div>
     );
 
-    const calculateTotal = (transactionReport) =>
-        transactionReport.data.reduce(
-            (acc, transaction) => acc + transaction.total,
-            0
-        );
-
     return (
         <>
             <Table className="relative px-4 overflow-auto">

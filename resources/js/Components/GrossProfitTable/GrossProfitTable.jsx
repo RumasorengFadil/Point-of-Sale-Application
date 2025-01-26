@@ -4,11 +4,13 @@ import { TableBody } from "@/Components/TableBody";
 import { TableData } from "@/Components/TableData";
 import { TableHeader } from "@/Components/TableHeader";
 import { TableRow } from "@/Components/TableRow";
+import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 
-export default function GrossProfitTable({}) {
+export default function GrossProfitTable({ grossProfit = {} }) {
+    console.log(grossProfit);
     return (
         <div>
-            <TitleSection boldText="Laba" subtitle="Kotor" />
+            <TitleSection boldText="Pendapatan" subtitle="Bersih" />
             <Table className="px-4">
                 <TableHeader className="">
                     <TableData>Keterangan</TableData>
@@ -19,10 +21,14 @@ export default function GrossProfitTable({}) {
                         <TableData className="font-bold">Pendapatan</TableData>
                         <TableData></TableData>
                     </TableRow>
-                    <TableRow>
-                        <TableData>Penjualan Produk</TableData>
-                        <TableData>2.000.000</TableData>
-                    </TableRow>
+                    {grossProfit.map(({ category_name, total_nominal }) => (
+                        <TableRow>
+                            <TableData>{category_name}</TableData>
+                            <TableData>
+                                {formatNumberWithDots(total_nominal)}
+                            </TableData>
+                        </TableRow>
+                    ))}
                     <TableRow>
                         <TableData className="font-bold">
                             Total Pendapatan

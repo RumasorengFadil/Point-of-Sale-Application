@@ -18,6 +18,10 @@ class MstJournalCategorySeeder extends Seeder
                 'description' => "",
             ],
             [
+                'category_name' => "Pembelian bahan baku",
+                'description' => "",
+            ],
+            [
                 'category_name' => "operasional",
                 'description' => "",
             ],

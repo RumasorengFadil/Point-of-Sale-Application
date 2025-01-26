@@ -23,6 +23,6 @@ class JournalEntry extends Model
         return $this->belongsTo(MstType::class, 'type_id');
     }
     public function category(){
-        return $this->belongsTo(MstType::class, 'category_id');
+        return $this->belongsTo(MstJournalCategory::class, 'category_id');
     }
 }

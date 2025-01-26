@@ -26,3 +26,4 @@ Route::get('/accounting/journal-entry/filter', [JournalEntryController::class, '
 Route::post('/accounting/journal-entry/update/{journalEntry}', [JournalEntryController::class, 'update'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.update');
 Route::get('/accounting/settings', [SettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('accounting.settings.index');
 Route::get('/accounting/financial-report', [FinancialReportController::class, 'index'])->middleware(['auth', 'verified'])->name('accounting.financial-report.index');
+Route::get('/accounting/financial-report/filter', [FinancialReportController::class, 'filter'])->middleware(['auth', 'verified'])->name('accounting.financial-report.filter');

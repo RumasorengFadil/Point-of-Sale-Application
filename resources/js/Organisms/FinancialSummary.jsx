@@ -1,15 +1,13 @@
 import CashFlowTable from "@/Components/CashFlowTable/CashFlowTable";
-import GrossProfitTable from "@/Components/GrossProfitTable/GrossProfitTable";
 import NetProfitTable from "@/Components/NetProfitTable/NetProfitTable";
 
-export default function FinancialSummary({}) {
+export default function FinancialSummary({financialReport={}, filterParams={}}) {
+    const {cashReport, incomeReport} = financialReport;
     return (
         <div className="flex flex-col space-y-8 mx-4 py-4 shadow-md rounded">
-            <GrossProfitTable />
+            <NetProfitTable incomeReport={incomeReport} filterParams={filterParams} />
 
-            <NetProfitTable />
-
-            <CashFlowTable />
+            <CashFlowTable cashReport={cashReport} />
         </div>
     );
 }

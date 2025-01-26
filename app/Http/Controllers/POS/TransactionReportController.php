@@ -7,7 +7,6 @@ use App\Http\Requests\POS\TransactionFilterRequest;
 use App\Repositories\POS\TransactionAnalyticsRepository;
 use App\Repositories\POS\TransactionRepository;
 use App\Services\TransactionReportService;
-use Carbon\Carbon;
 
 class TransactionReportController extends Controller
 {

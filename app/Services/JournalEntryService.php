@@ -7,8 +7,6 @@ use App\Repositories\Accounting\MstAccountRepository;
 use App\Repositories\Accounting\MstJournalCategoryRepository;
 use App\Repositories\Accounting\MstTypeRepository;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Collection;
-
 
 class JournalEntryService
 {

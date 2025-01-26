@@ -4,26 +4,25 @@ namespace App\Http\Controllers\Accounting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\POS\TransactionFilterRequest;
-use App\Services\TransactionReportService;
-use Illuminate\Http\Request;
+use App\Services\FinancialReportService;
 
 class DashboardController extends Controller
 {
-    protected $transactionReportService;
-    public function __construct(TransactionReportService $transactionReportService)
+    protected $financialReportService;
+    public function __construct(FinancialReportService $financialReportService)
     {
-        $this->transactionReportService = $transactionReportService;
+        $this->financialReportService = $financialReportService;
     }
     public function index()
-    {        
-        $analytics = $this->transactionReportService->getAnalytics();
-        return inertia()->render('Accounting/Dashboard', ['analytics' => $analytics]);
+    {
+        $financialReport = $this->financialReportService->getFinancialReport();
+        return inertia()->render('Accounting/Dashboard', ['financialReport' => $financialReport]);
     }
     public function filter(TransactionFilterRequest $request)
-    {        
-        $validatedData = $request->validated();
+    {
+        // $validatedData = $request->validated();
 
-        $analytics = $this->transactionReportService->filterAnalytics($validatedData);
-        return inertia()->render('POS/Dashboard', ['analytics' => $analytics]);
+        // $analytics = $this->transactionReportService->filterAnalytics($validatedData);
+        // return inertia()->render('POS/Dashboard', ['analytics' => $analytics]);
     }
 }

@@ -15,7 +15,7 @@ class RouteHelper
         }
 
         // Ambil segmen terakhir sebelum operasi CRUD
-        preg_match('/([a-zA-Z0-9_-]+)\.(index|create|edit|show|destroy|update)$/', $routeName, $matches);
+        preg_match('/([a-zA-Z0-9_-]+)\.(index|create|edit|show|destroy|update|filter)$/', $routeName, $matches);
 
         // $matches[1] akan berisi segmen terakhir sebelum CRUD
         return $matches[1] ?? null;

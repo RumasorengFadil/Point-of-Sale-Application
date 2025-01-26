@@ -5,18 +5,13 @@ import { Head } from "@inertiajs/react";
 import TitleSection from "@/Components/SectionTitle";
 import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import CashFlowStats from "@/Organisms/CashFlowStats ";
-import { Table } from "@/Components/Tabel/Table";
-import { TableBody } from "@/Components/TableBody";
-import { TableRow } from "@/Components/TableRow";
-import { TableHeader } from "@/Components/TableHeader";
-import { TableData } from "@/Components/TableData";
 import FinancialSummary from "@/Organisms/FinancialSummary";
+import MonthRangeFilter from "@/Organisms/MonthRangeFilter";
 
 export default function FinancialReport({
-    transactionReport = {},
-    analytics = {},
+    financialReport = {},
+    filterParams = {},
 }) {
-    const { links } = transactionReport;
     const header = (
         <>
             <Head title="Laporan Keuangan" />
@@ -30,14 +25,20 @@ export default function FinancialReport({
         <>
             <TitleSection boldText="Laporan" subtitle="Keuangan" />
 
-            <DateRangeFilter
-                analytics={analytics}
-                routeName="transaction-report.filter"
+            <MonthRangeFilter
+                filterParams={filterParams}
+                routeName="accounting.financial-report.filter"
             />
 
-            <CashFlowStats />
+            <CashFlowStats
+                financialReport={financialReport}
+                filterParams={filterParams}
+            />
 
-            <FinancialSummary />
+            <FinancialSummary
+                financialReport={financialReport}
+                filterParams={filterParams}
+            />
         </>
     );
 

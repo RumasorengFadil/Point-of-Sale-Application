@@ -10,6 +10,7 @@ import { BiSolidBook } from "react-icons/bi";
 
 export default function AccountingNavigationMenu({}) {
     const { baseRouteName, auth, lastRouteName } = usePage().props;
+
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
             <NavItem

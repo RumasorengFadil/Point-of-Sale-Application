@@ -9,7 +9,7 @@ import FinancialOverviewSidebar from "@/Organisms/FinancialOverviewSidebar ";
 import TimePeriodSwitcher from "@/Organisms/TimePeriodSwitcher ";
 import TitleSection from "@/Components/SectionTitle";
 
-export default function Dashboard({}) {
+export default function Dashboard({financialReport = {},}) {
     const header = (
         <>
             <Head title="Laporan Transaksi" />
@@ -23,7 +23,7 @@ export default function Dashboard({}) {
         <>
             <InfoBar />
 
-            <CashFlowStats />
+            <CashFlowStats financialReport={financialReport} />
 
             <RecentTransactions />
         </>

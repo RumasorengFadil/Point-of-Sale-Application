@@ -1,9 +1,11 @@
 import DateRangeSelector from "@/Components/DateRangeSelector ";
+import MonthPicker from "@/Components/MonthPicker";
 import PrimaryButton from "@/Components/PrimaryButton";
 import RadioFilterOption from "@/Components/RadioFilterOption";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 import withLoading from "@/Components/WithLoading";
-import { getPastDateRange } from "@/utils/getPastDateRange";
+import { getMonthDateRange } from "@/utils/getMonthDateRange";
+import { getMonthNameByOffset } from "@/utils/getMonthNameByOffset";
 import toastUtils from "@/utils/toastUtils";
 import { useForm } from "@inertiajs/react";
 import { useState } from "react";
@@ -11,7 +13,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { LuSettings2 } from "react-icons/lu";
 
-const DateRangeFilter = ({ routeName, filterParams = {} }) => {
+const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
     const [open, setOpen] = useState(false);
     const { get, data, reset, setData, processing } = useForm({
         startDate: filterParams.startDate || "",
@@ -34,29 +36,43 @@ const DateRangeFilter = ({ routeName, filterParams = {} }) => {
     };
 
     // Update filter data
-    const updateFilter = ({ type, startDate = "", endDate = "" }) => {
+    const updateFilter = ({ type, startDate = "", endDate = "", month }) => {
         setData((prevData) => ({
             ...prevData,
             type,
             startDate,
             endDate,
+            month
         }));
     };
     const ButtonWithLoading = withLoading({ SpinnerWithLabel })(PrimaryButton);
 
     // Handle filter change events
     const handleFilterChange = (e) => {
-        const { name } = e.target;
+        const { name, value } = e.target;
         if (name === "default") {
-            updateFilter({ type: "default" });
-        } else if (name === "today") {
-            const { endDate } = getPastDateRange(0);
-            updateFilter({ type: "today", startDate: endDate, endDate });
-        } else if (name === "lastNinetyDays") {
-            const { startDate, endDate } = getPastDateRange(90);
-            updateFilter({ type: "lastNinetyDays", startDate, endDate });
-        } else if (name === "dateRange") {
-            updateFilter({ type: "dateRange" });
+            const month = getMonthNameByOffset();
+            const { startDate, endDate } = getMonthDateRange(month);
+            updateFilter({ type: "default", startDate, endDate, month: month });
+        } else if (name === "lastMonth") {
+            const month = getMonthNameByOffset(-1);
+
+            const { startDate, endDate } = getMonthDateRange(month);
+            updateFilter({
+                type: "lastMonth",
+                startDate,
+                endDate,
+                month: month,
+            });
+        } else if (name === "monthRange") {
+            console.log(value);
+            const { startDate, endDate } = getMonthDateRange(value);
+            updateFilter({
+                type: "monthRange",
+                startDate,
+                endDate,
+                month: value,
+            });
         }
     };
 
@@ -95,60 +111,31 @@ const DateRangeFilter = ({ routeName, filterParams = {} }) => {
 
                 {/* Filter: All */}
                 <RadioFilterOption
-                    label="Semua"
+                    label="Bulan Ini"
                     onChange={handleFilterChange}
                     name="default"
                     checked={data.type === "default"}
                     className="px-6"
                 />
                 <hr />
+
                 {/* Filter: Today */}
                 <RadioFilterOption
-                    label="Hari ini"
+                    label="Bulan Kemarin"
                     onChange={handleFilterChange}
-                    name="today"
-                    checked={data.type === "today"}
-                    className="px-6"
-                />
-                <hr />
-
-                {/* Filter: Last 90 Days */}
-                <RadioFilterOption
-                    label="90 hari terakhir"
-                    onChange={handleFilterChange}
-                    name="lastNinetyDays"
-                    checked={data.type === "lastNinetyDays"}
+                    name="lastMonth"
+                    checked={data.type === "lastMonth"}
                     className="px-6"
                 />
                 <hr />
 
                 {/* Filter: Date Range */}
                 <div className="flex flex-col h-full space-y-2 px-6">
-                    <RadioFilterOption
-                        label="Pilih Tanggal"
-                        onChange={handleFilterChange}
-                        name="dateRange"
-                        checked={data.type === "dateRange"}
-                    />
-
-                    <DateRangeSelector
-                        onStartDateChange={(date) =>
-                            updateFilter({
-                                type: "dateRange",
-                                startDate: date,
-                                endDate: data.endDate,
-                            })
-                        }
-                        onEndDateChange={(date) =>
-                            updateFilter({
-                                type: "dateRange",
-                                startDate: data.startDate,
-                                endDate: date,
-                            })
-                        }
-                        startDate={data.startDate}
-                        endDate={data.endDate}
-                        className="p-0"
+                    <MonthPicker
+                        label="Pilih Bulan"
+                        className="px-0"
+                        name="monthRange"
+                        onMonthChange={handleFilterChange}
                     />
                 </div>
 
@@ -168,4 +155,4 @@ const DateRangeFilter = ({ routeName, filterParams = {} }) => {
     );
 };
 
-export default DateRangeFilter;
+export default MonthRangeFilter;
