@@ -6,10 +6,9 @@ import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import CashFlowStats from "@/Organisms/CashFlowStats ";
 import RecentTransactions from "@/Organisms/RecentTransactions";
 import FinancialOverviewSidebar from "@/Organisms/FinancialOverviewSidebar ";
-import TimePeriodSwitcher from "@/Organisms/TimePeriodSwitcher ";
 import TitleSection from "@/Components/SectionTitle";
 
-export default function Dashboard({financialReport = {},}) {
+export default function Dashboard({financialReport = {}, journalEntries = {}}) {
     const header = (
         <>
             <Head title="Laporan Transaksi" />
@@ -25,7 +24,7 @@ export default function Dashboard({financialReport = {},}) {
 
             <CashFlowStats financialReport={financialReport} />
 
-            <RecentTransactions />
+            <RecentTransactions journalEntries = {journalEntries} />
         </>
     );
 
@@ -33,9 +32,7 @@ export default function Dashboard({financialReport = {},}) {
         <>
             <TitleSection boldText="Overal" subtitle="Statistic" />
             
-            <TimePeriodSwitcher />
-            
-            <FinancialOverviewSidebar />
+            <FinancialOverviewSidebar financialReport={financialReport} />
         </>
     );
     return (

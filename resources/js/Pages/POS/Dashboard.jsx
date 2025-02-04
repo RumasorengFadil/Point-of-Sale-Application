@@ -7,7 +7,7 @@ import InfoBar from "@/Organisms/InfoBar";
 import OrderSummary from "@/Organisms/OrderSummary ";
 import SidebarStatistics from "@/Organisms/SidebarStatistics";
 
-export default function Dashboard({ analytics }) {
+export default function Dashboard({ analytics, filterParams }) {
     const header = (
         <>
             <Head title="Laporan Transaksi" />
@@ -29,15 +29,18 @@ export default function Dashboard({ analytics }) {
 
     const footer = (
         <>
-           <SidebarStatistics analytics={analytics}  />
+            <SidebarStatistics
+                analytics={analytics}
+                filterParams={filterParams}
+            />
         </>
     );
     return (
         <ApplicationLayout
             header={header}
             content={content}
-            footer = {footer}
-            footerClassName = "hidden lg:flex"
+            footer={footer}
+            footerClassName="hidden lg:flex"
             direction="col-reverse"
         ></ApplicationLayout>
     );

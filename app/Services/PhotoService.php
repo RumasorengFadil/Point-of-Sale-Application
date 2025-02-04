@@ -56,7 +56,6 @@ class PhotoService
     
     // Menghapus data foto sebelumnya
     self::removePhoto($photoPath, $type);
-    
     // Handle gambar biblio
     $filename = self::handlePhoto($photo, $type, $size);
     

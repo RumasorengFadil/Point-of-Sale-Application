@@ -23,7 +23,7 @@ class TransactionFilterRequest extends FormRequest
      */
     public function rules(): array
     {
-        return $this->filterRules();
+        return [...$this->filterRules(), 'month' => 'nullable|string'];
     }
 
     public function messages():array

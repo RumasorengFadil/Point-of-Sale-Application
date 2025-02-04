@@ -27,7 +27,9 @@ class FinancialReportService
         $expensesByCategory = $this->cashFlowRepository->getExpensesByCategory();
         $totalExpenses = $this->cashFlowRepository->getTotalExpenses();
         $initialCashBalance = $this->cashFlowRepository->getInitialCashBalance();
-
+        $incomeSummary = $this->cashFlowRepository->getWeeklyTransactionSummary();
+        $expensesSummary = $this->cashFlowRepository->getWeeklyTransactionSummary('pengeluaran');
+        $netIncomeSummary = $this->cashFlowRepository->getWeeklyNetIncomeSummary();
         return [
             'incomeReport' => [
                 'incomeByCategory' => $incomeByCategory,
@@ -35,6 +37,9 @@ class FinancialReportService
                 'expensesByCategory' => $expensesByCategory,
                 'totalExpenses' => $totalExpenses,
                 'netIncome' => $totalIncome - $totalExpenses,
+                'incomeSummary' => $incomeSummary,
+                'expensesSummary' => $expensesSummary,
+                'netIncomeSummary' => $netIncomeSummary,
             ],
             'cashReport' => [
                 'cashInByCategory' => $incomeByCategory,

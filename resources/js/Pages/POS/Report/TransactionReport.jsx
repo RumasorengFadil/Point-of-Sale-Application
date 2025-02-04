@@ -7,6 +7,7 @@ import { Head } from "@inertiajs/react";
 import StatsOverview from "@/Organisms/StatsOverview";
 import TransactionTable from "@/Organisms/TransactionTable";
 import Pagination from "@/Components/Pagination";
+import MonthRangeFilter from "@/Organisms/MonthRangeFilter";
 
 export default function TransactionReport({ transactionReport, analytics, filterParams }) {
     const {links} = transactionReport;
@@ -23,9 +24,9 @@ export default function TransactionReport({ transactionReport, analytics, filter
         <>
             <TransactionReportTitle />
 
-            <DateRangeFilter
-                analytics={analytics}
+            <MonthRangeFilter
                 routeName="transaction-report.filter"
+                filterParams = {filterParams}
             />
 
             <StatsOverview analytics={analytics} />

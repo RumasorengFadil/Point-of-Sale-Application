@@ -4,10 +4,12 @@ namespace App\Http\Controllers\POS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\POS\StoreTransactionRequest;
+use App\Models\POS\Transaction;
 use App\Repositories\POS\MstProductCategoryRepository;
 use App\Repositories\POS\ProductRepository;
 use App\Services\TransactionService;
 use Auth;
+use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
@@ -49,13 +51,7 @@ class TransactionController extends Controller
             // Added transaction data and image path into database
             $transaction = $this->transactionService->store($validatedData);
 
-            // Get User ID
-            $userId = Auth::user()->id;
-
-            // Save transaction data to the session
-            session(["$userId.transaction" => $transaction]);
-
-            return redirect()->route('transaction.success')
+            return redirect()->route('transaction.success', ['transactionId' => $transaction['id']])
                 ->with(['message' => __('message.success.stored', ['entity' => 'Transaction'])]);
 
         } catch (\Exception $e) {
@@ -64,13 +60,13 @@ class TransactionController extends Controller
         }
 
     }
-    public function success()
+    public function success(Request $request)
     {
         try {
             // Get User ID
-            $userId = Auth::user()->id;
-
-            $transaction = session()->get("$userId.transaction");
+            $transactionId = $request->query('transactionId');
+            $transaction = Transaction::findOrFail($transactionId);
+            $transaction->load('details');
             
             return inertia()->render('POS/Transaction/TransactionSuccess', ['transaction' => $transaction]);
 

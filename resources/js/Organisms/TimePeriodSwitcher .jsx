@@ -8,7 +8,7 @@ const TimePeriodSwitcher = ({ analytics, className }) => {
                     true ? "bg-gray-800 text-white" : ""
                 }`}
             >
-                Hari Ini
+                Minggu Ini
             </Card>
             <Card
                 className={`flex-1 text-xs cursor-pointer text-gray-800 px-3 py-2 items-center justify-center ${

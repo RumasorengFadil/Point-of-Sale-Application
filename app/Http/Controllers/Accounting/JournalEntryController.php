@@ -10,7 +10,6 @@ use App\Models\Accounting\JournalEntry;
 use App\Repositories\Accounting\JournalEntryRepository;
 use App\Services\JournalEntryService;
 use App\Services\PhotoService;
-use Carbon\CarbonImmutable;
 
 class JournalEntryController extends Controller
 {

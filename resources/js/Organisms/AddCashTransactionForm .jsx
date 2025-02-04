@@ -3,6 +3,7 @@ import FormField from "@/Components/FormField/FormField";
 import { FormImageField } from "@/Components/FormImageField/FormImageField";
 import { FormOptionField } from "@/Components/FormOptionField";
 import { FormSelectField } from "@/Components/FormSelectField/FormSelectField";
+import PrimaryButton from "@/Components/PrimaryButton";
 import TitleSection from "@/Components/SectionTitle";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 import withLoading from "@/Components/WithLoading";
@@ -42,7 +43,7 @@ export default function AddCashTransactionForm({
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
 
-                if(!isObjectEmpty(journalEntry)) return;
+                if (!isObjectEmpty(journalEntry)) return;
 
                 reset();
                 setImagePreview("");
@@ -129,11 +130,20 @@ export default function AddCashTransactionForm({
                 className="px-4"
                 imagePreview={imagePreview}
             />
-            <ActionWithLoading
-                isLoading={processing}
-                className="px-4"
-                onSave={submit}
-            />
+
+            <div className="flex w-1/2">
+                <ActionWithLoading
+                    isLoading={processing}
+                    className="px-4 flex-auto"
+                    onSave={submit}
+                />
+                <PrimaryButton
+                    onClick={() => history.back()}
+                    className="px-4 flex-auto bg-gray-400 text-black"
+                >
+                    Cancel
+                </PrimaryButton>
+            </div>
         </div>
     );
 }

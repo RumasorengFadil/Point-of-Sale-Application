@@ -3,10 +3,10 @@ import { TableBody } from "@/Components/TableBody";
 import { TableData } from "@/Components/TableData";
 import { TableHeader } from "@/Components/TableHeader";
 import { TableRow } from "@/Components/TableRow";
+import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
+import { toTitleCase } from "@/utils/toTitleCase";
 
-export default function RecentTransactions({ analytics }) {
-    // const { totalByCategory } = analytics;
-
+export default function RecentTransactions({ journalEntries }) {
     return (
         <div className="flex flex-col space-y-5 mx-4 p-4 overflow-auto bg-white shadow-lg">
             <h1 className="font-bold">Transaksi Terbaru</h1>
@@ -19,42 +19,14 @@ export default function RecentTransactions({ analytics }) {
                 </TableHeader>
 
                 <TableBody>
-                    <TableRow>
-                        <TableData>12345</TableData>
-                        <TableData>Penjualan</TableData>
-                        <TableData>-</TableData>
-                        <TableData>300.000</TableData>
-                    </TableRow>
-                    <TableRow>
-                        <TableData>12345</TableData>
-                        <TableData>Penjualan</TableData>
-                        <TableData>-</TableData>
-                        <TableData>300.000</TableData>
-                    </TableRow>
-                    <TableRow>
-                        <TableData>12345</TableData>
-                        <TableData>Penjualan</TableData>
-                        <TableData>-</TableData>
-                        <TableData>300.000</TableData>
-                    </TableRow>
-                    <TableRow>
-                        <TableData>12345</TableData>
-                        <TableData>Penjualan</TableData>
-                        <TableData>-</TableData>
-                        <TableData>300.000</TableData>
-                    </TableRow>
-                    <TableRow>
-                        <TableData>12345</TableData>
-                        <TableData>Penjualan</TableData>
-                        <TableData>-</TableData>
-                        <TableData>300.000</TableData>
-                    </TableRow>
-                    <TableRow>
-                        <TableData>12345</TableData>
-                        <TableData>Penjualan</TableData>
-                        <TableData>-</TableData>
-                        <TableData>300.000</TableData>
-                    </TableRow>
+                    {journalEntries.map(({ id, description, category, saldo }) => (
+                        <TableRow key={id}>
+                            <TableData>{id}</TableData>
+                            <TableData>{description}</TableData>
+                            <TableData>{toTitleCase(category.category_name)}</TableData>
+                            <TableData>{formatNumberWithDots(saldo)}</TableData>
+                        </TableRow>
+                    ))}
                 </TableBody>
             </Table>
         </div>

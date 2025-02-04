@@ -9,7 +9,6 @@ use App\Models\POS\Product;
 use App\Repositories\POS\MstProductCategoryRepository;
 use App\Repositories\POS\ProductRepository;
 use App\Services\PhotoService;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {

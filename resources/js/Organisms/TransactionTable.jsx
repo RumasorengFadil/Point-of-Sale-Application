@@ -53,7 +53,7 @@ const TransactionTable = ({ filterParams = {}, transactionReport = {} }) => {
                     <TableData className="hidden lg:flex">
                         Total Diskon (Rp)
                     </TableData>
-                    <TableData>Pendapatan (Rp)</TableData>
+                    <TableData>Total (Rp)</TableData>
                     <TableData className="flex space-x-2 items-center">
                         <p>Aksi</p>
                         <PDFDownloadLink

@@ -5,8 +5,9 @@ import getThisWeekMonthYear from "@/utils/getThisWeekMonthYear";
 import { useForm } from "@inertiajs/react";
 import Card from "@/Components/Card";
 
-const SidebarStatistics = ({ analytics }) => {
+const SidebarStatistics = ({ analytics ={}, filterParams={} }) => {
     const { thisMonth, thisYear } = getThisWeekMonthYear();
+    const {type} = filterParams;
 
     const {get} = useForm();
 
@@ -19,7 +20,7 @@ const SidebarStatistics = ({ analytics }) => {
         {
             label: "Semua",
             params: { startDate: "", endDate: "", type: "default" },
-            active: analytics.type === "default",
+            active: type === "default" || !type,
         },
         {
             label: "Bulan Ini",
@@ -28,7 +29,7 @@ const SidebarStatistics = ({ analytics }) => {
                 endDate: thisMonth.endDate,
                 type: "thisMonth",
             },
-            active: analytics.type === "thisMonth",
+            active: type === "thisMonth",
         },
         {
             label: "Tahun Ini",
@@ -37,7 +38,7 @@ const SidebarStatistics = ({ analytics }) => {
                 endDate: thisYear.endDate,
                 type: "thisYear",
             },
-            active: analytics.type === "thisYear",
+            active: type === "thisYear",
         },
     ];
 

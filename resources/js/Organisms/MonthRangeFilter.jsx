@@ -1,4 +1,3 @@
-import DateRangeSelector from "@/Components/DateRangeSelector ";
 import MonthPicker from "@/Components/MonthPicker";
 import PrimaryButton from "@/Components/PrimaryButton";
 import RadioFilterOption from "@/Components/RadioFilterOption";
@@ -50,10 +49,10 @@ const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
     // Handle filter change events
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
-        if (name === "default") {
+        if (name === "thisMonth") {
             const month = getMonthNameByOffset();
             const { startDate, endDate } = getMonthDateRange(month);
-            updateFilter({ type: "default", startDate, endDate, month: month });
+            updateFilter({ type: "thisMonth", startDate, endDate, month: month });
         } else if (name === "lastMonth") {
             const month = getMonthNameByOffset(-1);
 
@@ -113,8 +112,8 @@ const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
                 <RadioFilterOption
                     label="Bulan Ini"
                     onChange={handleFilterChange}
-                    name="default"
-                    checked={data.type === "default"}
+                    name="thisMonth"
+                    checked={data.type === "thisMonth"}
                     className="px-6"
                 />
                 <hr />

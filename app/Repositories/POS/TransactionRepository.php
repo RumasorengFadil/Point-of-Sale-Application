@@ -7,7 +7,7 @@ use DB;
 
 class TransactionRepository
 {
-    private const DATA_SIZE = 50;
+    private const DATA_SIZE = 250;
     public function index($size = self::DATA_SIZE)
     {
         return Transaction::with('details')->paginate($size);

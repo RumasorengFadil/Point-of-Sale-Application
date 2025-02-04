@@ -101,4 +101,77 @@ class CashFlowRepository
             ->value('initial_cash_balance');
     }
 
+    public function getWeeklyTransactionSummary($type = "pemasukan")
+    {
+        // Default nama hari
+        $days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+
+        $startDate = now()->startOfWeek()->toDateString(); // Senin
+        $endDate = now()->endOfWeek()->toDateString(); // Minggu
+
+        // Query untuk menghitung total pendapatan per hari
+        $result = JournalEntry::join('mst_types', 'journal_entries.type_id', '=', 'mst_types.id')
+            ->selectRaw('DAYOFWEEK(journal_entries.created_at) as day_of_week, SUM(journal_entries.nominal) as total_income')
+            ->where('mst_types.type_name', '=', $type)
+            ->whereBetween('journal_entries.created_at', [$startDate, $endDate])
+            ->groupByRaw('DAYOFWEEK(journal_entries.created_at)')
+            ->get()
+            ->pluck('total_income', 'day_of_week')
+            ->toArray();
+
+        // Format hasil menjadi array sesuai struktur yang diinginkan
+        $transactionSummary = [
+            'labels' => $days,
+            'transactions' => array_map(function ($day) use ($result) {
+                return $result[$day] ?? 0; // Default 0 jika tidak ada data
+            }, range(1, 7)),
+            'label' => $type
+        ];
+        return $transactionSummary;
+    }
+    public function getWeeklyNetIncomeSummary()
+    {
+        // Default nama hari
+        $days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+
+        $startDate = now()->startOfWeek()->toDateString(); // Senin
+        $endDate = now()->endOfWeek()->toDateString(); // Minggu
+
+        // Query untuk menghitung total pemasukan per hari
+        $incomeResult = JournalEntry::join('mst_types', 'journal_entries.type_id', '=', 'mst_types.id')
+            ->selectRaw('DAYOFWEEK(journal_entries.created_at) as day_of_week, SUM(journal_entries.nominal) as total_income')
+            ->where('mst_types.type_name', '=', 'pemasukan')
+            ->whereBetween('journal_entries.created_at', [$startDate, $endDate])
+            ->groupByRaw('DAYOFWEEK(journal_entries.created_at)')
+            ->get()
+            ->pluck('total_income', 'day_of_week')
+            ->toArray();
+
+        // Query untuk menghitung total pengeluaran per hari
+        $expenseResult = JournalEntry::join('mst_types', 'journal_entries.type_id', '=', 'mst_types.id')
+            ->selectRaw('DAYOFWEEK(journal_entries.created_at) as day_of_week, SUM(journal_entries.nominal) as total_expense')
+            ->where('mst_types.type_name', '=', 'pengeluaran')
+            ->whereBetween('journal_entries.created_at', [$startDate, $endDate])
+            ->groupByRaw('DAYOFWEEK(journal_entries.created_at)')
+            ->get()
+            ->pluck('total_expense', 'day_of_week')
+            ->toArray();
+
+        // Hitung pendapatan bersih per hari (pemasukan - pengeluaran)
+        $netIncome = [];
+        foreach (range(1, 7) as $day) { // 1 = Minggu, 7 = Sabtu
+            $income = $incomeResult[$day] ?? 0; // Default 0 jika tidak ada pemasukan
+            $expense = $expenseResult[$day] ?? 0; // Default 0 jika tidak ada pengeluaran
+            $netIncome[] = $income - $expense; // Selisih pemasukan dan pengeluaran
+        }
+
+        // Format hasil menjadi array sesuai struktur yang diinginkan
+        $transactionSummary = [
+            'labels' => $days,
+            'transactions' => $netIncome,
+            'label' => 'Pendapatan Bersih'
+        ];
+
+        return $transactionSummary;
+    }
 }

@@ -21,12 +21,27 @@ class TransactionReportController extends Controller
     }
     public function index()
     {
-        $transactionReport = $this->transactionReportService->getTransactions();
-        $analytics = $this->transactionReportService->getAnalytics(); 
+        //Default Data
+        $data = [
+            'startDate' => now()->startOfMonth()->toDateString(),
+            'endDate' => now()->endOfMonth()->toDateString(),
+            'type' => 'thisMonth',
+            'month' => now()->format('F')
+        ];
+
+        $transactionReport = $this->transactionReportService->filterTransactions($data);
+
+        $analytics = $this->transactionReportService->filterAnalytics($data);
 
         return inertia()->render('POS/Report/TransactionReport', [
             'transactionReport' => $transactionReport,
             'analytics' => $analytics,
+            'filterParams' => [
+                'startDate' => $data['startDate'], // The parsed and adjusted start date
+                'endDate' => $data['endDate'],     // The parsed and adjusted end date
+                'type' => $data['type'],    // The filter type from the input data
+                'month' => $data['month'],
+            ],
         ]);
     }
 
@@ -41,7 +56,8 @@ class TransactionReportController extends Controller
             'filterParams' => [
                 'startDate' => $validatedData['startDate'], // The parsed and adjusted start date
                 'endDate' => $validatedData['endDate'],     // The parsed and adjusted end date
-                'type' => $validatedData['type']    // The filter type from the input data
+                'type' => $validatedData['type'],    // The filter type from the input data
+                'month' => $validatedData['month']
             ],
         ]);
     }
