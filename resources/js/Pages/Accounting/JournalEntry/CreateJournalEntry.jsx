@@ -3,8 +3,8 @@ import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
 import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import TitleSection from "@/Components/SectionTitle";
-import ActionCardSection from "@/Organisms/ActionCardSection";
 import AddCashTransactionForm from "@/Organisms/AddCashTransactionForm ";
+import AccountingActionSection from "@/Organisms/AccountingActionSection";
 
 export default function CreateJournalEntry({ masterData }) {
     const { journalCategories, journalTypes } = masterData;
@@ -23,7 +23,7 @@ export default function CreateJournalEntry({ masterData }) {
         <>
             <TitleSection boldText="Buku" subtitle="Kas" />
 
-            <ActionCardSection />
+            <AccountingActionSection />
 
             <AddCashTransactionForm
                 journalCategories={journalCategories}

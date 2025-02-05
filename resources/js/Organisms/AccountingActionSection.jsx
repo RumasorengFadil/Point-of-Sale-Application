@@ -1,7 +1,7 @@
 import ActionLinkCard from "@/Components/ActionCard/ActionLinkCard";
 import { BiSolidBook, BiSolidBookAdd } from "react-icons/bi";
 
-export default function ActionCardSection() {
+export default function AccountingActionSection() {
     return (
         <div className="flex space-x-4 px-4">
             <ActionLinkCard

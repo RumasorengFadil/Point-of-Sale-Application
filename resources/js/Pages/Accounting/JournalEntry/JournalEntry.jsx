@@ -3,10 +3,11 @@ import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
 import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import TitleSection from "@/Components/SectionTitle";
-import ActionCardSection from "@/Organisms/ActionCardSection";
+import ActionCardSection from "@/Organisms/AccountingActionSection";
 import DateRangeFilter from "@/Organisms/DateRangePicker";
 import TabulatedCashView from "@/Organisms/TabulatedCashView";
 import Pagination from "@/Components/Pagination";
+import AccountingActionSection from "@/Organisms/AccountingActionSection";
 
 export default function JournalEntry({ journalEntries, filterParams }) {
     const {data, links} = journalEntries;
@@ -24,7 +25,7 @@ export default function JournalEntry({ journalEntries, filterParams }) {
         <>
             <TitleSection boldText="Buku" subtitle="Kas" />
 
-            <ActionCardSection />
+            <AccountingActionSection />
 
             <DateRangeFilter filterParams = {filterParams} routeName={"accounting-journal-entry.filter"} analytics={{}} />
 

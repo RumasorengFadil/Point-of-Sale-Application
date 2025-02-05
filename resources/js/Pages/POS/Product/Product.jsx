@@ -11,6 +11,7 @@ import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { Head, Link, useForm } from "@inertiajs/react";
 import toastUtils from "@/utils/toastUtils";
+import ProductActionSection from "@/Organisms/ProductActionSection";
 
 export default function Product({ auth, products }) {
     const [open, setOpen] = useState(false);
@@ -49,20 +50,7 @@ export default function Product({ auth, products }) {
                 </div>
 
                 {/* Top Bar */}
-                <TopBar
-                    data={[
-                        {
-                            name: "product.index",
-                            icon: <BsBoxFill size={20} />,
-                            label: "Produk",
-                        },
-                        {
-                            name: "product.create",
-                            icon: <MdAddBox size={24} />,
-                            label: "Tambah Produk",
-                        },
-                    ]}
-                />
+                <ProductActionSection />
 
                 {/* Ordered Products*/}
                 <div className="flex flex-col w-full h-full overflow-y-auto space-y-5 px-4 py-6 my-8 rounded shadow-lg bg-white">
@@ -120,9 +108,7 @@ export default function Product({ auth, products }) {
                                                 src={`/storage/uploads/POS/img/products/${product.image}`}
                                                 alt=""
                                             />
-                                            <p>
-                                                {product.name}
-                                            </p>
+                                            <p>{product.name}</p>
                                         </div>
                                     </div>
                                     <div className="flex text-xs w-full h-full px-2 py-4">
