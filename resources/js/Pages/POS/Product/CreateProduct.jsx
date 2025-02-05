@@ -13,11 +13,16 @@ import { useImagePreview } from "@/hooks/useImagePreview";
 import { toTitleCase } from "@/utils/toTitleCase";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { convertToNumber } from "@/utils/convertToNumber";
+import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
+import FormActions from "@/Components/FormActions/FormActions";
+import withLoading from "@/Components/WithLoading";
 
 export default function CreateProduct({ auth, categories }) {
-    const { imagePreview, handleFileChange, setImagePreview } = useImagePreview(); // State untuk menyimpan Data URL
+    const { imagePreview, handleFileChange, setImagePreview } =
+        useImagePreview(); // State untuk menyimpan Data URL
+    const ActionWithLoading = withLoading({ SpinnerWithLabel })(FormActions);
 
-    const { post, data, setData, errors, reset } = useForm({
+    const { post, data, setData, errors, reset, processing } = useForm({
         name: "",
         categoryId: "",
         price: "",
@@ -228,15 +233,19 @@ export default function CreateProduct({ auth, categories }) {
                         <InputError message={errors.image} className="" />
                     </div>
 
-                    <PrimaryButton
-                        onClick={submit}
-                        className="flex justify-center bg-primary max-w-80 p-3"
-                    >
-                        Tambah
-                    </PrimaryButton>
-                    {/* Ordered Products Header */}
-
-                    {/* Ordered Products Lists */}
+                    <div className="flex w-1/2">
+                        <ActionWithLoading
+                            isLoading={processing}
+                            className="px-4 flex-auto"
+                            onSave={submit}
+                        />
+                        <PrimaryButton
+                            onClick={() => history.back()}
+                            className="px-4 flex-auto bg-gray-400 text-black"
+                        >
+                            Cancel
+                        </PrimaryButton>
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>

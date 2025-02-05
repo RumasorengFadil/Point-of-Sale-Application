@@ -131,15 +131,15 @@ export default function AddCashTransactionForm({
                 imagePreview={imagePreview}
             />
 
-            <div className="flex w-1/2">
+            <div className="flex px-4 w-1/2 space-x-4">
                 <ActionWithLoading
                     isLoading={processing}
-                    className="px-4 flex-auto"
+                    className="flex-auto"
                     onSave={submit}
                 />
                 <PrimaryButton
                     onClick={() => history.back()}
-                    className="px-4 flex-auto bg-gray-400 text-black"
+                    className="flex-auto bg-gray-400 text-black"
                 >
                     Cancel
                 </PrimaryButton>

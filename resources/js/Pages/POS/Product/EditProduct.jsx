@@ -1,4 +1,4 @@
-import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { BsBoxFill } from "react-icons/bs";
 import { MdAddBox } from "react-icons/md";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
@@ -10,10 +10,15 @@ import { FaMountainSun } from "react-icons/fa6";
 import PrimaryButton from "@/Components/PrimaryButton";
 import toastUtils from "@/utils/toastUtils";
 import { useImagePreview } from "@/hooks/useImagePreview";
+import withLoading from "@/Components/WithLoading";
+import FormActions from "@/Components/FormActions/FormActions";
+import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 
 export default function EditProduct({ auth, product, categories }) {
     const { imagePreview, handleFileChange } = useImagePreview(); // State untuk menyimpan Data URL
-    const { post, data, setData, errors, reset } = useForm({
+    const ActionWithLoading = withLoading({ SpinnerWithLabel })(FormActions);
+
+    const { post, data, setData, errors, processing } = useForm({
         name: product.name,
         categoryId: product.category.id,
         price: product.price,
@@ -210,15 +215,19 @@ export default function EditProduct({ auth, product, categories }) {
                         <InputError message={errors.image} className="" />
                     </div>
 
-                    <PrimaryButton
-                        onClick={submit}
-                        className="flex justify-center bg-primary max-w-80 p-3"
-                    >
-                        Simpan
-                    </PrimaryButton>
-                    {/* Ordered Products Header */}
-
-                    {/* Ordered Products Lists */}
+                    <div className="flex w-1/2 space-x-4">
+                        <ActionWithLoading
+                            isLoading={processing}
+                            className="flex-auto"
+                            onSave={submit}
+                        />
+                        <PrimaryButton
+                            onClick={() => history.back()}
+                            className="flex-auto bg-gray-400 text-black"
+                        >
+                            Cancel
+                        </PrimaryButton>
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>

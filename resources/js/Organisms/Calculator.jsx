@@ -23,7 +23,7 @@ export default function Calculator({}) {
         <div className="flex flex-col px-4 h-full">
             <div className="flex flex-col space-y-1 rounded">
                 <p className="text-sm text-gray-700">Jumlah yang dibayarkan</p>
-                <p className="text-blue-200">
+                <p className="text-blue-500">
                     Rp. {paidAmount ? formatNumberWithDots(paidAmount) : 0}
                 </p>
             </div>
@@ -78,9 +78,7 @@ export default function Calculator({}) {
                     <div onClick={handleDelete} className="flex flex-1 w-full py-2 justify-center items-center text-gray-700 cursor-pointer">
                         <FaDeleteLeft size={24} />
                     </div>
-                    <div className="flex flex-1 w-full py-2 justify-center items-center text-white cursor-pointer bg-primary rounded">
-                        Enter
-                    </div>
+                
                 </div>
             </div>
         </div>
