@@ -21,7 +21,7 @@ export default function AccountingNavigationMenu({}) {
                 className="hidden sm:flex"
                 isHidden={auth.guard.name !== "web"}
             />
-            
+
             <NavItem
                 href={route("accounting-dashboard.index")}
                 icon={MdDashboard}
@@ -45,21 +45,21 @@ export default function AccountingNavigationMenu({}) {
                 isActive={lastRouteName === "financial-report"}
             />
 
-            <NavItem
+            {/* <NavItem
                 href={route("accounting.settings.index")}
                 icon={IoMdSettings}
                 label="Settings"
                 isActive={lastRouteName === "settings"}
                 isHidden={auth.guard.name !== "web"}
-            />
+            /> */}
 
-            <NavItem
+            {/* <NavItem
                 onClick={() => Inertia.post(route("logout"))}
                 icon={IoLogOut}
                 label="Keluar"
                 className="hidden lg:flex"
                 isHidden={auth.guard.name !== "web"}
-            />
+            /> */}
         </div>
     );
 }
