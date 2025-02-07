@@ -1,18 +1,13 @@
 import { Link } from "@inertiajs/react";
 
-export default function ActionableIcon ({
+export default function ActionableIcon({
     icon: Icon,
     size = 24,
-    className="",
-    onCLick = () =>{},
-    href = "",
+    className = "",
+    ...props
 }) {
     return (
-        <Link
-            onClick={onCLick}
-            href={href}
-            className={" " + className}
-        >
+        <Link {...props} className={" " + className}>
             <Icon className="cursorpointer" size={size} />
         </Link>
     );

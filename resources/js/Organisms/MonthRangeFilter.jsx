@@ -1,3 +1,4 @@
+import DateRangeSelector from "@/Components/DateRangeSelector ";
 import MonthPicker from "@/Components/MonthPicker";
 import PrimaryButton from "@/Components/PrimaryButton";
 import RadioFilterOption from "@/Components/RadioFilterOption";
@@ -11,6 +12,7 @@ import { useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 import { LuSettings2 } from "react-icons/lu";
+import dayjs from "dayjs";
 
 const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
     const [open, setOpen] = useState(false);
@@ -18,6 +20,7 @@ const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
         startDate: filterParams.startDate || "",
         endDate: filterParams.endDate || "",
         type: filterParams.type || "",
+        month: filterParams.month,
     });
 
     // Submit filter request
@@ -36,12 +39,22 @@ const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
 
     // Update filter data
     const updateFilter = ({ type, startDate = "", endDate = "", month }) => {
+        if (startDate && endDate) {
+            const maxEndDate = dayjs(startDate)
+                .add(30, "day")
+                .format("YYYY-MM-DD");
+
+            if (dayjs(endDate).isAfter(maxEndDate)) {
+                endDate = maxEndDate; // Batasi endDate maksimal 30 hari dari startDate
+            }
+        }
+
         setData((prevData) => ({
             ...prevData,
             type,
             startDate,
             endDate,
-            month
+            month,
         }));
     };
     const ButtonWithLoading = withLoading({ SpinnerWithLabel })(PrimaryButton);
@@ -52,7 +65,12 @@ const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
         if (name === "thisMonth") {
             const month = getMonthNameByOffset();
             const { startDate, endDate } = getMonthDateRange(month);
-            updateFilter({ type: "thisMonth", startDate, endDate, month: month });
+            updateFilter({
+                type: "thisMonth",
+                startDate,
+                endDate,
+                month: month,
+            });
         } else if (name === "lastMonth") {
             const month = getMonthNameByOffset(-1);
 
@@ -64,7 +82,6 @@ const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
                 month: month,
             });
         } else if (name === "monthRange") {
-            console.log(value);
             const { startDate, endDate } = getMonthDateRange(value);
             updateFilter({
                 type: "monthRange",
@@ -138,6 +155,43 @@ const MonthRangeFilter = ({ routeName, filterParams = {} }) => {
                     />
                 </div>
 
+                <hr />
+                {/* Filter: Date Range */}
+                <div className="flex flex-col h-full space-y-2">
+                    <label className="px-6">Pilih Tanggal</label>
+
+                    <DateRangeSelector
+                        onStartDateChange={(date) => {
+                            const maxEndDate = dayjs(date)
+                                .add(30, "day")
+                                .format("YYYY-MM-DD");
+
+                            updateFilter({
+                                type: "dateRange",
+                                startDate: date,
+                                endDate: dayjs(data.endDate).isAfter(maxEndDate)
+                                    ? maxEndDate
+                                    : data.endDate,
+                                month: `${date} - ${
+                                    dayjs(data.endDate).isAfter(maxEndDate)
+                                        ? maxEndDate
+                                        : data.endDate
+                                }`,
+                            });
+                        }}
+                        onEndDateChange={(date) =>
+                            updateFilter({
+                                type: "dateRange",
+                                startDate: data.startDate,
+                                endDate: date,
+                                month: `${data.startDate} - ${date}`,
+                            })
+                        }
+                        startDate={data.startDate}
+                        endDate={data.endDate}
+                        className="px-6"
+                    />
+                </div>
                 {/* Submit Button */}
                 <div className="px-6">
                     <ButtonWithLoading

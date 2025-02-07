@@ -3,11 +3,10 @@ import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
 import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import TitleSection from "@/Components/SectionTitle";
-import ActionCardSection from "@/Organisms/AccountingActionSection";
-import DateRangeFilter from "@/Organisms/DateRangePicker";
 import TabulatedCashView from "@/Organisms/TabulatedCashView";
 import Pagination from "@/Components/Pagination";
 import AccountingActionSection from "@/Organisms/AccountingActionSection";
+import MonthRangeFilter from "@/Organisms/MonthRangeFilter";
 
 export default function JournalEntry({ journalEntries, filterParams }) {
     const {data, links} = journalEntries;
@@ -16,7 +15,7 @@ export default function JournalEntry({ journalEntries, filterParams }) {
             <Head title="Journal Entry" />
 
             <HeaderLogo />
-
+            
             <AccountingNavigationMenu />
         </>
     );
@@ -27,7 +26,10 @@ export default function JournalEntry({ journalEntries, filterParams }) {
 
             <AccountingActionSection />
 
-            <DateRangeFilter filterParams = {filterParams} routeName={"accounting-journal-entry.filter"} analytics={{}} />
+            <MonthRangeFilter
+                routeName="accounting-journal-entry.filter"
+                filterParams = {filterParams}
+            />
 
             <TabulatedCashView journalEntries={data} />
 

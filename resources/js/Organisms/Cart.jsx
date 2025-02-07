@@ -11,7 +11,6 @@ import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import findElementById from "@/utils/findElementById";
 import CartItem from "@/Components/Transaction/CartItem";
 import { formatProductData } from "@/utils/formatProductData";
-import { calcDiscountedPrice } from "@/utils/calcDiscount";
 
 export default memo(function Cart({ products, buttonSummary = true }) {
     // Store Hooks
@@ -22,7 +21,7 @@ export default memo(function Cart({ products, buttonSummary = true }) {
 
     // Transaction Calculations
     const { total } = useTransactionCalculations(products, cart);
-    
+
     // Render empty cart message
     const renderEmptyCartMessage = () => (
         <EmptyStateMessage
@@ -37,13 +36,15 @@ export default memo(function Cart({ products, buttonSummary = true }) {
             {cart.map((cartItem) => {
                 const product = findElementById(products, cartItem.id);
 
+                if (!product) return;
+
                 return (
                     <CartItem
                         key={cartItem.id}
                         cart={cartItem}
                         product={formatProductData(
                             product,
-                            ({price, discountedPrice}) => ({
+                            ({ price, discountedPrice }) => ({
                                 price: formatNumberWithDots(
                                     price * cartItem.quantity
                                 ),

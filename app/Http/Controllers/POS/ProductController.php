@@ -40,7 +40,6 @@ class ProductController extends Controller
 
             // Handle Photo Product
             $validatedData['image'] = $this->photoService->handlePhoto($validatedData['image'], 'product', null);
-
             // Added product data and image path into database
             $this->productRepository->store($validatedData);
 

@@ -14,7 +14,7 @@ const DateRangeSelector = ({
     };
 
     return (
-        <div className={"flex space-x-1 items-center p-2 " + className}>
+        <div className={"flex space-x-1 items-center py-2 " + className}>
             {/* Start Date */}
             <div className="flex-1 relative hover:bg-gray-200">
                 <label className="flex items-center justify-between cursor-pointer text-gray-700">

@@ -31,6 +31,7 @@ class TransactionController extends Controller
         session()->forget("$userId.transaction");
 
         $products = $this->productRepository->index();
+
         $categories = $this->mstProductCategoryRepository->index();
 
         return inertia()->render('POS/Transaction/Transaction', ['products' => $products, 'categories' => $categories]);

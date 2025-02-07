@@ -7,12 +7,20 @@ import { IoLogOut } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { RiCursorFill } from "react-icons/ri";
 import { IoMdSettings } from "react-icons/io";
+import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 
 export default function NavigationMenu({}) {
     const { baseRouteName, auth } = usePage().props;
     
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
+            <NavItem
+                href={route("accounting-dashboard.index")}
+                icon={HiOutlineSwitchHorizontal}
+                className="hidden sm:flex"
+                label="POS"
+                isHidden={auth.guard.name !== "web"}
+            />
             <NavItem
                 href={route("pos-dashboard.index")}
                 icon={MdDashboard}

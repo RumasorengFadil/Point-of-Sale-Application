@@ -26,7 +26,7 @@ export default function CreateProductForm({ categories }) {
         stock: 0,
         image: "",
     });
-    
+
     const handleChange = (e) => {
         setData((prevData) => ({
             ...prevData,
@@ -134,9 +134,9 @@ export default function CreateProductForm({ categories }) {
 
             <FormImageField
                 onChange={(e) =>
-                    handleFileChange(e, (file) => setData("evidence", file))
+                    handleFileChange(e, (file) => setData("image", file))
                 }
-                label="Bukti Transaksi"
+                label="Pilih Foto"
                 className="px-4"
                 imagePreview={imagePreview}
             />

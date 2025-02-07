@@ -12,6 +12,7 @@ trait FilterRules
             'startDate' => 'nullable|string',
             'endDate' => 'nullable|string',
             'type' => 'nullable|string',
+            'month' => 'nullable|string'
         ];
     }
 

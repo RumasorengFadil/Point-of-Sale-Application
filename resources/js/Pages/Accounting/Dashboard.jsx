@@ -7,14 +7,15 @@ import CashFlowStats from "@/Organisms/CashFlowStats ";
 import RecentTransactions from "@/Organisms/RecentTransactions";
 import FinancialOverviewSidebar from "@/Organisms/FinancialOverviewSidebar ";
 import TitleSection from "@/Components/SectionTitle";
+import UserAvatar from "@/Components/UserAvatar";
 
 export default function Dashboard({financialReport = {}, journalEntries = {}}) {
     const header = (
         <>
-            <Head title="Laporan Transaksi" />
+            <Head title="Dashboard" />
 
-            <HeaderLogo />
-
+            <UserAvatar src="/images/app/3D/image-1.png" />
+            
             <AccountingNavigationMenu />
         </>
     );

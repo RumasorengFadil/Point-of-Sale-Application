@@ -13,7 +13,7 @@ class FinancialReportRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [...$this->filterRules(), 'month' => 'nullable|string'];
+        return [...$this->filterRules()];
     }
 
     /**
