@@ -1,22 +1,18 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import { Head } from "@inertiajs/react";
 import HeaderLogo from "@/Organisms/HeaderLogo";
-import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import TitleSection from "@/Components/SectionTitle";
 import TabulatedCashView from "@/Organisms/TabulatedCashView";
 import Pagination from "@/Components/Pagination";
 import AccountingActionSection from "@/Organisms/AccountingActionSection";
 import MonthRangeFilter from "@/Organisms/MonthRangeFilter";
+import AccountingLayout from "@/Layouts/AccountingLayout";
 
 export default function JournalEntry({ journalEntries, filterParams }) {
     const {data, links} = journalEntries;
     const header = (
         <>
             <Head title="Journal Entry" />
-
-            <HeaderLogo />
-            
-            <AccountingNavigationMenu />
         </>
     );
 
@@ -41,12 +37,12 @@ export default function JournalEntry({ journalEntries, filterParams }) {
     );
 
     return (
-        <ApplicationLayout
+        <AccountingLayout
             header={header}
             content={content}
             contentClassName="bg-white py-4"
             direction="col-reverse"
             withContainerSpace = {false}
-        ></ApplicationLayout>
+        ></AccountingLayout>
     );
 }

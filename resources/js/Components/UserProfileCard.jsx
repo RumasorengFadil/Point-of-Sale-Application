@@ -33,7 +33,7 @@ const UserProfileCard = ({
     return (
         <div className={"flex space-x-4 items-center " + className}>
             <img
-                className={`rounded-full bg-${ring} p-1 ${helperSize.avatarSize} ${helperSize.avatarSize}`}
+                className={`rounded-full border border-gray-400 bg-${ring} w-16 h-16 md:w-20 md:h-20`}
                 src={avatar?avatar:defaultAvatar}
                 alt={`${name}'s avatar`}
             />

@@ -7,20 +7,14 @@ import { MdDashboard } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
 import { BiSolidBook } from "react-icons/bi";
 import { HiOutlineSwitchHorizontal } from "react-icons/hi";
-
+import UserAvatarOrganism from "./UserAvatarOrganism";
 
 export default function AccountingNavigationMenu({}) {
     const { baseRouteName, auth, lastRouteName } = usePage().props;
 
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
-            <NavItem
-                href={route("pos-dashboard.index")}
-                icon={HiOutlineSwitchHorizontal}
-                label="Accounting"
-                className="hidden sm:flex"
-                isHidden={auth.guard.name !== "web"}
-            />
+            <UserAvatarOrganism className="w-full" />
 
             <NavItem
                 href={route("accounting-dashboard.index")}

@@ -1,18 +1,20 @@
 import { Link } from "@inertiajs/react";
 import LabelWithIcon from "../LabelWithIcon";
 
-const SidebarItem = ({
+const SidebarItemLink = ({
+    href,
     icon: Icon,
     label,
     isActive,
+    onClick,
     className,
     isHidden = false,
     bar = true,
-    onClick
 }) => {
     return (
-        <div
+        <Link
             onClick={onClick}
+            href={href}
             className={`${className} ${isHidden ? "lg:hidden hidden" : ""}`}
         >
             <LabelWithIcon
@@ -26,8 +28,8 @@ const SidebarItem = ({
                 label={label}
                 icon={Icon}
             />
-        </div>
+        </Link>
     );
 };
 
-export default SidebarItem;
+export default SidebarItemLink;

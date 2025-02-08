@@ -1,8 +1,8 @@
-const UserAvatar = ({ src = "", alt = "User Avatar", size = "w-20 h-20" }) => {
+const UserAvatar = ({ src = "", alt = "User Avatar", size = "sm", className="", ...props }) => {
     return (
-        <div className="justify-center px-6 cursor-pointer flex">
+        <div {...props} className={`justify-center cursor-pointer flex  ${className}`}>
             <img
-                className={`${size} rounded-full border border-gray-400`}
+                className={`w-16 h-16 md:w-20 md:h-20  rounded-full border border-gray-400`}
                 src={src}
                 alt={alt}
             />

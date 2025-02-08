@@ -7,14 +7,7 @@ const InfoBar  = ({}) => {
 
     return (
         <div className="flex justify-between items-center px-4 h-max w-full">
-            <div className="flex items-center py-2 w-max space-x-2">
-                <Link className="lg:hidden" href="/">
-                    <img
-                        className="fill-current w-14"
-                        src="/images/app/logo.png"
-                        alt="Logo"
-                    />
-                </Link>
+            <div className="flex items-center py-2 w-max space-x-4">
                 <p>
                     <span className="font-bold">{date}</span> {day} | {time}
                 </p>

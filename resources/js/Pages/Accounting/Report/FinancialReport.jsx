@@ -1,12 +1,9 @@
-import ApplicationLayout from "@/Layouts/ApplicationLayout";
-import HeaderLogo from "@/Organisms/HeaderLogo";
-import DateRangeFilter from "@/Organisms/DateRangePicker";
 import { Head } from "@inertiajs/react";
 import TitleSection from "@/Components/SectionTitle";
-import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import CashFlowStats from "@/Organisms/CashFlowStats ";
 import FinancialSummary from "@/Organisms/FinancialSummary";
 import MonthRangeFilter from "@/Organisms/MonthRangeFilter";
+import AccountingLayout from "@/Layouts/AccountingLayout";
 
 export default function FinancialReport({
     financialReport = {},
@@ -15,10 +12,6 @@ export default function FinancialReport({
     const header = (
         <>
             <Head title="Laporan Keuangan" />
-
-            <HeaderLogo />
-
-            <AccountingNavigationMenu />
         </>
     );
     const content = (
@@ -43,12 +36,12 @@ export default function FinancialReport({
     );
 
     return (
-        <ApplicationLayout
+        <AccountingLayout
             header={header}
             content={content}
             contentClassName="bg-white py-4"
             direction="col-reverse"
             withContainerSpace={false}
-        ></ApplicationLayout>
+        ></AccountingLayout>
     );
 }

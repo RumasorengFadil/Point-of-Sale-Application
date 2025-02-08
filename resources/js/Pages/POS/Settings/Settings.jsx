@@ -1,11 +1,11 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import { Head } from "@inertiajs/react";
-import HeaderLogo from "@/Organisms/HeaderLogo";
 import NavigationMenu from "@/Organisms/NavigationMenu";
 import { toTitleCase } from "@/utils/toTitleCase";
 import UserProfileCard from "@/Components/UserProfileCard";
 import EditCashierProfileForm from "@/Organisms/EditCashierProfileForm";
-import POSidebarMenu from "@/Organisms/POSidebarMenu";
+import SettingsPOSMenu from "@/Organisms/SettingsPOSMenu";
+import POSSidebarMenu from "@/Organisms/POSSidebarMenu";
 
 export default function Settings({ auth }) {
     const { user } = auth;
@@ -14,7 +14,7 @@ export default function Settings({ auth }) {
         <>
             <Head title="User Accounts" />
 
-            <HeaderLogo />
+            <POSSidebarMenu />
 
             <NavigationMenu />
         </>
@@ -35,7 +35,7 @@ export default function Settings({ auth }) {
                     className="px-4"
                 />
 
-                <POSidebarMenu />
+                <SettingsPOSMenu />
             </div>
 
             {auth.guard.name === "cashier" && (

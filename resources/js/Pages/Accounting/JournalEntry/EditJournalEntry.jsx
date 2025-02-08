@@ -1,8 +1,6 @@
-import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import { Head } from "@inertiajs/react";
-import HeaderLogo from "@/Organisms/HeaderLogo";
-import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
 import AddCashTransactionForm from "@/Organisms/AddCashTransactionForm ";
+import AccountingLayout from "@/Layouts/AccountingLayout";
 
 export default function EditJournalEntry({ masterData, journalEntry }) {
     const { journalCategories, journalTypes } = masterData;
@@ -10,10 +8,6 @@ export default function EditJournalEntry({ masterData, journalEntry }) {
     const header = (
         <>
             <Head title="Create journal entry" />
-
-            <HeaderLogo />
-
-            <AccountingNavigationMenu />
         </>
     );
 
@@ -30,12 +24,12 @@ export default function EditJournalEntry({ masterData, journalEntry }) {
     );
 
     return (
-        <ApplicationLayout
+        <AccountingLayout
             header={header}
             content={content}
             contentClassName="bg-white py-4"
             direction="col-reverse"
             withContainerSpace={false}
-        ></ApplicationLayout>
+        ></AccountingLayout>
     );
 }

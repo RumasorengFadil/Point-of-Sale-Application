@@ -1,20 +1,24 @@
 import ApplicationLayout from "@/Layouts/ApplicationLayout";
 import NavigationMenu from "@/Organisms/NavigationMenu";
-import HeaderLogo from "@/Organisms/HeaderLogo";
 import TransactionReportTitle from "@/Organisms/TransactionReportTitle";
 import { Head } from "@inertiajs/react";
 import StatsOverview from "@/Organisms/StatsOverview";
 import TransactionTable from "@/Organisms/TransactionTable";
 import Pagination from "@/Components/Pagination";
 import MonthRangeFilter from "@/Organisms/MonthRangeFilter";
+import POSSidebarMenu from "@/Organisms/POSSidebarMenu";
 
-export default function TransactionReport({ transactionReport, analytics, filterParams }) {
-    const {links} = transactionReport;
+export default function TransactionReport({
+    transactionReport,
+    analytics,
+    filterParams,
+}) {
+    const { links } = transactionReport;
     const header = (
         <>
             <Head title="Laporan Transaksi" />
 
-            <HeaderLogo />
+            <POSSidebarMenu />
 
             <NavigationMenu />
         </>
@@ -25,12 +29,15 @@ export default function TransactionReport({ transactionReport, analytics, filter
 
             <MonthRangeFilter
                 routeName="transaction-report.filter"
-                filterParams = {filterParams}
+                filterParams={filterParams}
             />
 
             <StatsOverview analytics={analytics} />
 
-            <TransactionTable filterParams={filterParams} transactionReport={transactionReport} />
+            <TransactionTable
+                filterParams={filterParams}
+                transactionReport={transactionReport}
+            />
 
             <Pagination
                 links={links}

@@ -8,7 +8,7 @@ import { HiSwitchHorizontal } from "react-icons/hi";
 import { IoMdSettings } from "react-icons/io";
 import { IoCloseOutline, IoLogOut } from "react-icons/io5";
 
-const AccountingSidebarMenu = ({}) => {
+const POSSidebarMenu = ({}) => {
     const showCart = useSidebarStore((state) => state.showSidebar);
     const setShowSidebar = useSidebarStore((state) => state.setShowSidebar);
 
@@ -38,9 +38,9 @@ const AccountingSidebarMenu = ({}) => {
                 <div className="flex flex-col px-4">
                     <div className="flex flex-col py-1">
                         <SidebarItemLink
-                            label="Accounting"
+                            label="Penjualan (POS)"
                             icon={HiSwitchHorizontal}
-                            href={route("pos-dashboard.index")}
+                            href={route("accounting-dashboard.index")}
                             className="hover:bg-gray-300 transition-all rounded-md px-2"
                             bar={false}
                         />
@@ -50,7 +50,7 @@ const AccountingSidebarMenu = ({}) => {
                         <SidebarItemLink
                             label="Pengaturan"
                             icon={IoMdSettings}
-                            href={route("accounting.settings.index")}
+                            href={route("pos-settings.index")}
                             className="hover:bg-gray-300 transition-all rounded-md px-2"
                             bar={false}
                         />
@@ -77,4 +77,4 @@ const AccountingSidebarMenu = ({}) => {
     );
 };
 
-export default AccountingSidebarMenu;
+export default POSSidebarMenu;

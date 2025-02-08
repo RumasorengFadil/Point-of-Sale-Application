@@ -1,26 +1,18 @@
 import NavItem from "@/Components/NavItem";
-import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/react";
 import { BiSolidReport } from "react-icons/bi";
 import { BsBoxFill } from "react-icons/bs";
-import { IoLogOut } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { RiCursorFill } from "react-icons/ri";
-import { IoMdSettings } from "react-icons/io";
-import { HiOutlineSwitchHorizontal } from "react-icons/hi";
+import UserAvatarOrganism from "./UserAvatarOrganism";
 
 export default function NavigationMenu({}) {
     const { baseRouteName, auth } = usePage().props;
     
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
-            <NavItem
-                href={route("accounting-dashboard.index")}
-                icon={HiOutlineSwitchHorizontal}
-                className="hidden sm:flex"
-                label="POS"
-                isHidden={auth.guard.name !== "web"}
-            />
+            <UserAvatarOrganism className="w-full" />
+
             <NavItem
                 href={route("pos-dashboard.index")}
                 icon={MdDashboard}
@@ -50,30 +42,6 @@ export default function NavigationMenu({}) {
                 label="Laporan"
                 isActive={baseRouteName === "transaction-report"}
             />
-
-            <NavItem
-                href={route("pos-settings.index")}
-                icon={IoMdSettings}
-                label="Settings"
-                isActive={baseRouteName === "pos-settings"}
-            />
-            
-            <NavItem
-                onClick={() => Inertia.post(route("logout"))}
-                icon={IoLogOut}
-                label="Keluar"
-                className="hidden lg:flex"
-                isHidden={auth.guard.name !== "web"}
-            />
-
-            <NavItem
-                onClick={() => Inertia.post(route("cashier.logout"))}
-                icon={IoLogOut}
-                label="Keluar"
-                className="hidden lg:flex"
-                isHidden={auth.guard.name !== "cashier"}
-            />
-
         </div>
     );
 }
