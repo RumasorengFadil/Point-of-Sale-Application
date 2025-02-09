@@ -1,19 +1,13 @@
 import { Head } from "@inertiajs/react";
 import TitleSection from "@/Components/SectionTitle";
-import ApplicationLayout from "@/Layouts/ApplicationLayout";
-import NavigationMenu from "@/Organisms/NavigationMenu";
 import ProductActionSection from "@/Organisms/ProductActionSection";
 import ProductTable from "@/Organisms/ProductTable";
-import POSSidebarMenu from "@/Organisms/POSSidebarMenu";
+import POSLayout from "@/Layouts/POSLayout";
 
 export default function Product({ auth, products }) {
     const header = (
         <>
             <Head title="Produk" />
-
-            <POSSidebarMenu />
-
-            <NavigationMenu />
         </>
     );
 
@@ -29,12 +23,12 @@ export default function Product({ auth, products }) {
     );
 
     return (
-        <ApplicationLayout
+        <POSLayout
             header={header}
             content={content}
             contentClassName="bg-white py-4"
             direction="col-reverse"
             withContainerSpace={false}
-        ></ApplicationLayout>
+        ></POSLayout>
     );
 }

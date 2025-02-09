@@ -12,8 +12,7 @@ class PhotoService
 {
     private const EVIDENCE_PHOTO_PATH = '/uploads/accounting/img/evidences/';
     private const PRODUCT_PHOTO_PATH = '/uploads/POS/img/products/';
-    private const USER_PHOTO_PATH = '/uploads/POS/img/users/';
-    private const CASHIER_PHOTO_PATH = '/uploads/POS/img/cashiers/';
+    private const USER_PHOTO_PATH = '/uploads/user/img/';
     private const COMMON_PHOTO_PATH = '/uploads/commons/img/';
 
     public function handlePhoto($image, $type, $size = 800)
@@ -79,10 +78,6 @@ class PhotoService
 
         if ($type === 'user') {
             return self::USER_PHOTO_PATH;
-        }
-
-        if ($type === 'cashier') {
-            return self::CASHIER_PHOTO_PATH;
         }
 
         if ($type === 'evidence') {

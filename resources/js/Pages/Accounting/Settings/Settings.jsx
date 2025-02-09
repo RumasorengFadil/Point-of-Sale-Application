@@ -19,9 +19,7 @@ export default function Settings({ auth }) {
                 <UserProfileCard
                     avatar={`${
                         user.image &&
-                        `/storage/uploads/POS/img/${
-                            auth.guard.name === "web" ? "users" : "cashiers"
-                        }/${user.image}`
+                        `/storage/uploads/user/img/${user.image}`
                     }`}
                     name={toTitleCase(user.username)}
                     description={user.real_name}
@@ -31,7 +29,14 @@ export default function Settings({ auth }) {
                 <SettingsAccountingMenu  />
             </div>
 
-            <EditUserProfileForm user={user} />
+            <EditUserProfileForm
+                routeName={`${
+                    auth.guard.name === "web"
+                        ? "settings.user-profile.update"
+                        : "settings.cashier-profile.update"
+                }`}
+                user={user}
+            />
         </>
     );
 

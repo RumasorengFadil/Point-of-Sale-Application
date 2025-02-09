@@ -4,6 +4,7 @@ import SidebarItemLink from "@/Components/SidebarItem/SidebarItemLink";
 import UserProfileCard from "@/Components/UserProfileCard";
 import useSidebarStore from "@/store/useSidebarStore";
 import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/react";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import { IoMdSettings } from "react-icons/io";
 import { IoCloseOutline, IoLogOut } from "react-icons/io5";
@@ -11,7 +12,7 @@ import { IoCloseOutline, IoLogOut } from "react-icons/io5";
 const POSSidebarMenu = ({}) => {
     const showCart = useSidebarStore((state) => state.showSidebar);
     const setShowSidebar = useSidebarStore((state) => state.setShowSidebar);
-
+    const { guard, user } = usePage().props.auth;
     return (
         <div>
             <div
@@ -25,7 +26,10 @@ const POSSidebarMenu = ({}) => {
                         size="sm"
                         name="Fania"
                         description="Rumasoreng"
-                        avatar="/images/app/3D/image-1.png"
+                        avatar={`${
+                            user.image &&
+                            `/storage/uploads/user/img/${user.image}`
+                        }`}
                     />
                     <IoCloseOutline
                         onClick={() => setShowSidebar(!showCart)}
@@ -43,6 +47,7 @@ const POSSidebarMenu = ({}) => {
                             href={route("accounting-dashboard.index")}
                             className="hover:bg-gray-300 transition-all rounded-md px-2"
                             bar={false}
+                            isHidden={guard.name === "cashier"}
                         />
                     </div>
                     <hr />

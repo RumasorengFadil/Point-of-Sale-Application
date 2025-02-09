@@ -19,12 +19,6 @@ export default function SettingsAccountingMenu ({}) {
             />
 
             <SidebarItemLink
-                href={route("pos-dashboard.index")}
-                label="Ke Dashboard POS (Penjualan)"
-                icon={FaMoneyBillTrendUp}
-            />
-
-            <SidebarItemLink
                 label="Keluar"
                 icon={IoLogOut}
                 onClick={() => Inertia.post(route("logout"))}

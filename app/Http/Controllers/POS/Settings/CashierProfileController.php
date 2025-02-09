@@ -10,7 +10,7 @@ use Auth;
 
 class CashierProfileController extends Controller
 {
-    private const PHOTO_TYPE = 'cashier';
+    private const PHOTO_TYPE = 'user';
     protected $photoService;
     protected $cashierProfileRepository;
     public function __construct(PhotoService $photoService, CashierProfileRepository $cashierProfileRepository)
@@ -33,6 +33,6 @@ class CashierProfileController extends Controller
         // Updated Cashier data
         $this->cashierProfileRepository->update($validatedData, $user);
 
-        return redirect()->route('pos-settings.index')->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
+        return redirect()->back()->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
    }
 }

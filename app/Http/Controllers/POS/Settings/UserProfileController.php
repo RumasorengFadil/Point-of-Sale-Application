@@ -20,7 +20,6 @@ class UserProfileController extends Controller
     }
 
     public function update(UserProfileRequest $request){
-
          // Get user 
          $user = Auth::user();
 
@@ -33,6 +32,6 @@ class UserProfileController extends Controller
          // Updated admin data
          $this->userProfileRepository->update($validatedData, $user);
  
-        return redirect()->route('pos-settings.index')->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
+        return redirect()->back()->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
     }
 }

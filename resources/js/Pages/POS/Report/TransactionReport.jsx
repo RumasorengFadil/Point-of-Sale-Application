@@ -1,12 +1,10 @@
-import ApplicationLayout from "@/Layouts/ApplicationLayout";
-import NavigationMenu from "@/Organisms/NavigationMenu";
 import TransactionReportTitle from "@/Organisms/TransactionReportTitle";
 import { Head } from "@inertiajs/react";
 import StatsOverview from "@/Organisms/StatsOverview";
 import TransactionTable from "@/Organisms/TransactionTable";
 import Pagination from "@/Components/Pagination";
 import MonthRangeFilter from "@/Organisms/MonthRangeFilter";
-import POSSidebarMenu from "@/Organisms/POSSidebarMenu";
+import POSLayout from "@/Layouts/POSLayout";
 
 export default function TransactionReport({
     transactionReport,
@@ -17,10 +15,6 @@ export default function TransactionReport({
     const header = (
         <>
             <Head title="Laporan Transaksi" />
-
-            <POSSidebarMenu />
-
-            <NavigationMenu />
         </>
     );
     const content = (
@@ -51,11 +45,11 @@ export default function TransactionReport({
     );
 
     return (
-        <ApplicationLayout
+        <POSLayout
             header={header}
             content={content}
             contentClassName="bg-white"
             direction="col-reverse"
-        ></ApplicationLayout>
+        ></POSLayout>
     );
 }

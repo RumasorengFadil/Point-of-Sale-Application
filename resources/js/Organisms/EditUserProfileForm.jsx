@@ -9,7 +9,7 @@ import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 import toastUtils from "@/utils/toastUtils";
 import UserProfileFormField from "@/Components/UserProfileForm/UserProfileForm";
 
-const EditUserProfileForm = ({ user }) => {
+const EditUserProfileForm = ({ user, routeName }) => {
     const { setData, data, post, processing } = useForm({
         realName: user.real_name,
         username: user.username,
@@ -25,13 +25,12 @@ const EditUserProfileForm = ({ user }) => {
     );
 
     const { imagePreview, handleFileChange } = useImagePreview(
-        user.image ? `/storage/uploads/POS/img/users/${user.image}` : ""
+        user.image ? `/storage/uploads/user/img/${user.image}` : ""
     ); // State untuk menyimpan Data URL
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route("settings.user-profile.update"), {
+        post(route(routeName), {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
             },

@@ -1,10 +1,9 @@
-import AccountingNavigationMenu from "@/Organisms/AccountingNavigationMenu";
-import AccountingSidebarMenu from "@/Organisms/AccountingSidebarMenu";
-import { usePage } from "@inertiajs/react";
+import NavigationMenu from "@/Organisms/NavigationMenu";
+import POSSidebarMenu from "@/Organisms/POSSidebarMenu";
 import { memo } from "react";
 import { ToastContainer } from "react-toastify";
 
-export default memo(function AccountingLayout({
+export default memo(function POSLayout({
     header,
     content,
     footer,
@@ -15,8 +14,6 @@ export default memo(function AccountingLayout({
     withContainerSpace = true,
     headerClassName,
 }) {
-    const {user} = usePage().props.auth;
-
     return (
         <>
             <ToastContainer />
@@ -31,9 +28,9 @@ export default memo(function AccountingLayout({
                     >
                         {header}
 
-                        <AccountingSidebarMenu user={user} />
+                        <POSSidebarMenu />
 
-                        <AccountingNavigationMenu user={user} />
+                        <NavigationMenu />
                     </div>
                 )}
 

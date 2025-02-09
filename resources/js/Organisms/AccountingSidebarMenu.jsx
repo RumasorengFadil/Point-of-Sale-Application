@@ -8,7 +8,7 @@ import { HiSwitchHorizontal } from "react-icons/hi";
 import { IoMdSettings } from "react-icons/io";
 import { IoCloseOutline, IoLogOut } from "react-icons/io5";
 
-const AccountingSidebarMenu = ({}) => {
+const AccountingSidebarMenu = ({ user }) => {
     const showCart = useSidebarStore((state) => state.showSidebar);
     const setShowSidebar = useSidebarStore((state) => state.setShowSidebar);
 
@@ -23,9 +23,12 @@ const AccountingSidebarMenu = ({}) => {
                 <div className="flex items-center justify-between px-4 space-x-16">
                     <UserProfileCard
                         size="sm"
-                        name="Fania"
-                        description="Rumasoreng"
-                        avatar="/images/app/3D/image-1.png"
+                        name={user.real_name}
+                        description={user.username}
+                        avatar={`${
+                            user.image &&
+                            `/storage/uploads/user/img/${user.image}`
+                        }`}
                     />
                     <IoCloseOutline
                         onClick={() => setShowSidebar(!showCart)}

@@ -15,14 +15,12 @@ export default function SettingsPOSMenu({}) {
                 label="Profile Pengguna"
                 icon={FaUser}
                 href={route("pos-settings.index")}
-                isHidden={auth.guard.name !== "cashier"}
+                // isHidden={auth.guard.name !== "cashier"}
             />
-
             <SidebarItemLink
-                href={route("accounting-dashboard.index")}
-                label="Ke Dashboard Accounting"
-                icon={FaMoneyBillTrendUp}
-                isHidden={auth.guard.name !== "web"}
+                label="Keluar"
+                icon={IoLogOut}
+                onClick={() => Inertia.post(route("logout"))}
             />
 
             <SidebarItemLink

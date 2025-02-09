@@ -1,20 +1,16 @@
 import NavItem from "@/Components/NavItem";
-import { Inertia } from "@inertiajs/inertia";
 import { usePage } from "@inertiajs/react";
 import { BiSolidReport } from "react-icons/bi";
-import { IoLogOut } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
-import { IoMdSettings } from "react-icons/io";
 import { BiSolidBook } from "react-icons/bi";
-import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import UserAvatarOrganism from "./UserAvatarOrganism";
 
-export default function AccountingNavigationMenu({}) {
+export default function AccountingNavigationMenu({user={}}) {
     const { baseRouteName, auth, lastRouteName } = usePage().props;
 
     return (
         <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
-            <UserAvatarOrganism className="w-full" />
+            <UserAvatarOrganism user={user} className="w-full" />
 
             <NavItem
                 href={route("accounting-dashboard.index")}
@@ -38,22 +34,6 @@ export default function AccountingNavigationMenu({}) {
                 label="Laporan"
                 isActive={lastRouteName === "financial-report"}
             />
-
-            {/* <NavItem
-                href={route("accounting.settings.index")}
-                icon={IoMdSettings}
-                label="Settings"
-                isActive={lastRouteName === "settings"}
-                isHidden={auth.guard.name !== "web"}
-            /> */}
-
-            {/* <NavItem
-                onClick={() => Inertia.post(route("logout"))}
-                icon={IoLogOut}
-                label="Keluar"
-                className="hidden lg:flex"
-                isHidden={auth.guard.name !== "web"}
-            /> */}
         </div>
     );
 }
