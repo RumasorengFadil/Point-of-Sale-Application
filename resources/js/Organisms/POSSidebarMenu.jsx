@@ -24,8 +24,8 @@ const POSSidebarMenu = ({}) => {
                 <div className="flex items-center justify-between px-4 space-x-16">
                     <UserProfileCard
                         size="sm"
-                        name="Fania"
-                        description="Rumasoreng"
+                        name={user.real_name}
+                        description={user.username}
                         avatar={`${
                             user.image &&
                             `/storage/uploads/user/img/${user.image}`

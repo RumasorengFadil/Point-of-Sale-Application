@@ -17,7 +17,7 @@ export default function CreateProduct({ auth, categories }) {
 
             <ProductActionSection />
 
-            <CreateProductForm categories={categories} />
+            <CreateProductForm routeName = "product.store" categories={categories} />
         </> 
     );
 
