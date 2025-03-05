@@ -10,7 +10,7 @@ import toastUtils from "@/utils/toastUtils";
 import UserProfileFormField from "@/Components/UserProfileForm/UserProfileForm";
 
 const EditUserProfileForm = ({ user, routeName }) => {
-    const { setData, data, post, processing } = useForm({
+    const { setData, data, post, processing, errors } = useForm({
         realName: user.real_name,
         username: user.username,
         phoneNumber: user.phone_number,
@@ -50,7 +50,7 @@ const EditUserProfileForm = ({ user, routeName }) => {
     return (
         <div className="flex w-full flex-col bg-white lg:py-4 lg:overflow-auto rounded">
             <div className="flex flex-col px-4 space-y-5">
-                <UserProfileFormField data={data} handleChange={handleChange} />
+                <UserProfileFormField data={data} errors={errors} handleChange={handleChange} />
 
                 <UserProfileCard
                     avatar={imagePreview}

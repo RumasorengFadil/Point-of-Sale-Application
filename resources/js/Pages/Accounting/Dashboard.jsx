@@ -27,7 +27,7 @@ export default function Dashboard({
 
     const footer = (
         <>
-            <TitleSection boldText="Overal" subtitle="Statistic" />
+            <TitleSection boldText="Statistik" subtitle="Keseluruhan" />
 
             <FinancialOverviewSidebar financialReport={financialReport} />
         </>

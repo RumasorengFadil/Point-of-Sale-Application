@@ -9,6 +9,7 @@ import { Head, useForm } from "@inertiajs/react";
 import { FaChevronLeft } from "react-icons/fa6";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 import withLoading from "@/Components/WithLoading";
+import toastUtils from "@/utils/toastUtils";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -25,8 +26,15 @@ export default function Login({ status, canResetPassword }) {
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route("cashier-login"));
+        post(route("cashier-login"), {
+            onSuccess: (response) => {
+                toastUtils.showSuccess(response.props.flash);
+                reset();
+            },
+            onError: (errors) => {
+                toastUtils.showError(errors);
+            },
+        });
     };
 
     const ButtonWithLoading = withLoading({

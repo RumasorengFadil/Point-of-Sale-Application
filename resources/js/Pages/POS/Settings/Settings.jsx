@@ -22,8 +22,8 @@ export default function Settings({ auth }) {
                     avatar={`${
                         user.image && `/storage/uploads/user/img/${user.image}`
                     }`}
-                    name={toTitleCase(user.username)}
-                    description={user.real_name}
+                    name={toTitleCase(user.real_name)}
+                    description={user.username}
                     className="px-4"
                 />
 

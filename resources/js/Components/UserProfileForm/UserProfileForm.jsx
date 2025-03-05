@@ -1,39 +1,43 @@
 import FormField from "@/Components/FormField/FormField";
 
-const UserProfileFormField = ({ handleChange, data }) => {
+const UserProfileFormField = ({ handleChange, data, errors }) => {
     return (
         <>
             <FormField
                 onChange={handleChange}
                 name="realName"
-                label="Nama Asli"
+                label="Nama Asli*"
                 type="text"
                 placeholder="Nama Asli"
                 value={data.realName}
+                error={errors.realName}
             />
             <FormField
                 onChange={handleChange}
                 name="username"
-                label="Username"
+                label="Username*"
                 type="text"
                 placeholder="Username"
                 value={data.username}
+                error={errors.username}
             />
             <FormField
                 onChange={handleChange}
                 name="phoneNumber"
-                label="No Telp"
+                label="No Telp*"
                 type="text"
                 placeholder="No Telp"
                 value={data.phoneNumber}
+                error={errors.phoneNumber}
             />
             <FormField
                 onChange={handleChange}
                 name="email"
-                label="Email"
+                label="Email*"
                 type="email"
                 placeholder="Email"
                 value={data.email}
+                error={errors.email}
             />
             <FormField
                 onChange={handleChange}

@@ -73,7 +73,7 @@ export default function CreateProductForm({ categories }) {
             <FormField
                 onChange={handleChange}
                 name="name"
-                label="Nama Produk"
+                label="Nama Produk*"
                 type="text"
                 placeholder="Masukan Nama Produk"
                 value={data.name}
@@ -84,7 +84,7 @@ export default function CreateProductForm({ categories }) {
             <FormSelectField
                 onChange={handleChange}
                 name="categoryId"
-                label="Kategori"
+                label="Kategori*"
                 value={data.categoryId}
                 error={errors.categoryId}
                 className="px-4"
@@ -151,7 +151,7 @@ export default function CreateProductForm({ categories }) {
                     onClick={() => history.back()}
                     className="flex-auto bg-gray-400 text-black"
                 >
-                    Cancel
+                    Batal
                 </PrimaryButton>
             </div>
         </div>

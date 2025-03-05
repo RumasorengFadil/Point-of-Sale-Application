@@ -21,9 +21,7 @@ export default function Sidebar({
 
             {/* Logo */}
             <div className="hidden lg:flex justify-center">
-                <Link href="/">
-                    <ApplicationLogo className="w-24 fill-current" />
-                </Link>
+                <ApplicationLogo className="w-24 fill-current" />
             </div>
 
             {/* Sidebar List */}

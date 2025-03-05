@@ -10,13 +10,13 @@ const useFormHandler = (data, setData) => {
 
     const handleNumberChange = (e, size) => {
         const inputValue = convertToNumber(e.target.value);
-
+        
         // Hanya terima angka
         if (!/^\d*$/.test(inputValue)) return;
 
         // Batasi panjang input
         if (inputValue.toString().length > size) return;
-
+        
         setData((prevData) => ({
             ...prevData,
             [e.target.name]: inputValue,

@@ -65,7 +65,7 @@ const POSSidebarMenu = ({}) => {
                         <SidebarItem
                             label="Keluar"
                             icon={IoLogOut}
-                            onClick={() => Inertia.post(route("logout"))}
+                            onClick={() => Inertia.post(route(`${guard.name}.logout`))}
                             className="hover:bg-gray-300 transition-all rounded-md px-2"
                             bar={false}
                         />

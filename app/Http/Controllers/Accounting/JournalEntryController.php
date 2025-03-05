@@ -48,10 +48,10 @@ class JournalEntryController extends Controller
             $this->journalEntryRepository->store($validatedData);
 
             return redirect()->route('accounting-journal-entry.create')
-                ->with(['message' => __('message.success.stored', ['entity' => 'Transaction'])]);
+                ->with(['message' => __('message.success.stored', ['entity' => 'Kas'])]);
         } catch (\Exception $e) {
             \Log::error('Failed to store product: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['error' => __('message.error.stored', ['entity' => 'Transaction'])]);
+            return redirect()->back()->withErrors(['error' => __('message.error.stored', ['entity' => 'Kas'])]);
         }
 
     }
@@ -67,7 +67,6 @@ class JournalEntryController extends Controller
         try {
             // Validate product data
             $validatedData = $request->validated();
-
             // Handle Photo Product
             $validatedData['evidence'] = $this->photoService->handleUpdatePhoto($validatedData['evidence'], $product['evidence'], self::PHOTO_TYPE, null);
 
@@ -75,11 +74,11 @@ class JournalEntryController extends Controller
             $this->journalEntryRepository->update($validatedData, $product);
 
             return redirect()->back()
-                ->with(['message' => __('message.success.updated', ['entity' => 'Transaction'])]);
+                ->with(['message' => __('message.success.updated', ['entity' => 'Kas'])]);
         } catch (\Exception $e) {
             \Log::error('Failed to update Ttansaction: ' . $e->getMessage());
 
-            return redirect()->back()->withErrors(['error' => __('message.error.updated', ['entity' => 'Transaction'])]);
+            return redirect()->back()->withErrors(['error' => __('message.error.updated', ['entity' => 'Kas'])]);
         }
 
     }

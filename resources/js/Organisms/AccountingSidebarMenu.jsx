@@ -41,7 +41,7 @@ const AccountingSidebarMenu = ({ user }) => {
                 <div className="flex flex-col px-4">
                     <div className="flex flex-col py-1">
                         <SidebarItemLink
-                            label="Accounting"
+                            label="Pembukuan"
                             icon={HiSwitchHorizontal}
                             href={route("pos-dashboard.index")}
                             className="hover:bg-gray-300 transition-all rounded-md px-2"
@@ -63,7 +63,7 @@ const AccountingSidebarMenu = ({ user }) => {
                         <SidebarItem
                             label="Keluar"
                             icon={IoLogOut}
-                            onClick={() => Inertia.post(route("logout"))}
+                            onClick={() => Inertia.post(route("web.logout"))}
                             className="hover:bg-gray-300 transition-all rounded-md px-2"
                             bar={false}
                         />

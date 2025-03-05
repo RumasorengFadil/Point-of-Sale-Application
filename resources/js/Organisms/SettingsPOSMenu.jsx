@@ -20,14 +20,7 @@ export default function SettingsPOSMenu({}) {
             <SidebarItemLink
                 label="Keluar"
                 icon={IoLogOut}
-                onClick={() => Inertia.post(route("logout"))}
-            />
-
-            <SidebarItemLink
-                label="Keluar"
-                icon={IoLogOut}
-                onClick={() => Inertia.post(route("cashier.logout"))}
-                isHidden={auth.guard.name !== "cashier"}
+                onClick={() => Inertia.post(route(`${auth.guard.name}.logout`))}
             />
             <hr />
         </div>

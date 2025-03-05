@@ -27,16 +27,16 @@ jobs:
               SERVER_IP: ${{ secrets.SERVER_IP }}
               SERVER_USER: ${{ secrets.SERVER_USER }}
             run: |
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/* $SERVER_USER@$SERVER_IP:/home/brajatam/public_html
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/.[!.]* brajatam@119.235.250.57:/home/brajatam/public_html
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/* $SERVER_USER@$SERVER_IP:/home/bbytscom/rumasoreng.fadil
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/.[!.]* bbytscom@119.235.250.57:/home/bbytscom/rumasoreng.fadil
     
           - name: Deploy Laravel Application
             env:
               SERVER_IP: ${{ secrets.SERVER_IP }}
               SERVER_USER: ${{ secrets.SERVER_USER }}
             run: |
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r * $SERVER_USER@$SERVER_IP:/home/brajatam/public_html/laravel
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r .[!.]* $SERVER_USER@$SERVER_IP:/home/brajatam/public_html/laravel
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r * $SERVER_USER@$SERVER_IP:/home/bbytscom/rumasoreng.fadil/laravel
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r .[!.]* $SERVER_USER@$SERVER_IP:/home/bbytscom/rumasoreng.fadil/laravel
     
           - name: Run Post-Deploy Commands
             env:
@@ -44,7 +44,7 @@ jobs:
               SERVER_USER: ${{ secrets.SERVER_USER }}
             run: |
               ssh -p 6510 -o StrictHostKeyChecking=no -i id_rsa $SERVER_USER@$SERVER_IP "
-                cd /home/brajatam/public_html/laravel && 
+                cd /home/bbytscom/rumasoreng.fadil/laravel && 
                 composer install --prefer-dist --no-dev --optimize-autoloader &&
                 php artisan key:generate &&
                 php artisan config:clear &&

@@ -32,6 +32,6 @@ class UserProfileController extends Controller
          // Updated admin data
          $this->userProfileRepository->update($validatedData, $user);
  
-        return redirect()->back()->with(['message' => __('message.success.updated', ['entity' => "User"])]);; 
+        return redirect()->back()->with(['message' => __('message.success.updated', ['entity' => "Profile"])]);; 
     }
 }

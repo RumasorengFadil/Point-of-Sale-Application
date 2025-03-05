@@ -29,7 +29,7 @@ export default function AddCashTransactionForm({
         categoryId: journalEntry.category_id || "",
         typeId: journalEntry.type_id || "",
         inputDate: journalEntry.input_date || "",
-        nominal: journalEntry.nominal || "",
+        nominal: journalEntry.nominal ?? "",
         description: journalEntry.description || "",
         evidence: "",
     });
@@ -61,7 +61,7 @@ export default function AddCashTransactionForm({
             <FormSelectField
                 onChange={handleChange}
                 name="typeId"
-                label="Jenis Transaksi"
+                label="Jenis Transaksi*"
                 value={data.typeId}
                 error={errors.typeId}
                 className="px-4"
@@ -79,7 +79,7 @@ export default function AddCashTransactionForm({
             <FormSelectField
                 onChange={handleChange}
                 name="categoryId"
-                label="Kategori Transaksi"
+                label="Kategori Transaksi*"
                 value={data.categoryId}
                 error={errors.categoryId}
                 className="px-4"
@@ -97,7 +97,7 @@ export default function AddCashTransactionForm({
             <FormField
                 onChange={handleChange}
                 name="inputDate"
-                label="Tanggal Transaksi"
+                label="Tanggal Transaksi*"
                 type="date"
                 value={data.inputDate}
                 error={errors.inputDate}
@@ -105,7 +105,7 @@ export default function AddCashTransactionForm({
             />
             <FormField
                 onChange={(e) => handleNumberChange(e, 11)}
-                label="Nominal"
+                label="Nominal*"
                 type="text"
                 name="nominal"
                 value={formatNumberWithDots(data.nominal)}
@@ -116,7 +116,7 @@ export default function AddCashTransactionForm({
                 onChange={handleChange}
                 name="description"
                 placeholder="exp : Pembelian bahan baku"
-                label="Deskripsi Transaksi"
+                label="Deskripsi Transaksi*"
                 type="text"
                 value={data.description}
                 error={errors.description}
@@ -141,7 +141,7 @@ export default function AddCashTransactionForm({
                     onClick={() => history.back()}
                     className="flex-auto bg-gray-400 text-black"
                 >
-                    Cancel
+                    Batal
                 </PrimaryButton>
             </div>
         </div>

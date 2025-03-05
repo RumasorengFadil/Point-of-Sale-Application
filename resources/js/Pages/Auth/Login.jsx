@@ -10,6 +10,7 @@ import { FaChevronLeft } from "react-icons/fa6";
 import withLoading from "@/Components/WithLoading";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
 import ButtonLoadingWrapper from "@/Components/ButtonLoadingWrapper";
+import toastUtils from "@/utils/toastUtils";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,7 +28,15 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("login"));
+        post(route("login"), {
+            onSuccess: (response) => {
+                toastUtils.showSuccess(response.props.flash);
+                reset();
+            },
+            onError: (errors) => {
+                toastUtils.showError(errors);
+            },
+        });
     };
 
     const ButtonWithLoading = withLoading({ SpinnerWithLabel })(PrimaryButton);
