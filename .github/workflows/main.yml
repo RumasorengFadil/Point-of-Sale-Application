@@ -21,6 +21,12 @@ jobs:
               php-version: 8.2
               tools: composer:v2
               
+          - name: Install Dependencies
+            run: npm install
+
+          - name: Build Frontend
+            run: npm run build
+              
           - name: Setup SSH Key
             env:
               SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
