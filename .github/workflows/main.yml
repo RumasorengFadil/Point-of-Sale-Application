@@ -1,0 +1,58 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main # Ganti dengan branch yang sesuai untuk deployment
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout Code
+            uses: actions/checkout@v3
+    
+          - name: Setup SSH Key
+            env:
+              SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            run: |
+              echo "${SSH_PRIVATE_KEY}" > id_rsa
+              chmod 600 id_rsa
+    
+          - name: Deploy Static Files
+            env:
+              SERVER_IP: ${{ secrets.SERVER_IP }}
+              SERVER_USER: ${{ secrets.SERVER_USER }}
+            run: |
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/* $SERVER_USER@$SERVER_IP:/home/brajatam/public_html
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/.[!.]* brajatam@119.235.250.57:/home/brajatam/public_html
+    
+          - name: Deploy Laravel Application
+            env:
+              SERVER_IP: ${{ secrets.SERVER_IP }}
+              SERVER_USER: ${{ secrets.SERVER_USER }}
+            run: |
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r * $SERVER_USER@$SERVER_IP:/home/brajatam/public_html/laravel
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r .[!.]* $SERVER_USER@$SERVER_IP:/home/brajatam/public_html/laravel
+    
+          - name: Run Post-Deploy Commands
+            env:
+              SERVER_IP: ${{ secrets.SERVER_IP }}
+              SERVER_USER: ${{ secrets.SERVER_USER }}
+            run: |
+              ssh -p 6510 -o StrictHostKeyChecking=no -i id_rsa $SERVER_USER@$SERVER_IP "
+                cd /home/brajatam/public_html/laravel && 
+                composer install --prefer-dist --no-dev --optimize-autoloader &&
+                php artisan key:generate &&
+                php artisan config:clear &&
+                php artisan route:clear &&
+                php artisan view:clear &&
+                php artisan config:cache || echo 'Config cache failed' &&
+                php artisan route:cache || echo 'Route cache failed' &&
+                php artisan view:cache || echo 'View cache failed' &&
+                php artisan optimize &&
+                php artisan migrate || echo 'Migration failed'
+              "
