@@ -62,4 +62,3 @@ jobs:
                 php artisan optimize &&
                 php artisan migrate || echo 'Migration failed'
               "
-#
