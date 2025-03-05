@@ -1,6 +1,6 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import useCartStore from "@/store/useCartStore";
-import useUIStore from "@/store/UseUIStore";
+import useUIStore from "@/store/useUIStore";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { FaChevronRight } from "react-icons/fa6";
 

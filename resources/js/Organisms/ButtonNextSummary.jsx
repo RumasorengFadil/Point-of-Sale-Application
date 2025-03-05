@@ -1,7 +1,7 @@
 import ButtonCartSummary from "@/Components/Button/ButtonCartSummary";
 import { useTransactionCalculations } from "@/hooks/useTransactionCalculations ";
 import useCartStore from "@/store/useCartStore";
-import useUIStore from "@/store/UseUIStore";
+import useUIStore from "@/store/useUIStore";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { memo } from "react";
 
