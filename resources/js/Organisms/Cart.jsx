@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { RiDeleteBinFill } from "react-icons/ri";
-import useUIStore from "@/store/UseUIStore";
 import useCartStore from "@/store/useCartStore";
 import BackBtn from "@/Components/BackBtn";
 import { EmptyStateMessage } from "@/Components/EmptyStateMessage";
@@ -11,6 +10,7 @@ import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import findElementById from "@/utils/findElementById";
 import CartItem from "@/Components/Transaction/CartItem";
 import { formatProductData } from "@/utils/formatProductData";
+import useUIStore from "@/store/useUIStore";
 
 export default memo(function Cart({ products, buttonSummary = true }) {
     // Store Hooks
