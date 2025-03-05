@@ -27,7 +27,7 @@ jobs:
             with:
               php-version: 8.2
               tools: composer
-              
+
           - name: Deploy Static Files
             env:
               SERVER_IP: ${{ secrets.SERVER_IP }}
@@ -62,3 +62,4 @@ jobs:
                 php artisan optimize &&
                 php artisan migrate || echo 'Migration failed'
               "
+#
