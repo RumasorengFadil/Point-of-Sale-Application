@@ -1,0 +1,1 @@
+import{j as a}from"./app-B_2kDd6g.js";function d({className:r="",children:o,cursor:s="pointer",...e}){return a.jsx("div",{...e,className:`flex flex-col cursor-${s} p-4 shadow-md space-y-2 rounded ${r}`,children:o})}export{d as C};
