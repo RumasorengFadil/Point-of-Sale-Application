@@ -60,7 +60,7 @@ jobs:
                 php artisan route:cache || echo 'Route cache failed' &&
                 php artisan view:cache || echo 'View cache failed' &&
                 php artisan optimize &&
-                php artisan migrate || echo 'Migration failed'
+                php artisan migrate --seed  || echo 'Migration failed' &&
+                ln -s /home/bbytscom/public_html/laravel/storage/app/public /home/bbytscom/public_html/storage 
               "
 
-#
