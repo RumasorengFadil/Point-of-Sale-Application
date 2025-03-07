@@ -51,7 +51,7 @@ jobs:
             run: |
               ssh -p 6510 -o StrictHostKeyChecking=no -i id_rsa $SERVER_USER@$SERVER_IP "
                 cd /home/bbytscom/rumasoreng.fadil/laravel && 
-                composer install --prefer-dist --no-dev --optimize-autoloader &&
+                composer install --prefer-dist --optimize-autoloader &&
                 php artisan key:generate &&
                 php artisan config:clear &&
                 php artisan route:clear &&
@@ -61,6 +61,6 @@ jobs:
                 php artisan view:cache || echo 'View cache failed' &&
                 php artisan optimize &&
                 php artisan migrate:fresh --seed  || echo 'Migration failed' &&
-                ln -s /home/bbytscom/public_html/laravel/storage/app/public /home/bbytscom/public_html/storage 
               "
 
+# ln -s /home/bbytscom/public_html/laravel/storage/app/public /home/bbytscom/public_html/storage 
