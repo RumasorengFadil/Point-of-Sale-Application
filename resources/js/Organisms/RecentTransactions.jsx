@@ -15,7 +15,7 @@ export default function RecentTransactions({ journalEntries }) {
                     <TableData>ID</TableData>
                     <TableData>Keterangan</TableData>
                     <TableData>Kategori</TableData>
-                    <TableData>Saldo</TableData>
+                    <TableData>Saldo (Rp)</TableData>
                 </TableHeader>
 
                 <TableBody>

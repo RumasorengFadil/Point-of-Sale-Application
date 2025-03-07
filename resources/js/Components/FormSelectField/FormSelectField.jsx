@@ -13,7 +13,7 @@ export const FormSelectField = ({
             <InputLabel value={label} />
             <select
                 {...props}
-                className="text-sm rounded-md shadow-sm p-3 bg-gray-100 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                className="text-sm rounded-md shadow-sm p-3 bg-gray-100 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
             >
                 {children}
             </select>

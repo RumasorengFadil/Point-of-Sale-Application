@@ -13,9 +13,9 @@ export default function OrderSummary({ analytics }) {
                 {/* Ordered Products Header */}
                 <div className="flex w-full h-8">
                     <div className="flex w-full h-max font-bold">Item</div>
-                    <div className="flex w-full h-max font-bold">Terjual</div>
+                    <div className="flex w-full h-max font-bold">Terjual (Qty)</div>
                     <div className="flex w-full h-max font-bold">
-                        Pendapatan
+                        Pendapatan (Rp)
                     </div>
                 </div>
 

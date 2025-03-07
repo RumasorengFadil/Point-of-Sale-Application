@@ -61,7 +61,6 @@ jobs:
                 php artisan view:cache || echo 'View cache failed' &&
                 php artisan optimize &&
                 php artisan migrate  || echo 'Migration failed' &&
-                ln -s /home/bbytscom/rumasoreng.fadil/laravel/storage/app/public /home/bbytscom/rumasoreng.fadil/storage 
               "
 
 # ln -s /home/bbytscom/rumasoreng.fadil/laravel/storage/app/public /home/bbytscom/rumasoreng.fadil/storage 

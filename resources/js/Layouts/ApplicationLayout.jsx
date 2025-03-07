@@ -18,7 +18,7 @@ export default memo(function ApplicationLayout({
             <div
                 className={`w-full h-screen bg-white flex flex-${direction} ${
                     withContainerSpace ? "space-y-8" : ""
-                } ${className} lg:space-y-0 lg:bg-gray-100 dark:bg-gray-900 lg:flex-row`}
+                } ${className} lg:space-y-0 lg:bg-gray-100 lg:flex-row`}
             >
                 {header && (
                     <div
