@@ -39,9 +39,10 @@ export default memo(function AccountingLayout({
 
                 {content && (
                     <div
-                        className={`flex flex-col flex-1 h-full overflow-auto space-y-8 lg:py-4 ${contentClassName}`}
+                        className={`flex flex-col flex-1 h-full overflow-auto space-y-8 pb-28 lg:py-4 ${contentClassName}`}
                     >
                         {content}
+                        
                     </div>
                 )}
 

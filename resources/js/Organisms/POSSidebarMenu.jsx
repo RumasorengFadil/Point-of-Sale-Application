@@ -16,7 +16,7 @@ const POSSidebarMenu = ({}) => {
     return (
         <div>
             <div
-                className={`flex z-10 flex-col space-y-4 bg-white h-full fixed top-0 py-4 shadow-lg rounded-r-xl transition-all ${
+                className={`flex z-50 flex-col space-y-4 bg-white h-full fixed top-0 py-4 shadow-lg rounded-r-xl transition-all ${
                     !showCart ? "-translate-x-full" : ""
                 }`}
             >

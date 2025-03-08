@@ -10,7 +10,7 @@ export default function NavigationMenu({}) {
     const { baseRouteName, auth } = usePage().props;
     
     return (
-        <div className="flex gap-5 items-center lg:px-6 lg:flex-col">
+        <div className="flex gap-5 items-center fixed bottom-0 bg-white w-full lg:bg-gray-100 lg:static lg:px-6 lg:flex-col">
             <UserAvatarOrganism className="w-full" />
 
             <NavItem

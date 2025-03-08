@@ -20,7 +20,7 @@ export default memo(function POSLayout({
             <div
                 className={`w-full h-screen bg-white flex flex-${direction} ${
                     withContainerSpace ? "space-y-8" : ""
-                } ${className} lg:space-y-0 lg:bg-gray-100`}
+                } ${className} lg:space-y-0 lg:bg-gray-100 lg:flex-row`}
             >
                 {header && (
                     <div
@@ -36,7 +36,7 @@ export default memo(function POSLayout({
 
                 {content && (
                     <div
-                        className={`flex flex-col flex-1 h-full overflow-auto space-y-8 lg:py-4 ${contentClassName}`}
+                        className={`flex flex-col flex-1 h-full overflow-auto space-y-8 pb-28 lg:py-4 ${contentClassName}`}
                     >
                         {content}
                     </div>
