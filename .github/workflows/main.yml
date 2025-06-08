@@ -33,16 +33,16 @@ jobs:
               SERVER_IP: ${{ secrets.SERVER_IP }}
               SERVER_USER: ${{ secrets.SERVER_USER }}
             run: |
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/* $SERVER_USER@$SERVER_IP:/home/bbytscom/rumasoreng.fadil
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/.[!.]* bbytscom@119.235.250.57:/home/bbytscom/rumasoreng.fadil
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/* $SERVER_USER@$SERVER_IP:/home/bbytscom/wadonfirly.my.id
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/.[!.]* bbytscom@119.235.250.57:/home/bbytscom/wadonfirly.my.id
     
           - name: Deploy Laravel Application
             env:
               SERVER_IP: ${{ secrets.SERVER_IP }}
               SERVER_USER: ${{ secrets.SERVER_USER }}
             run: |
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r * $SERVER_USER@$SERVER_IP:/home/bbytscom/rumasoreng.fadil/laravel
-              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r .[!.]* $SERVER_USER@$SERVER_IP:/home/bbytscom/rumasoreng.fadil/laravel
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r * $SERVER_USER@$SERVER_IP:/home/bbytscom/wadonfirly.my.id/laravel
+              scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r .[!.]* $SERVER_USER@$SERVER_IP:/home/bbytscom/wadonfirly.my.id/laravel
     
           - name: Run Post-Deploy Commands
             env:
@@ -50,7 +50,7 @@ jobs:
               SERVER_USER: ${{ secrets.SERVER_USER }}
             run: |
               ssh -p 6510 -o StrictHostKeyChecking=no -i id_rsa $SERVER_USER@$SERVER_IP "
-                cd /home/bbytscom/rumasoreng.fadil/laravel && 
+                cd /home/bbytscom/wadonfirly.my.id/laravel && 
                 composer install --prefer-dist --no-dev --optimize-autoloader &&
                 php artisan key:generate &&
                 php artisan config:clear &&
@@ -63,4 +63,4 @@ jobs:
                 php artisan migrate  || echo 'Migration failed'
               "
 
-# ln -s /home/bbytscom/rumasoreng.fadil/laravel/storage/app/public /home/bbytscom/rumasoreng.fadil/storage 
+# ln -s /home/bbytscom/wadonfirly.my.id/laravel/storage/app/public /home/bbytscom/wadonfirly.my.id/storage 
