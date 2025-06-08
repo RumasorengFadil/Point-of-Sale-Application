@@ -66,7 +66,7 @@ export default function AddCashTransactionForm({
                 error={errors.typeId}
                 className="px-4"
             >
-                <FormOptionField label="Pilih" />
+                <FormOptionField value="" label="Pilih" />
                 {journalTypes.map((journalType, i) => (
                     <FormOptionField
                         value={journalType.id}
@@ -84,7 +84,7 @@ export default function AddCashTransactionForm({
                 error={errors.categoryId}
                 className="px-4"
             >
-                <FormOptionField label="Pilih" />
+                <FormOptionField value="" label="Pilih" />
                 {journalCategories.map((journalCategory, i) => (
                     <FormOptionField
                         value={journalCategory.id}

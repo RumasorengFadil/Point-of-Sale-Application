@@ -88,7 +88,7 @@ export default function EditProductForm({ categories, product }) {
                 error={errors.categoryId}
                 className="px-4"
             >
-                <FormOptionField label="Pilih" />
+                <FormOptionField value="" label="Pilih" />
                 {categories.map((category, i) => (
                     <FormOptionField
                         value={category.id}

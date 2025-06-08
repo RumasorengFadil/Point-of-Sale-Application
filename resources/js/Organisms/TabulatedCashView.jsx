@@ -3,6 +3,8 @@ import { useState } from "react";
 
 export default function TabulatedCashView({journalEntries}) {
     const [tab, setTab] = useState("book");
+    
+
     return (
         <div className="flex flex-col space-y-4 px-4 overflow-auto">
             <div className="flex space-x-4 items-center">

@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CashierSeeder::class,
             MstCategorySeeder::class,
-            // ProductSeeder::class,
-            // TransactionSeeder::class,
+            ProductSeeder::class,
+            TransactionSeeder::class,
             MstTypeSeeder::class,
             MstJournalCategorySeeder::class,
         ]);

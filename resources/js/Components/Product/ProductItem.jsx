@@ -28,7 +28,7 @@ export default memo(function ProductItem({ product, onClick }) {
             <Figure
                 alt={name}
                 rounded="md"
-                className="w-24 text-center"
+                className="w-24 h-24 text-center"
                 src={getProductImagePath(image)}
             >
                 <div>

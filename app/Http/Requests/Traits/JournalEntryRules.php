@@ -29,8 +29,8 @@ trait JournalEntryRules
             'typeId.exist' => 'Tipe tidak ditemukan!.',
             'nominal.required' => 'Nominal belum diisi!.',
             'nominal.number' => 'Nominal harus berupa angka!.',
-            'deskripsi.required' => 'Deskripsi belum diisi!.',
-            'deskripsi.number' => 'Deskripsi harus berupa string!.',
+            'description.required' => 'Deskripsi belum diisi!.',
+            'description.number' => 'Deskripsi harus berupa string!.',
 
             // 'evidence.required' => 'Bukti transaksi harus diisi!',
             'evidence.image' => 'File harus berupa gambar!',

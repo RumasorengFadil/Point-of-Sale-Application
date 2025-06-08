@@ -14,17 +14,17 @@ import toastUtils from "@/utils/toastUtils";
 import { formatNumberWithDots } from "@/utils/formatNumberWithDots";
 import { convertToNumber } from "@/utils/convertToNumber";
 
-export default function CreateProductForm({ categories }) {
+export default function ProductForm({ categories, product = {}, action }) {
     const { imagePreview, handleFileChange, setImagePreview } =
         useImagePreview(); // State untuk menyimpan Data URL
 
     const { post, data, setData, errors, reset, processing } = useForm({
-        name: "",
-        categoryId: "",
-        price: "",
-        discount: 0,
-        stock: 0,
-        image: "",
+        name: product.name || "",
+        categoryId: product.category?.id || "",
+        price: product.price || 0,
+        discount: product.discount || 0,
+        stock: product.stock || "",
+        image: null,
     });
 
     const handleChange = (e) => {
@@ -52,11 +52,11 @@ export default function CreateProductForm({ categories }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("product.store"), {
+        post(route(`product.${action}`, product.id ?? null), {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
                 setImagePreview("");
-                reset();
+                action === "store" ? reset() : "";
             },
             onError: (errors) => {
                 toastUtils.showError(errors);
@@ -68,12 +68,12 @@ export default function CreateProductForm({ categories }) {
 
     return (
         <div className="flex flex-col space-y-4">
-            <TitleSection boldText="Tambah" subtitle="Produk" />
+            <TitleSection boldText="Edit" subtitle="Produk" />
 
             <FormField
                 onChange={handleChange}
                 name="name"
-                label="Nama Produk*"
+                label="Nama Produk"
                 type="text"
                 placeholder="Masukan Nama Produk"
                 value={data.name}
@@ -84,12 +84,12 @@ export default function CreateProductForm({ categories }) {
             <FormSelectField
                 onChange={handleChange}
                 name="categoryId"
-                label="Kategori*"
+                label="Kategori"
                 value={data.categoryId}
                 error={errors.categoryId}
                 className="px-4"
             >
-                <FormOptionField label="Pilih" />
+                <FormOptionField value="" label="Pilih" />
                 {categories.map((category, i) => (
                     <FormOptionField
                         value={category.id}
@@ -155,7 +155,7 @@ export default function CreateProductForm({ categories }) {
                     onClick={() => history.back()}
                     className="flex-auto bg-gray-400 text-black"
                 >
-                    Batal
+                    Cancel
                 </PrimaryButton>
             </div>
         </div>

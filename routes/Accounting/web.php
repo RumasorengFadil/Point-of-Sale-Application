@@ -22,6 +22,7 @@ Route::get('/accounting/journal-entry', [JournalEntryController::class, 'index']
 Route::get('/accounting/journal-entry/create', [JournalEntryController::class, 'create'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.create');
 Route::post('/accounting/journal-entry/store', [JournalEntryController::class, 'store'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.store');
 Route::get('/accounting/journal-entry/edit/{journalEntry}', [JournalEntryController::class, 'edit'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.edit');
+Route::delete('/accounting/journal-entry/destroy/{journalEntry}', [JournalEntryController::class, 'destroy'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.destroy');
 Route::get('/accounting/journal-entry/filter', [JournalEntryController::class, 'filter'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.filter');
 Route::post('/accounting/journal-entry/update/{journalEntry}', [JournalEntryController::class, 'update'])->middleware(['auth', 'verified'])->name('accounting-journal-entry.update');
 Route::get('/accounting/settings', [SettingsController::class, 'index'])->middleware(['auth', 'verified'])->name('accounting.settings.index');

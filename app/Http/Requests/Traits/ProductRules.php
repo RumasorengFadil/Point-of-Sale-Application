@@ -11,7 +11,7 @@ trait ProductRules
 
         return [
             'categoryId' => 'required|exists:mst_product_categories,id',
-            'name' => 'required|string',
+            'name' => 'required|string|max:25',
             'price' => 'required|integer|min:0',
             'discount' => 'required|integer|min:0',
             'stock' => 'required|integer|min:0',
@@ -26,6 +26,7 @@ trait ProductRules
             'categoryId.exist' => 'Kategori tidak ditemukan!.',
             'name.required' => 'Nama produk belum diisi!.',
             'name.string' => 'Nama harus berupa string!.',
+            'name.max' => 'Nama harus kurang 25 karakter.',
             'price.required' => 'Harga produk belum diisi!.',
             'price.min' => 'Harga tidak boleh negatif!.',
             'discount.required' => 'Diskon harus diisi!',

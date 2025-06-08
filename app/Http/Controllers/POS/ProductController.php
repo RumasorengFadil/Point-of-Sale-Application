@@ -39,7 +39,7 @@ class ProductController extends Controller
             $validatedData = $request->validated();
 
             // Handle Photo Product
-            $validatedData['image'] = $this->photoService->handlePhoto($validatedData['image'], 'product', null);
+            $validatedData['image'] = $this->photoService->handlePhoto($validatedData['image'], 'product');
             // Added product data and image path into database
             $this->productRepository->store($validatedData);
 

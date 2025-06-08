@@ -51,7 +51,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <div className="bg-blue-500 p-1 rounded-md">
                             <img src="/icons/app/bee-icon.svg" alt="" />
                         </div>
-                        <h1>BeePOSANDA</h1>
+                        <h1>WadonFirly</h1>
                     </div>
 
                     <div className="flex justify-center">

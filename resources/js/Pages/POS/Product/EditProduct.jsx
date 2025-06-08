@@ -2,6 +2,7 @@ import { Head } from "@inertiajs/react";
 import POSLayout from "@/Layouts/POSLayout";
 import TitleSection from "@/Components/SectionTitle";
 import EditProductForm from "@/Organisms/EditProductForm";
+import ProductForm from "@/Organisms/ProductForm";
 
 export default function EditProduct({ auth, product, categories }) {
     const header = (
@@ -12,7 +13,8 @@ export default function EditProduct({ auth, product, categories }) {
 
     const content = (
         <>
-            <EditProductForm
+            <ProductForm
+                action="update"
                 categories={categories}
                 product={product}
             />

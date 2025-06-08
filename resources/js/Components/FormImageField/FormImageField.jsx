@@ -22,7 +22,7 @@ export const FormImageField = ({
                         }`}
                         size={24}
                     />
-                    <img className="rounded-md" src={imagePreview} alt="" />
+                    <img className="rounded-md w-full h-full" src={imagePreview} alt="" />
                 </div>
 
                 <label

@@ -18,7 +18,6 @@ export default function Product({ auth, products }) {
             <ProductActionSection />
 
             <ProductTable products={products} />
-            {/* <CreateProductForm categories={categories} /> */}
         </>
     );
 

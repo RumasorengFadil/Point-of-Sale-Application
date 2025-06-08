@@ -15,7 +15,7 @@ class PhotoService
     private const USER_PHOTO_PATH = '/uploads/user/img/';
     private const COMMON_PHOTO_PATH = '/uploads/commons/img/';
 
-    public function handlePhoto($image, $type, $size = 800)
+    public function handlePhoto($image, $type, $width = null, $height = null)
     {
         try {
             if (!$image)
@@ -32,9 +32,8 @@ class PhotoService
 
             // Baca gambar menggunakan Intervention Image
             $img = $manager->read($image);
-
             // Optimalisasi ukuran gambar (resize)
-            $img->resize($size, null);
+            $img->resize($width, $height);
 
             // Kompresi gambar dengan mengatur kualitas
             $img->toJpeg(75); // mengubah ke format JPG dan kualitas 75%

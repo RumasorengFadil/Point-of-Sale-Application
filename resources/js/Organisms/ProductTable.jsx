@@ -62,12 +62,8 @@ const ProductTable = ({ products }) => {
                         <TableRow key={i}>
                             <TableData>{product.id}</TableData>
                             <TableData className="items-center space-x-2">
-                                <IoFastFood
-                                    className={product.image ? "hidden" : ""}
-                                    size={24}
-                                />
                                 <img
-                                    className="max-w-6 h-6 hidden md:block"
+                                    className="max-w-6 h-6 hidden md:block rounded"
                                     src={`/storage/uploads/POS/img/products/${product.image}`}
                                     alt="Product"
                                 />

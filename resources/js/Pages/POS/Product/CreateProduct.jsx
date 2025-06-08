@@ -3,6 +3,7 @@ import TitleSection from "@/Components/SectionTitle";
 import ProductActionSection from "@/Organisms/ProductActionSection";
 import CreateProductForm from "@/Organisms/CreateProductForm";
 import POSLayout from "@/Layouts/POSLayout";
+import ProductForm from "@/Organisms/ProductForm";
 
 export default function CreateProduct({ auth, categories }) {
     const header = (
@@ -16,8 +17,8 @@ export default function CreateProduct({ auth, categories }) {
             <TitleSection boldText="Inventaris" />
 
             <ProductActionSection />
-
-            <CreateProductForm routeName = "product.store" categories={categories} />
+            
+            <ProductForm action="store" categories={categories} />
         </> 
     );
 

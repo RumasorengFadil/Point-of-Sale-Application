@@ -7,7 +7,7 @@ import DiscountedPrice from "@/Components/DiscountedPrice";
 
 const CartItemImage = ({ src, alt }) => (
     <div className="w-16 h-16">
-        <img className="w-full rounded" src={src} alt={alt} />
+        <img className="w-full h-full rounded" src={src} alt={alt} />
     </div>
 );
 
