@@ -118,13 +118,16 @@ export default function Login({ status, canResetPassword }) {
                     </div>
                 </div>
 
-                <ButtonWithLoading
-                    isLoading={processing}
-                    className="bg-primary fles justify-center"
-                    disabled={processing}
-                >
-                    Log in
-                </ButtonWithLoading>
+                <div className="flex flex-col items-center space-y-1">
+                    <ButtonWithLoading
+                        isLoading={processing}
+                        className="bg-primary fles justify-center w-full"
+                        disabled={processing}
+                    >
+                        Log in
+                    </ButtonWithLoading>
+                    <Link href={route("password.request")} className="text-sm underline text-primary">Lupa Password?</Link>
+                </div>
             </form>
             {/* {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
