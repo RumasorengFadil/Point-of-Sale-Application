@@ -9,7 +9,6 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import { FaChevronLeft } from "react-icons/fa6";
 import withLoading from "@/Components/WithLoading";
 import SpinnerWithLabel from "@/Components/SpinnerWithLabel/SpinnerWithLabel";
-import ButtonLoadingWrapper from "@/Components/ButtonLoadingWrapper";
 import toastUtils from "@/utils/toastUtils";
 
 export default function Login({ status, canResetPassword }) {
@@ -118,7 +117,7 @@ export default function Login({ status, canResetPassword }) {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center space-y-1">
+                <div className="flex flex-col items-center space-y-2">
                     <ButtonWithLoading
                         isLoading={processing}
                         className="bg-primary fles justify-center w-full"

@@ -10,7 +10,7 @@ const SpinnerWithLabel = ({ size = "small", label = "Mohon Ditunggu..." }) => {
     return (
         <div className="flex items-center space-x-2">
             <Spinner size={size}/>
-            <p>{label}</p>
+            <p className="text-sm">{label}</p>
         </div>
     );
 };
