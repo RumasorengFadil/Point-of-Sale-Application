@@ -3,10 +3,10 @@ import TitleSection from "@/Components/SectionTitle";
 import AddCashTransactionForm from "@/Organisms/AddCashTransactionForm ";
 import AccountingActionSection from "@/Organisms/AccountingActionSection";
 import AccountingLayout from "@/Layouts/AccountingLayout";
+import { journalCategories } from "@/data/journalCategories";
+import { journalTypes } from "@/data/journalTypes";
 
-export default function CreateJournalEntry({ masterData }) {
-    const { journalCategories, journalTypes } = masterData;
-
+export default function CreateJournalEntry({}) {
     const header = (
         <>
             <Head title="Create journal entry" />

@@ -1,9 +1,10 @@
 import { Head } from "@inertiajs/react";
 import AddCashTransactionForm from "@/Organisms/AddCashTransactionForm ";
 import AccountingLayout from "@/Layouts/AccountingLayout";
+import { journalCategories } from "@/data/journalCategories";
+import { journalTypes } from "@/data/journalTypes";
 
-export default function EditJournalEntry({ masterData, journalEntry }) {
-    const { journalCategories, journalTypes } = masterData;
+export default function EditJournalEntry({ journalEntry }) {
 
     const header = (
         <>

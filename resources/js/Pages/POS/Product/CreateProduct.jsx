@@ -1,11 +1,11 @@
 import { Head } from "@inertiajs/react";
 import TitleSection from "@/Components/SectionTitle";
 import ProductActionSection from "@/Organisms/ProductActionSection";
-import CreateProductForm from "@/Organisms/CreateProductForm";
 import POSLayout from "@/Layouts/POSLayout";
 import ProductForm from "@/Organisms/ProductForm";
+import { productCategories } from "@/data/productCategories";
 
-export default function CreateProduct({ auth, categories }) {
+export default function CreateProduct({ auth }) {
     const header = (
         <>
             <Head title="Produk" />
@@ -18,7 +18,7 @@ export default function CreateProduct({ auth, categories }) {
 
             <ProductActionSection />
             
-            <ProductForm action="store" categories={categories} />
+            <ProductForm action="store" categories={productCategories} />
         </> 
     );
 
