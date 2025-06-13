@@ -32,8 +32,9 @@ export default memo(function ProductItem({ product, onClick }) {
                 src={getProductImagePath(image)}
             >
                 <div>
+                    {console.log(discount)}
                     <ProductPrice
-                        className={discount ? "line-through" : ""}
+                        className={discount > 0 ? "line-through" : ""}
                         price={price}
                     />
                     {discount > 0 && (
