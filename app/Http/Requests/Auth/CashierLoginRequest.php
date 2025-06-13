@@ -27,7 +27,7 @@ class CashierLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'string', 'username'],
+            'username' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
