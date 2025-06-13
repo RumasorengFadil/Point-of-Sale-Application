@@ -21,24 +21,25 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                     <div className="flex flex-col w-80 space-y-6">
                         <h1 className="flex justify-center text-2xl">
-                            Your plan includes
+                            Paket Anda Mencakup :
                         </h1>
 
                         <div>
                             <ul>
-                                <li className="list-disc">Free App's</li>
                                 <li className="list-disc">
-                                    Control your finances from anywhere
+                                    Nikmati semua fitur 
                                 </li>
                                 <li className="list-disc">
-                                    Record your transactions
+                                    Atur keuangan kapan aja, di mana aja
                                 </li>
                                 <li className="list-disc">
-                                    Control your income and expenses
+                                    Catat semua transaksi dengan mudah
                                 </li>
                                 <li className="list-disc">
-                                    Point off sell application accounting by
-                                    integration
+                                    Pantau pemasukan dan pengeluaran
+                                </li>
+                                <li className="list-disc">
+                                    Aplikasi POS yang terhubung langsung dengan sistem akuntansi
                                 </li>
                             </ul>
                         </div>
@@ -66,14 +67,14 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <Link href={route('login')} className="flex justify-center w-full max-w-80   rounded-2xl">
                             <PrimaryButton className="flex relative justify-center bg-primary w-full">
                                 <FaUser className="absolute left-5" size={16} color="white" />
-                                Log in as Owner
+                                Masuk sebagai Owner
                             </PrimaryButton>
                         </Link>
                         <p>Or</p>
                         <Link href={route('cashier-login')} className="flex justify-center w-full max-w-80   rounded-2xl">
                             <PrimaryButton className="flex relative justify-center bg-primary w-full">
                                 <FaPeopleGroup className="absolute left-5" size={20} color="white" />
-                                Log in as Employer
+                                Masuk sebagai Employer
                             </PrimaryButton>
                         </Link>
                     </div>

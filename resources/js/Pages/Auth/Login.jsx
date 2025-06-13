@@ -55,7 +55,7 @@ export default function Login({ status, canResetPassword }) {
                         <FaChevronLeft color="white" />
                     </div>
                     <p className="text-xl font-medium text-primary">
-                        Log in as Owner
+                        Masuk sebagai Owner
                     </p>
                 </div>
 
@@ -123,7 +123,7 @@ export default function Login({ status, canResetPassword }) {
                         className="bg-primary fles justify-center w-full"
                         disabled={processing}
                     >
-                        Log in
+                        Masuk
                     </ButtonWithLoading>
                     <Link href={route("password.request")} className="text-sm underline text-primary">Lupa Password?</Link>
                 </div>
