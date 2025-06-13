@@ -1,1 +1,0 @@
-import{j as s,a as n}from"./app-BrgPlrrM.js";function t({icon:a,size:o=24,className:r="",...e}){return s.jsx(n,{...e,className:" "+r,children:s.jsx(a,{className:"cursorpointer",size:o})})}export{t as A};
