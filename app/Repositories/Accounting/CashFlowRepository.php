@@ -111,10 +111,10 @@ class CashFlowRepository
 
         // Query untuk menghitung total pendapatan per hari
         $result = JournalEntry::join('mst_types', 'journal_entries.type_id', '=', 'mst_types.id')
-            ->selectRaw('DAYOFWEEK(journal_entries.created_at) as day_of_week, SUM(journal_entries.nominal) as total_income')
+            ->selectRaw('DAYOFWEEK(journal_entries.input_date) as day_of_week, SUM(journal_entries.nominal) as total_income')
             ->where('mst_types.type_name', '=', $type)
-            ->whereBetween('journal_entries.created_at', [$startDate, $endDate])
-            ->groupByRaw('DAYOFWEEK(journal_entries.created_at)')
+            ->whereBetween('journal_entries.input_date', [$startDate, $endDate])
+            ->groupByRaw('DAYOFWEEK(journal_entries.input_date)')
             ->get()
             ->pluck('total_income', 'day_of_week')
             ->toArray();
@@ -139,20 +139,20 @@ class CashFlowRepository
 
         // Query untuk menghitung total pemasukan per hari
         $incomeResult = JournalEntry::join('mst_types', 'journal_entries.type_id', '=', 'mst_types.id')
-            ->selectRaw('DAYOFWEEK(journal_entries.created_at) as day_of_week, SUM(journal_entries.nominal) as total_income')
+            ->selectRaw('DAYOFWEEK(journal_entries.input_date) as day_of_week, SUM(journal_entries.nominal) as total_income')
             ->where('mst_types.type_name', '=', 'pemasukan')
-            ->whereBetween('journal_entries.created_at', [$startDate, $endDate])
-            ->groupByRaw('DAYOFWEEK(journal_entries.created_at)')
+            ->whereBetween('journal_entries.input_date', [$startDate, $endDate])
+            ->groupByRaw('DAYOFWEEK(journal_entries.input_date)')
             ->get()
             ->pluck('total_income', 'day_of_week')
             ->toArray();
 
         // Query untuk menghitung total pengeluaran per hari
         $expenseResult = JournalEntry::join('mst_types', 'journal_entries.type_id', '=', 'mst_types.id')
-            ->selectRaw('DAYOFWEEK(journal_entries.created_at) as day_of_week, SUM(journal_entries.nominal) as total_expense')
+            ->selectRaw('DAYOFWEEK(journal_entries.input_date) as day_of_week, SUM(journal_entries.nominal) as total_expense')
             ->where('mst_types.type_name', '=', 'pengeluaran')
-            ->whereBetween('journal_entries.created_at', [$startDate, $endDate])
-            ->groupByRaw('DAYOFWEEK(journal_entries.created_at)')
+            ->whereBetween('journal_entries.input_date', [$startDate, $endDate])
+            ->groupByRaw('DAYOFWEEK(journal_entries.input_date)')
             ->get()
             ->pluck('total_expense', 'day_of_week')
             ->toArray();

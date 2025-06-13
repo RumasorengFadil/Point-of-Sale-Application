@@ -21,7 +21,6 @@ class DashboardController extends Controller
     {
         $financialReport = $this->financialReportService->getFinancialReport();
         $journalEntries = $this->journalEntryService->getJournalEntries()->items();
-
         usort($journalEntries, function ($a, $b) {
             return $b['id'] <=> $a['id']; // Urutkan secara descending berdasarkan 'id'
         });
