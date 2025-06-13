@@ -1,0 +1,69 @@
+
+JOURNAL CATEGORY
+use App\Models\Accounting\MstJournalCategory;
+$journalCategories = [
+  ['category_name' => 'penjualan', 'description' => ''],
+  ['category_name' => 'Pembelian bahan baku', 'description' => ''],
+  ['category_name' => 'operasional', 'description' => ''],
+  ['category_name' => 'sumber daya manusia', 'description' => ''],
+  ['category_name' => 'promosi/pemasaran', 'description' => ''],
+  ['category_name' => 'pemeliharaan', 'description' => ''],
+  ['category_name' => 'administrasi', 'description' => ''],
+  ['category_name' => 'lain-lain', 'description' => ''],
+];
+
+foreach ($journalCategories as $item) {
+  MstJournalCategory::create($item);
+}
+
+CASHIER
+use App\Models\Cashier;
+use Illuminate\Support\Str;
+
+Cashier::create([
+    'username' => 'kasir',
+            'real_name' => "kasir",
+            'email' => 'kasir@gmail.com',
+            'password' => 'kasir',
+            'phone_number' => "62",
+            'image' => '',
+            'last_login' => now()->toDateString(),
+]);
+
+USER
+use App\Models\User;
+use Illuminate\Support\Str;
+
+User::create([
+    'username'          => 'owner',
+    'real_name'         => 'owner',
+    'email'             => 'lunkiat12@gmail.com',
+    'password'          => bcrypt('owner'),  // Jangan simpan password langsung!
+    'phone_number'      => '62',
+    'image'             => '',
+    'last_login'        => now()->toDateString(),
+    'email_verified_at' => now(),
+    'remember_token'    => Str::random(10),
+]);
+
+PRODUCT CATEGORY
+use App\Models\POS\MstProductCategory;
+$journalCategories = [
+  ['category_name' => 'makanan'],
+  ['category_name' => 'minuman'],
+];
+
+foreach ($journalCategories as $item) {
+  MstProductCategory::create($item);
+}
+
+PRODUCT TYPE
+use App\Models\Accounting\MstType;
+$journalCategories = [
+  ['type_name' => 'pemasukan', 'description' => ''],
+  ['type_name' => 'pengeluaran', 'description' => ''],
+];
+
+foreach ($journalCategories as $item) {
+  MstType::create($item);
+}

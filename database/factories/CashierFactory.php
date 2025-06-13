@@ -27,3 +27,4 @@ class CashierFactory extends Factory
         ];
     }
 }
+

@@ -3,9 +3,8 @@ import TitleSection from "@/Components/SectionTitle";
 import ProductActionSection from "@/Organisms/ProductActionSection";
 import POSLayout from "@/Layouts/POSLayout";
 import ProductForm from "@/Organisms/ProductForm";
-import { productCategories } from "@/data/productCategories";
 
-export default function CreateProduct({ auth }) {
+export default function CreateProduct({ auth, categories }) {
     const header = (
         <>
             <Head title="Produk" />
@@ -18,7 +17,7 @@ export default function CreateProduct({ auth }) {
 
             <ProductActionSection />
             
-            <ProductForm action="store" categories={productCategories} />
+            <ProductForm action="store" categories={categories} />
         </> 
     );
 
