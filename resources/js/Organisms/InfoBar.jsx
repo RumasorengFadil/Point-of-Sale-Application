@@ -2,12 +2,13 @@ import getCurrentDateTime from "@/utils/getCurrentDateTime";
 import { Link } from "@inertiajs/react";
 import React from "react";
 
-const InfoBar  = ({}) => {
+const InfoBar = ({}) => {
     const { date, day, time } = getCurrentDateTime();
 
     return (
         <div className="flex justify-between items-center px-4 h-max w-full">
             <div className="flex items-center py-2 w-max space-x-4">
+                <img className="w-12 h-12" src="/images/app/logo.png" alt="" />
                 <p>
                     <span className="font-bold">{date}</span> {day} | {time}
                 </p>
@@ -19,4 +20,4 @@ const InfoBar  = ({}) => {
     );
 };
 
-export default InfoBar ;
+export default InfoBar;

@@ -13,7 +13,7 @@ import toastUtils from "@/utils/toastUtils";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        username: "",
+        email: "",
         password: "",
         remember: false,
     });
@@ -61,23 +61,23 @@ export default function Login({ status, canResetPassword }) {
 
                 <div className="flex space-y-5 flex-col">
                     <div>
-                        <InputLabel htmlFor="username" value="Username" />
+                        <InputLabel htmlFor="email" value="Email" />
 
                         <TextInput
-                            id="username"
-                            type="text"
-                            name="username"
-                            value={data.username}
+                            id="email"
+                            type="email"
+                            name="email"
+                            value={data.email}
                             className="mt-1 block w-full"
-                            autoComplete="username"
+                            autoComplete="email"
                             isFocused={true}
                             onChange={(e) =>
-                                setData("username", e.target.value)
+                                setData("email", e.target.value)
                             }
                         />
 
                         <InputError
-                            message={errors.username}
+                            message={errors.email}
                             className="mt-2"
                         />
                     </div>
@@ -111,7 +111,7 @@ export default function Login({ status, canResetPassword }) {
                                 }
                             />
                             <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">
-                                Remember me
+                                Ingat saya
                             </span>
                         </label>
                     </div>

@@ -27,7 +27,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         <div>
                             <ul>
                                 <li className="list-disc">
-                                    Nikmati semua fitur 
+                                    Nikmati semua fitur
                                 </li>
                                 <li className="list-disc">
                                     Atur keuangan kapan aja, di mana aja
@@ -39,7 +39,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     Pantau pemasukan dan pengeluaran
                                 </li>
                                 <li className="list-disc">
-                                    Aplikasi POS yang terhubung langsung dengan sistem akuntansi
+                                    Aplikasi POS yang terhubung langsung dengan
+                                    sistem akuntansi
                                 </li>
                             </ul>
                         </div>
@@ -48,10 +49,12 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                 {/* Section 2 */}
                 <div className="flex flex-col flex-1 justify-center py-10 space-y-20 px-4">
-                    <div className="flex items-center justify-center space-x-2">
-                        <div className="bg-blue-500 p-1 rounded-md">
-                            <img src="/icons/app/bee-icon.svg" alt="" />
-                        </div>
+                    <div className="flex items-center justify-center space-x-1">
+                        <img
+                            className="w-12 h-12"
+                            src="/images/app/logo.png"
+                            alt=""
+                        />
                         <h1>WadonFirly</h1>
                     </div>
 
@@ -63,17 +66,31 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         />
                     </div>
 
-                    <div  className="flex flex-col items-center space-y-3">
-                        <Link href={route('login')} className="flex justify-center w-full max-w-80   rounded-2xl">
+                    <div className="flex flex-col items-center space-y-3">
+                        <Link
+                            href={route("login")}
+                            className="flex justify-center w-full max-w-80   rounded-2xl"
+                        >
                             <PrimaryButton className="flex relative justify-center bg-primary w-full">
-                                <FaUser className="absolute left-5" size={16} color="white" />
+                                <FaUser
+                                    className="absolute left-5"
+                                    size={16}
+                                    color="white"
+                                />
                                 Masuk sebagai Owner
                             </PrimaryButton>
                         </Link>
                         <p>Or</p>
-                        <Link href={route('cashier-login')} className="flex justify-center w-full max-w-80   rounded-2xl">
+                        <Link
+                            href={route("cashier-login")}
+                            className="flex justify-center w-full max-w-80   rounded-2xl"
+                        >
                             <PrimaryButton className="flex relative justify-center bg-primary w-full">
-                                <FaPeopleGroup className="absolute left-5" size={20} color="white" />
+                                <FaPeopleGroup
+                                    className="absolute left-5"
+                                    size={20}
+                                    color="white"
+                                />
                                 Masuk sebagai Employer
                             </PrimaryButton>
                         </Link>

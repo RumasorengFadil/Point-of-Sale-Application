@@ -13,7 +13,7 @@ import toastUtils from "@/utils/toastUtils";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: "",
+        username: "",
         password: "",
         remember: false,
     });
@@ -56,26 +56,26 @@ export default function Login({ status, canResetPassword }) {
                         <FaChevronLeft color="white" />
                     </div>
                     <p className="text-xl font-medium text-primary">
-                        Log in as Cashier
+                        Login sebagai Cashier
                     </p>
                 </div>
 
                 <div className="flex space-y-5 flex-col">
                     <div>
-                        <InputLabel htmlFor="email" value="Email" />
+                        <InputLabel htmlFor="username" value="Username" />
 
                         <TextInput
-                            id="email"
+                            id="username"
                             type="email"
-                            name="email"
-                            value={data.email}
+                            name="username"
+                            value={data.username}
                             className="mt-1 block w-full"
-                            autoComplete="email"
+                            autoComplete="username"
                             isFocused={true}
-                            onChange={(e) => setData("email", e.target.value)}
+                            onChange={(e) => setData("username", e.target.value)}
                         />
 
-                        <InputError message={errors.email} className="mt-2" />
+                        <InputError message={errors.username} className="mt-2" />
                     </div>
                     <div>
                         <InputLabel htmlFor="password" value="Password" />
@@ -107,7 +107,7 @@ export default function Login({ status, canResetPassword }) {
                                 }
                             />
                             <span className="ms-2 text-sm text-gray-600 dark:text-gray-400">
-                                Remember me
+                                Ingat saya
                             </span>
                         </label>
                     </div>
@@ -118,7 +118,7 @@ export default function Login({ status, canResetPassword }) {
                     className="bg-primary flex justify-center"
                     disabled={processing}
                 >
-                    Log in
+                    Masuk
                 </ButtonWithLoading>
             </form>
         </GuestLayout>
