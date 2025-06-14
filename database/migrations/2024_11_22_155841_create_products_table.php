@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->integer('price');
-            $table->float('discount')->nullable();
+            $table->integer('discount')->nullable();
             $table->integer('stock')->nullable();
             $table->string('image')->nullable();
             
