@@ -13,7 +13,6 @@ const FilteredProductList = memo(() => {
 
     // Handler untuk menambahkan produk ke keranjang
     const addToCart = (product) => {
-        
         handleAddToCart(product); // Tambahkan produk ke keranjang
     };
 

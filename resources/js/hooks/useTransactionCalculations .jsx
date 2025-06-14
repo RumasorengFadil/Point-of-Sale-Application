@@ -20,7 +20,7 @@ export const useTransactionCalculations = (products = [], cart = []) => {
             if (!product) return accumulator; // Pastikan produk ditemukan
             return (
                 accumulator +
-                calculateDiscountAmount(product.price, product.discount) *
+                calculateDiscountAmount(Number(product.price), Number(product.discount)) *
                     cartItem.quantity
             );
         }, 0);
