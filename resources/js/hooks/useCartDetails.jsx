@@ -15,7 +15,7 @@ export const useCartDetails = (products = [], cart = []) => {
                 unitPrice: product.price,
                 categoryName : product.category.category_name,
                 discountAmount:
-                    calculateDiscountAmount(product.price, product.discount) * cartItem.quantity,
+                    calculateDiscountAmount(Number(product.price), Number(product.discount)) * cartItem.quantity,
                 discountPercentage: product.discount,
             };
         });
