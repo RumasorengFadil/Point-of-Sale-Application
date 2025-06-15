@@ -23,7 +23,7 @@ export default function ProductForm({ categories, product = {}, action }) {
         categoryId: product.category?.id || "",
         price: product.price || 0,
         discount: product.discount || 0,
-        stock: product.stock || "",
+        stock: product.stock || 0,
         image: null,
     });
 
@@ -127,7 +127,7 @@ export default function ProductForm({ categories, product = {}, action }) {
                 onChange={handleChange}
                 name="stock"
                 label="Stok*"
-                placeholder="Masukan Harga Jual"
+                placeholder="Masukan Stok"
                 type="number"
                 value={data.stock}
                 error={errors.stock}
