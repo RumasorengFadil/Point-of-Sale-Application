@@ -25,7 +25,7 @@ const CartItemDetails = ({ product, cart, onIncrease, onDecrease }) => (
         <div className="flex flex-col text-sm justify-between w-full items-end">
             <div>
                 <ProductPrice
-                    className={product.discount ? "line-through" : "font-semibold"}
+                    className={product.discount > 0 ? "line-through" : "font-semibold"}
                     price={product.price}
                 />
                 {product.discount > 0 && (
