@@ -36,10 +36,13 @@ export default function AddCashTransactionForm({
     const { handleChange, handleNumberChange } = useFormHandler(data, setData);
 
     const ActionWithLoading = withLoading({ SpinnerWithLabel })(FormActions);
+    const url = journalEntry.id
+        ? route("accounting-journal-entry.update", journalEntry.id)
+        : route("accounting-journal-entry.store");
 
     const submit = (e) => {
         e.preventDefault();
-        post(route(routeName, journalEntry.id || ""), {
+        post(url, {
             onSuccess: (response) => {
                 toastUtils.showSuccess(response.props.flash);
 

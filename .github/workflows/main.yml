@@ -14,7 +14,8 @@ jobs:
         steps:
           - name: Checkout Code
             uses: actions/checkout@v3
-
+          - name: Build Next.js
+            run: npm run build
           - name: Setup PHP
             uses: shivammathur/setup-php@v2
             with:
