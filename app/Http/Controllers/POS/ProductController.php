@@ -44,11 +44,11 @@ class ProductController extends Controller
             $this->productRepository->store($validatedData);
 
             return redirect()->route('product.create')
-                ->with(['message' => __('message.success.stored', ['entity' => 'Product'])]);
+                ->with(['message' => __('message.success.stored', ['entity' => 'Produk'])]);
         } catch (\Exception $e) {
             dd($e->getMessage());
             \Log::error('Failed to store product: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['error' => __('message.error.stored', ['entity' => 'Product'])]);
+            return redirect()->back()->withErrors(['error' => __('message.error.stored', ['entity' => 'Produk'])]);
         }
 
     }
@@ -77,11 +77,11 @@ class ProductController extends Controller
             $this->productRepository->update($validatedData, $product);
 
             return redirect()->back()
-                ->with(['message' => __('message.success.updated', ['entity' => 'Product'])]);
+                ->with(['message' => __('message.success.updated', ['entity' => 'Produk'])]);
         } catch (\Exception $e) {
             \Log::error('Failed to store product: ' . $e->getMessage());
 
-            return redirect()->back()->withErrors(['error' => __('message.error.updated', ['entity' => 'Product'])]);
+            return redirect()->back()->withErrors(['error' => __('message.error.updated', ['entity' => 'Produk'])]);
         }
 
     }
@@ -96,13 +96,13 @@ class ProductController extends Controller
             $this->productRepository->destroy($product);
 
             return redirect()->back()
-                ->with(['message' => __('message.success.destroyed', ['entity' => 'Product'])]);
+                ->with(['message' => __('message.success.destroyed', ['entity' => 'Produk'])]);
 
         } catch (\Exception $e) {
             // Log the error for debugging
             \Log::error('Failed to destroy product: ' . $e->getMessage());
             // Redirect back with error message
-            redirect()->back()->withErrors(['error' => __('message.error.destroyed', ['entity' => 'Product'])]);
+            redirect()->back()->withErrors(['error' => __('message.error.destroyed', ['entity' => 'Produk'])]);
         }
     }
     // public function destroys(DestroysProductRequest $request)
