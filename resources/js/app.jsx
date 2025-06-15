@@ -16,15 +16,22 @@ createInertiaApp({
         // ✅ Cegah HTML diproses oleh React/Inertia
         axios.interceptors.response.use(
             (response) => {
-                return response;
-            },
-            (error) => {
-                const contentType = error?.response?.headers?.['content-type'];
+                const contentType = response?.headers?.['content-type'];
                 const isHtmlResponse = contentType && contentType.includes('text/html');
-
                 if (isHtmlResponse) {
                     // Paksa full reload
                     window.location.href = error.response?.config?.url || '/';
+                    return;
+                }
+                return response;
+            },
+            (error) => {
+                const contentType = error?.response?.headers['content-type'];
+                
+                if (contentType && !contentType.includes('application/json')) {
+                    // Cloudflare atau server lain mengembalikan HTML
+                    // → Reload paksa agar halaman verifikasi bisa tampil
+                    window.location.href = error.response.config.url;
                     return;
                 }
 

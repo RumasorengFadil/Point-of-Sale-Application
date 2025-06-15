@@ -1,1 +1,0 @@
-import{j as s}from"./app-BoPzKC54.js";const c=({SpinnerWithLabel:t,Overlay:n,LoadingWrapper:r=({children:e})=>s.jsx("div",{children:e})})=>e=>function({isLoading:i,...x}){return i?s.jsx(r,{children:s.jsxs("div",{className:"relative flex items-center justify-center w-full h-full",children:[n&&s.jsx(n,{}),t&&s.jsx(t,{})]})}):s.jsx(e,{...x})};export{c as w};
