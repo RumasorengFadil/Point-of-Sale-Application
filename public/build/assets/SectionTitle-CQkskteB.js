@@ -1,1 +1,0 @@
-import{j as s}from"./app-blY-gUgh.js";function i({subtitle:e,boldText:l}){return s.jsx("div",{className:"flex px-4 w-full",children:s.jsxs("h1",{children:[s.jsx("span",{className:"font-bold",children:l})," ",e]})})}export{i as T};
