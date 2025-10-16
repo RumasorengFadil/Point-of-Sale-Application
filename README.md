@@ -1,3 +1,12 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
+
 # 💼 Integrated Bookkeeping & POS System (Laravel + Inertia.js)
 
 An **integrated bookkeeping and Point of Sale (POS)** web application built with **Laravel** and **Inertia.js**.  
@@ -55,10 +64,40 @@ php artisan migrate --seed
 npm run dev
 php artisan serve
 
-## 🧭 Project Structure
-/app
-/resources/js/Pages
-/resources/views
-/routes/web.php
-/database/migrations
+Access at http://localhost:8000
+```
+## 📸 Demo
 
+🔗 **Live Demo:** [click here](https://www.rumasoreng.com/)  
+
+![Preview Screenshot](./public/images/common/preview-screenshoot.png)
+
+---
+
+## 🤝 Contributing
+
+Contributions are greatly appreciated!
+If you find a bug or want to add a feature:
+
+Fork this repository
+
+Create your feature branch:
+
+git checkout -b feature/your-feature
+
+Commit your changes
+
+Push to your branch and open a Pull Request
+
+## 📄 License
+
+License: MIT License
+– feel free to use, modify, and distribute.
+– Don't forget to include the credit.
+
+## ⭐ If this repo is useful, don't forget to star it to show your support!
+
+
+---
+
+I'd also like to add a **“Roadmap”** section (upcoming features) to give an overview of the project. 
