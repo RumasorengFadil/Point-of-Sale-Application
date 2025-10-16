@@ -1,13 +1,29 @@
+<!-- SEO Meta -->
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
+<meta name="title" content="Integrated Bookkeeping & POS System | Laravel + Inertia.js">
+<meta name="description" content="A modern integrated bookkeeping and Point of Sale (POS) web application built with Laravel and Inertia.js. Manage sales, inventory, and financial reports seamlessly.">
+<meta name="keywords" content="Laravel POS, bookkeeping system, accounting web app, inventory management, business management software, Inertia.js, TailwindCSS, SME tools, financial dashboard">
+
+<!-- Project Badges -->
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-10-red?logo=laravel" alt="Laravel">
+  <img src="https://img.shields.io/badge/Inertia.js-frontend-blueviolet?logo=react" alt="Inertia.js">
+  <img src="https://img.shields.io/badge/TailwindCSS-Styling-38BDF8?logo=tailwindcss" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
 </p>
 
-# 💼 Integrated Bookkeeping & POS System (Laravel + Inertia.js)
+<h1 align="center">Integrated Bookkeeping & POS System (Laravel + Inertia.js)</h1>
+
+<p align="center">
+  Manage your <b>sales, inventory, expenses, and bookkeeping</b> in one powerful and responsive web app.  
+  <br/>
+  <b>Laravel + Inertia.js + TailwindCSS</b> for modern SMEs that need speed, simplicity, and clarity.
+</p>
+
+---
+
+# Integrated Bookkeeping & POS System (Laravel + Inertia.js)
 
 An **integrated bookkeeping and Point of Sale (POS)** web application built with **Laravel** and **Inertia.js**.  
 This system helps you manage **sales, inventory, expenses, and financial reports** in one unified dashboard — perfect for small and medium businesses looking for a modern accounting and sales management solution.
