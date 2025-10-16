@@ -21,10 +21,10 @@ This system helps you manage **sales, inventory, expenses, and financial reports
 - 🧾 **Bookkeeping & Accounting** — Automatically record income, expenses, and generate balance reports.  
 - 💰 **Point of Sale (POS)** — Process sales quickly with real-time updates and transaction history.  
 - 📦 **Inventory Management** — Track stock levels, restocks, and low-stock alerts.  
-- 👥 **Customer & Employee Management** — Manage users, roles, and permissions.  
 - 📈 **Dashboard Analytics** — Visualize sales trends, profit, and cash flow insights.  
 - 🌐 **Multi-device Support** — Fully responsive and optimized for desktop, tablet, and mobile.  
 - 🔐 **Secure Authentication** — Token-based sessions powered by Laravel Sanctum.  
+- 👥 **Customer & Employee Management** — Manage users, roles, and permissions (next feat).  
 
 ---
 
@@ -47,7 +47,7 @@ This system helps you manage **sales, inventory, expenses, and financial reports
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/RumasorengFadil/Point-of-Sale-Application.git
 cd your-repo-name
 
 Install PHP dependencies:
