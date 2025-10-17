@@ -62,7 +62,7 @@
 #                 php artisan optimize &&
 #                 php artisan migrate  || echo 'Migration failed'
 #               "
-#
+
 name: Deploy Laravel API via SSH
 
 on:
