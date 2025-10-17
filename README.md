@@ -84,7 +84,7 @@ Access at http://localhost:8000
 ```
 ## 📸 Demo
 
-🔗 **Live Demo:** [click here](https://www.rumasoreng.com/)  
+🔗 **Live Demo:** [click here](https://pos.rumasoreng.com/)  
 
 ![Preview Screenshot](./public/images/common/preview-screenshoot.png)
 
