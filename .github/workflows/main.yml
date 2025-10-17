@@ -124,6 +124,7 @@ jobs:
               git remote add origin git@github-pos:RumasorengFadil/Point-of-Sale-Application.git
               git fetch origin $BRANCH
               git checkout -t origin/$BRANCH
+              php artisan storage:link
             else
               cd "$DEPLOY_PATH" && git fetch origin && git reset --hard origin/$BRANCH
             fi
