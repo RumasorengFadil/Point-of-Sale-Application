@@ -7,7 +7,7 @@ use App\Models\POS\Product;
 class ProductRepository
 {
     public function index($perPage = null)
-    {
+    {       
         return Product::with('category')->get();
     }
     public function store(array $data): Product

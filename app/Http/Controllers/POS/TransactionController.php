@@ -59,7 +59,6 @@ class TransactionController extends Controller
             \Log::error('Failed to store transaction: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => __('message.error.stored', ['entity' => 'Transaction'])]);
         }
-
     }
     public function success(Request $request)
     {
