@@ -1,144 +1,94 @@
-# name: CI/CD
-
-# on:
-#   push:
-#     branches:
-#       - main # Ganti dengan branch yang sesuai untuk deployment
-#   pull_request:
-#     branches:
-#       - main
-
-# jobs:
-#   deploy:
-#         runs-on: ubuntu-latest
-#         steps:
-#           - name: Checkout Code
-#             uses: actions/checkout@v3
-
-#           - name: Setup PHP
-#             uses: shivammathur/setup-php@v2
-#             with:
-#               php-version: 8.2
-#               tools: composer:v2
-              
-#           - name: Setup SSH Key
-#             env:
-#               SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-#             run: |
-#               echo "${SSH_PRIVATE_KEY}" > id_rsa
-#               chmod 600 id_rsa
-
-#           - name: Deploy Static Files
-#             env:
-#               SERVER_IP: ${{ secrets.SERVER_IP }}
-#               SERVER_USER: ${{ secrets.SERVER_USER }}
-#             run: |
-#               scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/* $SERVER_USER@$SERVER_IP:/home/bbytscom/wadonfirly.my.id
-#               scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r ./public/.[!.]* bbytscom@119.235.250.57:/home/bbytscom/wadonfirly.my.id
-    
-#           - name: Deploy Laravel Application
-#             env:
-#               SERVER_IP: ${{ secrets.SERVER_IP }}
-#               SERVER_USER: ${{ secrets.SERVER_USER }}
-#             run: |
-#               scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r * $SERVER_USER@$SERVER_IP:/home/bbytscom/wadonfirly.my.id/laravel
-#               scp -P 6510 -o StrictHostKeyChecking=no -i id_rsa -r .[!.]* $SERVER_USER@$SERVER_IP:/home/bbytscom/wadonfirly.my.id/laravel
-    
-#           - name: Run Post-Deploy Commands
-#             env:
-#               SERVER_IP: ${{ secrets.SERVER_IP }}
-#               SERVER_USER: ${{ secrets.SERVER_USER }}
-#             run: |
-#               ssh -p 6510 -o StrictHostKeyChecking=no -i id_rsa $SERVER_USER@$SERVER_IP "
-#                 cd /home/bbytscom/wadonfirly.my.id/laravel && 
-#                 composer install --prefer-dist --no-dev --optimize-autoloader &&
-#                 php artisan key:generate &&
-#                 php artisan config:clear &&
-#                 php artisan route:clear &&
-#                 php artisan view:clear &&
-#                 php artisan config:cache || echo 'Config cache failed' &&
-#                 php artisan route:cache || echo 'Route cache failed' &&
-#                 php artisan view:cache || echo 'View cache failed' &&
-#                 php artisan optimize &&
-#                 php artisan migrate  || echo 'Migration failed'
-#               "
-
-name: Deploy Laravel API via SSH
+name: Deploy Laravel
 
 on:
   push:
     branches:
-      - main # ganti sesuai branch produksi
+      - main
       - staging
       - dev
-
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. Setup PHP untuk Laravel
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.2"
-          extensions: mbstring, bcmath, intl, mysql
-          tools: composer
+          php-version: 8.3
+          extensions: mbstring, pdo, pdo_mysql, bcmath, ctype, fileinfo, json, openssl, tokenizer, xml
+          coverage: none
 
-      # 3. Install dependencies
-      - name: Install Dependencies
-        run: composer install --no-dev --prefer-dist --no-progress --no-suggest
+      - name: Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader
 
-      # 4. Jalankan Testing Laravel (opsional)
-      # - name: Run Laravel Tests
-      #   run: php artisan test
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
 
-      # 5. Deploy via SSH & rsync
-      - name: Deploy to Shared Hosting
+      - name: Install Frontend Dependencies
+        run: npm ci
+
+      - name: Build Frontend Assets
+        run: npm run build
+
+      - name: Setup SSH Agent
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # 3. Deploy via SSH langsung
       - name: Deploy to Server
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
             DEPLOY_PATH="${{ secrets.PROD_PATH }}"
-            BRANCH="main"
           elif [[ "${GITHUB_REF}" == "refs/heads/staging" ]]; then
             DEPLOY_PATH="${{ secrets.STAGING_PATH }}"
-            BRANCH="staging"
-          elif [[ "${GITHUB_REF}" == "refs/heads/dev" ]]; then
+          else
             DEPLOY_PATH="${{ secrets.DEV_PATH }}"
-            BRANCH="dev"
           fi
- 
-          ssh -p 6510 -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << EOF
-            if [ ! -d "$DEPLOY_PATH/.git" ]; then
-              cd "$DEPLOY_PATH"
-              git init -b $BRANCH
-              git remote add origin git@github-pos:RumasorengFadil/Point-of-Sale-Application.git
-              git fetch origin $BRANCH
-              git checkout -t origin/$BRANCH
-              php artisan storage:link
-            else
-              cd "$DEPLOY_PATH" && git fetch origin && git reset --hard origin/$BRANCH
-            fi
 
-            cd "$DEPLOY_PATH"
+          echo "Deploying to $DEPLOY_PATH"
+
+          ssh -p 6510 -o StrictHostKeyChecking=no \
+          ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} \
+          "mkdir -p $DEPLOY_PATH"
+
+          rsync -az --delete \
+            --exclude=".git" \
+            --exclude=".github" \
+            --exclude="node_modules" \
+            --exclude="tests" \
+            --exclude=".env" \
+            -e "ssh -p 6510 -o StrictHostKeyChecking=no" \
+            ./ \
+            ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:$DEPLOY_PATH
+
+          ssh -p 6510 -o StrictHostKeyChecking=no \
+          ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} << EOF
+
+            cd $DEPLOY_PATH
+
             composer install --no-dev --optimize-autoloader
+
             php artisan migrate --force
-            php artisan sitemap:generate
+
             php artisan config:clear
             php artisan route:clear
             php artisan view:clear
+
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
+
+            php artisan storage:link || true
+
             php artisan optimize
+
           EOF
 
+#
